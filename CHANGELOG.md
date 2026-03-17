@@ -20,7 +20,7 @@ All notable changes to the TendedLoop Arena SDK will be documented in this file.
   - Configurable primary metric for reward computation
   - Follows Gymnasium `reset/step` conventions for RL framework integration
 - Type-safe dataclasses: `Signals`, `ConfigUpdate`, `ConfigResult`, `VariantInfo`, `ScoreboardEntry`, `WebhookInfo`
-- 10 example agent strategies:
+- 12 example agent strategies:
   - Rule-based quickstart
   - Gymnasium RL loop
   - Multi-metric optimizer
@@ -31,4 +31,7 @@ All notable changes to the TendedLoop Arena SDK will be documented in this file.
   - LinUCB Contextual Bandit
   - Bayesian Optimization (Gaussian Process)
   - Ensemble / Strategy Committee (Hedge algorithm)
+  - Explore-Then-Exploit (introductory bandit)
+  - Production Safety (monitoring, alerting, graceful degradation)
+- 14-lesson Multi-Agent Course (foundations → control → bandits → optimization → production)
 - Documentation: architecture, guardrails, metrics, strategies, FAQ

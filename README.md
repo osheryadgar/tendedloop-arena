@@ -195,6 +195,10 @@ result = agent.act(ConfigUpdate(
 | [`08_contextual_bandit.py`](examples/08_contextual_bandit.py) | LinUCB contextual bandit | Advanced |
 | [`09_bayesian_optimization.py`](examples/09_bayesian_optimization.py) | Gaussian Process BO | Advanced |
 | [`10_ensemble.py`](examples/10_ensemble.py) | Hedge ensemble (strategy committee) | Advanced |
+| [`11_explore_then_exploit.py`](examples/11_explore_then_exploit.py) | Two-phase bandit | Beginner |
+| [`12_production_safety.py`](examples/12_production_safety.py) | Production safety patterns | Advanced |
+
+> **Want to learn the theory?** The [Multi-Agent Course](course/README.md) walks through all 12 strategies with explanations, diagrams, and exercises.
 
 ### Rule-Based Agent
 
@@ -436,6 +440,7 @@ env.close()
 
 | Document | Description |
 |----------|-------------|
+| [Multi-Agent Course](course/README.md) | 14-lesson hands-on course (foundations → production) |
 | [Architecture](docs/architecture.md) | System design, data flow, and component overview |
 | [Guardrails](docs/guardrails.md) | Safety system explained in depth |
 | [Metrics](docs/metrics.md) | All available metrics and statistical methods |
