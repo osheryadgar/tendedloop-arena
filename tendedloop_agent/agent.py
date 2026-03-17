@@ -7,12 +7,19 @@ import threading
 import time
 from collections.abc import Callable
 from typing import Any
+from urllib.parse import urlparse
 
 import httpx
 
 from .types import ConfigResult, ConfigUpdate, ScoreboardEntry, Signals, VariantInfo, WebhookInfo
 
 logger = logging.getLogger("tendedloop_agent")
+
+# HTTP status codes that are safe to retry (transient server errors)
+_RETRYABLE_STATUS_CODES = {500, 502, 503, 504}
+
+# Max consecutive errors in run() before re-raising
+_MAX_CONSECUTIVE_ERRORS = 5
 
 
 class Agent:
@@ -50,6 +57,7 @@ class Agent:
         heartbeat_interval: int = 30,
         max_retries: int = 2,
     ):
+        self._validate_url(api_url)
         self.api_url = api_url.rstrip("/")
         self._client = httpx.Client(
             base_url=self.api_url,
@@ -65,6 +73,17 @@ class Agent:
         self._stop_event = threading.Event()
         self._heartbeat_thread: threading.Thread | None = None
         self._info: VariantInfo | None = None
+
+    @staticmethod
+    def _validate_url(api_url: str) -> None:
+        """Ensure the API URL uses HTTPS to prevent credential leakage."""
+        parsed = urlparse(api_url)
+        if parsed.scheme == "http" and parsed.hostname not in ("localhost", "127.0.0.1", "::1"):
+            raise ValueError(
+                f"Refusing to connect over plain HTTP ({api_url}). "
+                "Use HTTPS to protect your strategy token. "
+                "HTTP is only allowed for localhost development."
+            )
 
     # ─── Properties ───
 
@@ -169,6 +188,7 @@ class Agent:
         self._poll_interval = poll_interval
         self._start_heartbeat_thread()
         iteration = 0
+        consecutive_errors = 0
 
         try:
             info = self.info()
@@ -199,14 +219,20 @@ class Agent:
                         logger.debug("No config change proposed this cycle")
 
                     iteration += 1
+                    consecutive_errors = 0  # Reset on success
 
                 except httpx.HTTPStatusError as e:
                     if e.response.status_code == 403:
                         logger.warning("Experiment paused or ended, stopping agent")
                         break
+                    consecutive_errors += 1
                     logger.error(f"API error: {e}")
                 except Exception as e:
+                    consecutive_errors += 1
                     logger.error(f"Error in agent loop: {e}")
+                    if consecutive_errors >= _MAX_CONSECUTIVE_ERRORS:
+                        logger.error(f"{consecutive_errors} consecutive errors, stopping agent")
+                        raise
 
                 self._stop_event.wait(timeout=poll_interval)
 
@@ -246,7 +272,7 @@ class Agent:
     # ─── HTTP Helpers ───
 
     def _request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
-        """Make an HTTP request with retry for transient errors."""
+        """Make an HTTP request with retry for transient errors and 5xx."""
         last_error: Exception | None = None
         for attempt in range(1 + self._max_retries):
             try:
@@ -256,8 +282,16 @@ class Agent:
                     return {}
                 body = resp.json()
                 return body.get("data", body)
-            except httpx.HTTPStatusError:
-                raise  # Don't retry HTTP errors (4xx/5xx)
+            except httpx.HTTPStatusError as e:
+                if e.response.status_code in _RETRYABLE_STATUS_CODES:
+                    last_error = e
+                    if attempt < self._max_retries:
+                        wait = 2**attempt
+                        logger.debug(f"Server error {e.response.status_code}, retrying in {wait}s")
+                        time.sleep(wait)
+                        continue
+                    raise  # Exhausted retries
+                raise  # 4xx errors are not retried
             except (httpx.ConnectError, httpx.ReadTimeout, httpx.WriteTimeout) as e:
                 last_error = e
                 if attempt < self._max_retries:

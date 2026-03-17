@@ -22,7 +22,7 @@ This implementation uses a simple RBF kernel GP without heavy dependencies.
 For production use, consider scikit-optimize or BoTorch.
 
 Run:
-    pip install "tendedloop-agent[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
+    pip install "tendedloop-arena[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
     export STRATEGY_TOKEN=strat_your_token_here
     python examples/09_bayesian_optimization.py
 """
@@ -38,6 +38,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
 ARENA_URL = os.environ.get("ARENA_URL", "https://api.tendedloop.com")
 TOKEN = os.environ.get("STRATEGY_TOKEN", "strat_your_token_here")
+
+if TOKEN == "strat_your_token_here":
+    raise SystemExit(
+        "Set STRATEGY_TOKEN env var before running.\n"
+        "Get yours from Dashboard > Admin > Research > Experiments > Arena Manifest"
+    )
 
 
 # ─── Search Space ───

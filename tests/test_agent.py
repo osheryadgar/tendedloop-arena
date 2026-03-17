@@ -5,121 +5,25 @@ import pytest
 
 from tendedloop_agent import Agent, ConfigUpdate
 
-
-def mock_transport(responses: dict):
-    """Create a mock transport that returns predefined responses."""
-
-    def handler(request: httpx.Request) -> httpx.Response:
-        path = request.url.path
-        method = request.method
-
-        key = f"{method} {path}"
-        if key in responses:
-            return httpx.Response(200, json=responses[key])
-
-        # Match partial paths (for query string endpoints)
-        for route_key, response_data in responses.items():
-            route_method, route_path = route_key.split(" ", 1)
-            if route_method == method and path.startswith(route_path):
-                return httpx.Response(200, json=response_data)
-
-        return httpx.Response(404, json={"success": False, "error": "Not found"})
-
-    return httpx.MockTransport(handler)
+from .conftest import STANDARD_RESPONSES, make_agent
 
 
-MOCK_RESPONSES = {
-    "GET /api/arena/variant": {
-        "success": True,
-        "data": {
-            "variantId": "v1",
-            "variantName": "Treatment-A",
-            "experimentId": "exp1",
-            "experimentName": "Test Experiment",
-            "experimentStatus": "RUNNING",
-            "mode": "AGENT",
-            "isControl": False,
-            "currentConfig": {"scanXp": 10, "feedbackXp": 15},
-            "updateIntervalMin": 60,
-            "deltaLimitPct": 50,
-        },
-    },
-    "GET /api/arena/signals": {
-        "success": True,
-        "data": {
-            "enrolled": 100,
-            "activeToday": 30,
-            "active7d": 70,
-            "totalScans": 500,
-            "experimentDays": 5,
-            "metrics": {
-                "SCAN_FREQUENCY": {
-                    "value": 2.5,
-                    "stdDev": 1.1,
-                    "sampleSize": 30,
-                    "confidence": "high",
-                },
-            },
-        },
-    },
-    "PUT /api/arena/variant/config": {
-        "success": True,
-        "data": {
-            "accepted": True,
-            "appliedConfig": {"scanXp": 12},
-            "decisionLogId": "dec_001",
-            "nextAllowedUpdate": "2025-01-15T11:00:00Z",
-        },
-    },
-    "POST /api/arena/heartbeat": {"success": True, "data": {}},
-    "POST /api/arena/webhooks": {
-        "success": True,
-        "data": {
-            "webhookId": "wh_001",
-            "url": "https://example.com/hook",
-            "events": ["config_updated"],
-        },
-    },
-    "DELETE /api/arena/webhooks": {"success": True, "data": {}},
-    "GET /api/arena/scoreboard": {
-        "success": True,
-        "data": {
-            "variants": [
-                {
-                    "variantId": "v0",
-                    "variantName": "Control",
-                    "isControl": True,
-                    "enrolledCount": 50,
-                },
-                {
-                    "variantId": "v1",
-                    "variantName": "Treatment-A",
-                    "isControl": False,
-                    "enrolledCount": 50,
-                },
-            ],
-        },
-    },
-    "GET /api/arena/decisions": {
-        "success": True,
-        "data": {"decisions": [], "total": 0, "page": 1, "pageSize": 20},
-    },
-}
+class TestAgentInit:
+    def test_rejects_http_url(self):
+        with pytest.raises(ValueError, match="Refusing to connect over plain HTTP"):
+            Agent(api_url="http://api.example.com", strategy_token="strat_test")
 
+    def test_allows_https_url(self):
+        agent = Agent(api_url="https://api.example.com", strategy_token="strat_test")
+        agent.close()
 
-@pytest.fixture
-def agent():
-    """Create an Agent with mock transport."""
-    a = Agent(api_url="https://api.test.com", strategy_token="strat_test")
-    original_client = a._client
-    a._client = httpx.Client(
-        base_url="https://api.test.com",
-        headers=original_client.headers,
-        transport=mock_transport(MOCK_RESPONSES),
-    )
-    original_client.close()
-    yield a
-    a._client.close()
+    def test_allows_localhost_http(self):
+        agent = Agent(api_url="http://localhost:3001", strategy_token="strat_test")
+        agent.close()
+
+    def test_allows_127_0_0_1_http(self):
+        agent = Agent(api_url="http://127.0.0.1:3001", strategy_token="strat_test")
+        agent.close()
 
 
 class TestAgentInfo:
@@ -252,6 +156,64 @@ class TestAgentRun:
         # Second call sees updated config (from act result)
         assert configs_seen[1]["scanXp"] == 12
 
+    def test_run_stops_on_403(self):
+        """Run loop should stop gracefully when experiment ends (403)."""
+        call_count = 0
+        responses = dict(STANDARD_RESPONSES)
+        responses["GET /api/arena/signals"] = (403, {"error": "Forbidden"})
+
+        a = make_agent(responses)
+        try:
+
+            def decide(signals, config):
+                nonlocal call_count
+                call_count += 1
+                return None
+
+            a.run(decide, poll_interval=0, max_iterations=10)
+            # Should have stopped before 10 iterations
+            assert call_count == 0
+        finally:
+            a._client.close()
+
+    def test_run_reraises_after_consecutive_errors(self):
+        """Run loop should re-raise after too many consecutive errors."""
+        a = make_agent()
+        try:
+            call_count = 0
+
+            def bad_decide(signals, config):
+                nonlocal call_count
+                call_count += 1
+                raise RuntimeError("Bug in decide function")
+
+            with pytest.raises(RuntimeError, match="Bug in decide function"):
+                a.run(bad_decide, poll_interval=0, max_iterations=100)
+
+            assert call_count == 5  # _MAX_CONSECUTIVE_ERRORS
+        finally:
+            a._client.close()
+
+    def test_run_resets_error_count_on_success(self, agent):
+        """Consecutive error count should reset after a successful cycle."""
+        call_count = 0
+        success_count = 0
+
+        def sometimes_fail(signals, config):
+            nonlocal call_count, success_count
+            call_count += 1
+            # Fail on call 2-4, succeed on others
+            if 2 <= call_count <= 4:
+                raise RuntimeError("intermittent failure")
+            success_count += 1
+            return None
+
+        # The 3 consecutive errors (calls 2-4) don't hit the threshold (5)
+        # because call 1 succeeded and resets the counter.
+        # Errors don't increment `iteration`, so max_iterations=5 means 5 successes.
+        agent.run(sometimes_fail, poll_interval=0, max_iterations=5)
+        assert success_count == 5
+
     def test_stop(self, agent):
         agent.stop()
         assert agent._stop_event.is_set()
@@ -260,3 +222,71 @@ class TestAgentRun:
         assert agent.is_running is True  # Event not set = running
         agent.stop()
         assert agent.is_running is False
+
+
+class TestAgentRetry:
+    def test_retries_on_connect_error(self):
+        """Transient connect errors should be retried."""
+        attempt_count = 0
+
+        def flaky_handler(request):
+            nonlocal attempt_count
+            attempt_count += 1
+            if attempt_count < 3:
+                raise httpx.ConnectError("Connection refused")
+            return httpx.Response(200, json={"success": True, "data": {"enrolled": 42}})
+
+        responses = dict(STANDARD_RESPONSES)
+        responses["GET /api/arena/signals"] = flaky_handler
+        a = make_agent(responses)
+        try:
+            signals = a.observe()
+            assert signals.enrolled == 42
+            assert attempt_count == 3  # 2 failures + 1 success
+        finally:
+            a._client.close()
+
+    def test_retries_on_500(self):
+        """5xx server errors should be retried."""
+        attempt_count = 0
+
+        def flaky_handler(request):
+            nonlocal attempt_count
+            attempt_count += 1
+            if attempt_count < 3:
+                return httpx.Response(502, json={"error": "Bad gateway"})
+            return httpx.Response(200, json={"success": True, "data": {"enrolled": 42}})
+
+        responses = dict(STANDARD_RESPONSES)
+        responses["GET /api/arena/signals"] = flaky_handler
+        a = make_agent(responses)
+        try:
+            signals = a.observe()
+            assert signals.enrolled == 42
+            assert attempt_count == 3
+        finally:
+            a._client.close()
+
+    def test_does_not_retry_on_400(self):
+        """4xx client errors should not be retried."""
+        responses = dict(STANDARD_RESPONSES)
+        responses["GET /api/arena/signals"] = (400, {"error": "Bad request"})
+        a = make_agent(responses)
+        try:
+            with pytest.raises(httpx.HTTPStatusError) as exc_info:
+                a.observe()
+            assert exc_info.value.response.status_code == 400
+        finally:
+            a._client.close()
+
+
+class TestAgentHeartbeat:
+    def test_heartbeat_thread_starts_and_stops(self, agent):
+        """Heartbeat thread should start and stop cleanly."""
+        agent._start_heartbeat_thread()
+        assert agent._heartbeat_thread is not None
+        assert agent._heartbeat_thread.is_alive()
+
+        agent.stop()
+        agent._stop_heartbeat_thread()
+        assert agent._heartbeat_thread is None

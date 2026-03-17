@@ -9,7 +9,7 @@ This example uses Anthropic's Claude, but the pattern works
 with any LLM that supports structured output.
 
 Run:
-    pip install "tendedloop-agent[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
+    pip install "tendedloop-arena[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
     export STRATEGY_TOKEN=strat_your_token_here
     export ANTHROPIC_API_KEY=sk-ant-...
     python examples/04_llm_agent.py
@@ -27,6 +27,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
 ARENA_URL = os.environ.get("ARENA_URL", "https://api.tendedloop.com")
 TOKEN = os.environ.get("STRATEGY_TOKEN", "strat_your_token_here")
+
+if TOKEN == "strat_your_token_here":
+    raise SystemExit(
+        "Set STRATEGY_TOKEN env var before running.\n"
+        "Get yours from Dashboard > Admin > Research > Experiments > Arena Manifest"
+    )
 
 # ─── LLM Setup ───
 

@@ -1,6 +1,15 @@
-"""Tests for type deserialization."""
+"""Tests for type deserialization and validation."""
 
-from tendedloop_agent import ConfigResult, ConfigUpdate, ScoreboardEntry, Signals, VariantInfo
+import pytest
+
+from tendedloop_agent import (
+    ConfigResult,
+    ConfigUpdate,
+    ScoreboardEntry,
+    Signals,
+    VariantInfo,
+    WebhookInfo,
+)
 
 
 class TestSignals:
@@ -71,6 +80,24 @@ class TestConfigUpdate:
             signals={"scan_frequency": 2.1},
         )
         assert update.signals == {"scan_frequency": 2.1}
+
+    def test_repr(self):
+        update = ConfigUpdate(economy_overrides={"scanXp": 20}, reasoning="Boost")
+        r = repr(update)
+        assert "scanXp=20" in r
+        assert "Boost" in r
+
+    def test_rejects_empty_overrides(self):
+        with pytest.raises(ValueError, match="must not be empty"):
+            ConfigUpdate(economy_overrides={})
+
+    def test_rejects_negative_values(self):
+        with pytest.raises(ValueError, match="must be >= 0"):
+            ConfigUpdate(economy_overrides={"scanXp": -5})
+
+    def test_rejects_non_numeric_values(self):
+        with pytest.raises(TypeError, match="must be int or float"):
+            ConfigUpdate(economy_overrides={"scanXp": "ten"})  # type: ignore
 
 
 class TestConfigResult:
@@ -147,3 +174,15 @@ class TestScoreboardEntry:
         assert entry.is_control is True
         assert entry.enrolled_count == 75
         assert entry.total_decisions == 0
+
+
+class TestWebhookInfo:
+    def test_from_dict_with_webhook_id(self):
+        data = {"webhookId": "wh_001", "url": "https://example.com", "events": ["config_updated"]}
+        wh = WebhookInfo.from_dict(data)
+        assert wh.webhook_id == "wh_001"
+
+    def test_from_dict_with_id_fallback(self):
+        data = {"id": "wh_002", "url": "https://example.com", "events": []}
+        wh = WebhookInfo.from_dict(data)
+        assert wh.webhook_id == "wh_002"

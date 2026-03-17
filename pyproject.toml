@@ -3,13 +3,14 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tendedloop-agent"
+name = "tendedloop-arena"
 version = "0.1.0"
 description = "Python SDK for TendedLoop Arena — multi-agent gamification research platform"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
+    {name = "Osher Yadgar", email = "osher@uzerz.com"},
     {name = "TendedLoop", email = "support@tendedloop.com"},
 ]
 keywords = ["gamification", "multi-agent", "reinforcement-learning", "research", "arena"]
@@ -39,10 +40,11 @@ llm = [
 ]
 dev = [
     "pytest>=7.0",
+    "pytest-cov>=4.0",
     "ruff>=0.1.0",
 ]
 all = [
-    "tendedloop-agent[rl,llm,dev]",
+    "tendedloop-arena[rl,llm,dev]",
 ]
 
 [project.urls]

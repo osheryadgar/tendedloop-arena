@@ -66,6 +66,21 @@ class ConfigUpdate:
     reasoning: str = ""
     signals: dict[str, Any] | None = None
 
+    def __post_init__(self) -> None:
+        if not self.economy_overrides:
+            raise ValueError("economy_overrides must not be empty")
+        for key, value in self.economy_overrides.items():
+            if not isinstance(value, (int, float)):
+                vtype = type(value).__name__
+                raise TypeError(f"economy_overrides['{key}'] must be int or float, got {vtype}")
+            if value < 0:
+                raise ValueError(f"economy_overrides['{key}'] must be >= 0, got {value}")
+
+    def __repr__(self) -> str:
+        overrides = ", ".join(f"{k}={v}" for k, v in self.economy_overrides.items())
+        reason = f", reason='{self.reasoning[:50]}'" if self.reasoning else ""
+        return f"ConfigUpdate({overrides}{reason})"
+
 
 @dataclass
 class ConfigResult:

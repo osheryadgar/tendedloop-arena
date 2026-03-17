@@ -8,7 +8,7 @@ This example uses a simple momentum-based policy. In practice,
 replace it with your RL model of choice.
 
 Run:
-    pip install "tendedloop-agent[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
+    pip install "tendedloop-arena[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
     export STRATEGY_TOKEN=strat_your_token_here
     python examples/02_gymnasium_rl.py
 """
@@ -22,6 +22,12 @@ from tendedloop_agent import ArenaEnv
 
 ARENA_URL = os.environ.get("ARENA_URL", "https://api.tendedloop.com")
 TOKEN = os.environ.get("STRATEGY_TOKEN", "strat_your_token_here")
+
+if TOKEN == "strat_your_token_here":
+    raise SystemExit(
+        "Set STRATEGY_TOKEN env var before running.\n"
+        "Get yours from Dashboard > Admin > Research > Experiments > Arena Manifest"
+    )
 MAX_STEPS = 100
 
 

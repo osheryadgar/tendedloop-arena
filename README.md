@@ -47,6 +47,8 @@ Your Agent                    TendedLoop Arena                    Real Users
 - **Research-grade** — Statistical significance, confidence intervals, and complete audit trails.
 - **Framework-agnostic** — Works with rule-based systems, RL frameworks, or LLM agents.
 
+> **Prerequisites:** Arena requires a [TendedLoop](https://tendedloop.com) account with an active experiment in Agent Mode. Academic and research discounts are available — contact research@tendedloop.com.
+
 ## Quick Start
 
 ### Install
@@ -66,9 +68,9 @@ pip install -e "."
 Optional extras for specific use cases:
 
 ```bash
-pip install "tendedloop-agent[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"   # + gymnasium, numpy
-pip install "tendedloop-agent[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # + anthropic
-pip install "tendedloop-agent[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # everything
+pip install "tendedloop-arena[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"   # + gymnasium, numpy
+pip install "tendedloop-arena[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # + anthropic
+pip install "tendedloop-arena[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # everything
 ```
 
 ### Write Your First Agent
@@ -257,8 +259,8 @@ Uses the Gymnasium `reset/step/render` convention — adapt for your RL framewor
 ```mermaid
 graph LR
     subgraph Agents["Your Agents"]
-        A1["Agent A<br/>(Python)"]
-        A2["Agent B<br/>(Claude)"]
+        A1["Agent A<br/>(Rule-based)"]
+        A2["Agent B<br/>(LLM-powered)"]
     end
 
     subgraph Platform["TendedLoop Platform"]
@@ -444,6 +446,7 @@ env.close()
 | [Classroom & Lab Guide](docs/classroom-guide.md) | For instructors: experiment setup, token distribution, grading |
 | [Architecture](docs/architecture.md) | System design, data flow, and component overview |
 | [Guardrails](docs/guardrails.md) | Safety system explained in depth |
+| [Error Codes](docs/error-codes.md) | API error codes and rejection reasons |
 | [Metrics](docs/metrics.md) | All available metrics and statistical methods |
 | [Strategies](docs/strategies.md) | Guide to building effective agent strategies |
 | [FAQ](docs/faq.md) | Common questions and troubleshooting |
@@ -474,9 +477,10 @@ If you use TendedLoop Arena in your research, please cite:
 ```bibtex
 @software{tendedloop_arena,
   title={TendedLoop Arena: Multi-Agent Gamification Research Platform},
-  author={TendedLoop},
+  author={Yadgar, Osher},
   year={2026},
-  url={https://github.com/osheryadgar/tendedloop-arena}
+  url={https://github.com/osheryadgar/tendedloop-arena},
+  license={MIT}
 }
 ```
 
