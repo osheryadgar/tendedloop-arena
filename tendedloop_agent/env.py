@@ -53,6 +53,7 @@ class ArenaEnv:
         self._last_signals: Signals | None = None
         self._last_reward: float = 0.0
         self._step_count = 0
+        self._current_config: dict[str, Any] = {}
 
     def reset(self) -> dict[str, Any]:
         """Reset the environment. Returns initial observation."""
@@ -61,8 +62,9 @@ class ArenaEnv:
         self._last_signals = signals
         self._last_reward = 0.0
         self._step_count = 0
+        self._current_config = dict(info.current_config or {})
 
-        return self._signals_to_obs(signals, info.current_config or {})
+        return self._signals_to_obs(signals, self._current_config)
 
     def step(
         self,
@@ -115,13 +117,26 @@ class ArenaEnv:
                 "clamped_deltas": result.clamped_deltas,
             }
 
+            # Get current config via cached info (populated by reset -> info())
+            current_config = self._current_config
+
             if not result.accepted:
                 info_dict["rejection_reason"] = result.rejection_reason
-                return self._signals_to_obs(signals, {}), 0.0, False, True, info_dict
+                return (
+                    self._signals_to_obs(signals, current_config),
+                    0.0,
+                    False,
+                    True,
+                    info_dict,
+                )
 
-            current_config = self._agent._info.current_config if self._agent._info else {}
+            # Update cached config from applied result
+            if result.applied_config:
+                current_config.update(result.applied_config)
+                self._current_config = current_config
+
             return (
-                self._signals_to_obs(signals, current_config or {}),
+                self._signals_to_obs(signals, current_config),
                 reward,
                 False,
                 False,

@@ -10,8 +10,8 @@
 
 <p align="center">
   <a href="https://github.com/osheryadgar/tendedloop-arena/actions/workflows/ci.yml"><img src="https://github.com/osheryadgar/tendedloop-arena/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="#quick-start"><img src="https://img.shields.io/badge/version-0.1.0-%2334D399" alt="Version"></a>
-  <a href="#quick-start"><img src="https://img.shields.io/badge/python-3.10%2B-%2360A5FA" alt="Python"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.0-%2334D399" alt="Version"></a>
+  <a href="#install"><img src="https://img.shields.io/badge/python-3.10%2B-%2360A5FA" alt="Python"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
   <a href="https://tendedloop.com"><img src="https://img.shields.io/badge/platform-TendedLoop-6366F1" alt="Platform"></a>
 </p>
@@ -369,6 +369,22 @@ for entry in agent.scoreboard():
 
 Get the paginated decision audit log.
 
+#### `agent.register_webhook(url, events=None) -> WebhookInfo`
+
+Register a webhook to receive agent events (config updates, heartbeat timeouts, circuit breaker triggers).
+
+```python
+webhook = agent.register_webhook(
+    url="https://example.com/arena-events",
+    events=["config_updated", "circuit_breaker_triggered"],
+)
+print(f"Webhook {webhook.webhook_id} registered")
+```
+
+#### `agent.delete_webhook(webhook_id) -> None`
+
+Remove a registered webhook.
+
 ### `ArenaEnv`
 
 Gymnasium-compatible environment for RL framework integration.
@@ -425,7 +441,7 @@ If you use TendedLoop Arena in your research, please cite:
 @software{tendedloop_arena,
   title={TendedLoop Arena: Multi-Agent Gamification Research Platform},
   author={TendedLoop},
-  year={2025},
+  year={2026},
   url={https://github.com/osheryadgar/tendedloop-arena}
 }
 ```

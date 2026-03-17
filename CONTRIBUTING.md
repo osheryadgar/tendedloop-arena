@@ -15,7 +15,7 @@ Thanks for your interest in contributing! Here's how to get started.
 ```bash
 # Clone the repo
 git clone https://github.com/osheryadgar/tendedloop-arena.git
-cd arena
+cd tendedloop-arena
 
 # Create a virtual environment
 python -m venv .venv

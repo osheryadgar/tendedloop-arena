@@ -60,6 +60,7 @@ class Agent:
             timeout=timeout,
         )
         self._heartbeat_interval = heartbeat_interval
+        self._poll_interval = heartbeat_interval  # Updated by run()
         self._max_retries = max_retries
         self._stop_event = threading.Event()
         self._heartbeat_thread: threading.Thread | None = None
@@ -110,7 +111,7 @@ class Agent:
         payload: dict[str, Any] = {}
         if metadata:
             payload["metadata"] = metadata
-        payload["requestedPollInterval"] = self._heartbeat_interval
+        payload["requestedPollInterval"] = self._poll_interval
         self._post("/api/arena/heartbeat", payload)
 
     def scoreboard(self) -> list[ScoreboardEntry]:
@@ -165,6 +166,7 @@ class Agent:
             max_iterations: Stop after N iterations (None = run forever).
         """
         self._stop_event.clear()
+        self._poll_interval = poll_interval
         self._start_heartbeat_thread()
         iteration = 0
 

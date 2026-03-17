@@ -109,7 +109,7 @@ Agents only control their own variant's economy. Users are randomly assigned to 
 @software{tendedloop_arena,
   title={TendedLoop Arena: Multi-Agent Gamification Research Platform},
   author={TendedLoop},
-  year={2025},
+  year={2026},
   url={https://github.com/osheryadgar/tendedloop-arena}
 }
 ```
