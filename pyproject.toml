@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tendedloop-agent"
+version = "0.1.0"
+description = "Python SDK for TendedLoop Arena — multi-agent gamification research platform"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+keywords = ["gamification", "multi-agent", "reinforcement-learning", "research", "arena", "gymnasium"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Games/Entertainment",
+]
+dependencies = [
+    "httpx>=0.24.0",
+]
+
+[project.optional-dependencies]
+rl = [
+    "gymnasium>=0.28.0",
+    "numpy>=1.24.0",
+]
+llm = [
+    "anthropic>=0.39.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-httpx>=0.21",
+    "ruff>=0.1.0",
+]
+all = [
+    "tendedloop-agent[rl,llm,dev]",
+]
+
+[project.urls]
+Homepage = "https://tendedloop.com"
+Documentation = "https://github.com/tendedloop/arena/tree/main/docs"
+Repository = "https://github.com/tendedloop/arena"
+Issues = "https://github.com/tendedloop/arena/issues"
+
+[tool.setuptools.packages.find]
+include = ["tendedloop_agent*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
