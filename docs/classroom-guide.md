@@ -45,12 +45,12 @@ Guardrails control how much freedom agents have. For classroom use, start conser
 
 | Parameter | Conservative (Classroom) | Standard (Research) | Aggressive (Advanced) |
 |-----------|-------------------------|--------------------|-----------------------|
-| `updateIntervalMin` | 30 | 60 | 5 |
-| `deltaLimitPct` | 20 | 50 | 80 |
+| `updateIntervalMin` | 120 | 60 | 5 |
+| `deltaLimitPct` | 15 | 50 | 80 |
 
 **Conservative** (recommended for first-time students):
-- 30-minute update interval: agents can only change config twice per hour
-- 20% delta limit: each change is small, limiting damage from bugs
+- 120-minute update interval: agents can only change config once every 2 hours
+- 15% delta limit: each change is very small, limiting damage from bugs
 
 **Standard** (for experienced teams):
 - 60-minute interval, 50% delta: the default balance
