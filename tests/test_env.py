@@ -168,11 +168,13 @@ class TestStepRejection:
         }
 
         e = ArenaEnv(api_url="https://api.test.com", strategy_token="strat_test")
+        original_client = e._agent._client
         e._agent._client = httpx.Client(
             base_url="https://api.test.com",
-            headers=e._agent._client.headers,
+            headers=original_client.headers,
             transport=mock_transport(rejected_responses),
         )
+        original_client.close()
         try:
             e.reset()
             _, _, terminated, truncated, info = e.step({"scanXp": 100})
@@ -193,11 +195,13 @@ class TestStepTermination:
         )
 
         e = ArenaEnv(api_url="https://api.test.com", strategy_token="strat_test")
+        original_client = e._agent._client
         e._agent._client = httpx.Client(
             base_url="https://api.test.com",
-            headers=e._agent._client.headers,
+            headers=original_client.headers,
             transport=mock_transport(forbidden_responses),
         )
+        original_client.close()
         try:
             e.reset()
             _, _, terminated, truncated, info = e.step({"scanXp": 20})
