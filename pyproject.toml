@@ -39,7 +39,6 @@ llm = [
 ]
 dev = [
     "pytest>=7.0",
-    "pytest-httpx>=0.21",
     "ruff>=0.1.0",
 ]
 all = [
