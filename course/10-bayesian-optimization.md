@@ -69,13 +69,13 @@ BO normalizes these to [0, 1] internally and searches over the hypercube.
 
 ## Comparison with Other Approaches
 
-| Method | Search Space | Evaluations Needed | Guarantees |
-|--------|-------------|-------------------|------------|
-| Grid Search | Discrete | O(n^d) — exponential | Complete |
-| Random Search | Continuous | Uniform, no learning | None |
-| Bandits | Discrete arms | O(K log K) | Regret bounds |
-| **Bayesian Optimization** | **Continuous** | **O(10-50)** | **Convergent** |
-| RL (Gymnasium) | Continuous | O(1000+) | Convergent (slow) |
+| Method | Search Space | Convergence | Best For |
+|--------|-------------|------------|----------|
+| Grid Search | Discrete | O(n^d) evaluations | Small, known spaces |
+| Random Search | Continuous | No learning between evals | Baselines |
+| Bandits | Discrete arms | O(log T) regret over T rounds | Choosing between presets |
+| **Bayesian Optimization** | **Continuous** | **Good configs in 10-50 evals** | **Tuning 4-10 params** |
+| RL (Gymnasium) | Continuous | 1000+ steps to converge | Long-running experiments |
 
 BO's sweet spot: **4-10 parameters, 20-50 evaluations, expensive objective**.
 

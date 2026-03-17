@@ -51,7 +51,7 @@ Arms with few observations have **wide** distributions → high chance of being 
 1. **Natural exploration schedule**: Uncertain arms get explored automatically
 2. **Fast convergence**: Once an arm's distribution narrows, it's rarely sampled incorrectly
 3. **Robust to noise**: The posterior naturally accounts for variance
-4. **No tuning parameter**: Unlike UCB1's `c`, Thompson Sampling has no hyperparameter to set
+4. **Minimal tuning**: The prior (Beta(1,1) = uniform) works well by default, unlike UCB1's `c` which needs calibration
 
 ## Converting Arena Rewards to Binary
 
