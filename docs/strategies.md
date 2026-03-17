@@ -7,10 +7,15 @@ This guide covers different approaches to building Arena agents, from simple rul
 | Strategy | Best For | Data Needs | Complexity |
 |----------|----------|-----------|-----------|
 | Rule-based | Quick start, clear hypotheses | Low | Low |
+| PID Controller | Maintaining a target metric | Low | Low |
 | Multi-metric | Multiple objectives | Medium | Medium |
+| UCB1 | Discrete arms, strong regret bounds | Medium | Medium |
+| Thompson Sampling | Discrete arms, empirical performance | Medium | Medium |
 | LLM-powered | Nuanced reasoning, exploration | Low | Medium |
-| Thompson Sampling | Discrete config options | Medium | Medium |
-| Gymnasium RL | Continuous optimization | High | High |
+| Contextual Bandit | Context-dependent arm selection | Medium | High |
+| Bayesian Optimization | Sample-efficient continuous search | Medium | High |
+| Ensemble | Combining multiple strategies | Medium | High |
+| Gymnasium RL | Continuous optimization, long runs | High | High |
 
 ## Strategy 1: Rule-Based Thresholds
 
@@ -99,6 +104,87 @@ Use the `ArenaEnv` wrapper with standard RL algorithms. The environment provides
 - Use `primary_metric` carefully — it defines what "good" means
 
 See: [`examples/02_gymnasium_rl.py`](../examples/02_gymnasium_rl.py)
+
+## Strategy 6: PID Controller
+
+Use classic control theory to maintain a target metric. Define a setpoint (e.g., 3.0 scans/day), measure error each cycle, and adjust using proportional + integral + derivative terms.
+
+```python
+error = target - current_value
+output = Kp * error + Ki * integral(error) + Kd * derivative(error)
+new_scan_xp = round(scan_xp * (1 + output / 10))
+```
+
+**Pros:** No training data needed, works from cycle 1, well-understood, deterministic.
+**Cons:** Single-metric (one PID per target), requires tuning Kp/Ki/Kd gains.
+
+**Tips:**
+- Start conservative: `Kp=0.5, Ki=0.05, Kd=0.1`
+- Use anti-windup on the integral term to prevent oscillation
+- The derivative term dampens overshoot but amplifies measurement noise
+
+See: [`examples/06_pid_controller.py`](../examples/06_pid_controller.py)
+
+## Strategy 7: UCB1 (Upper Confidence Bound)
+
+The other classic bandit alongside Thompson Sampling. UCB1 is deterministic — it always picks the arm with the highest upper confidence bound:
+
+```
+UCB(arm) = mean_reward(arm) + c * sqrt(ln(total_pulls) / arm_pulls)
+```
+
+**Pros:** Deterministic, strong theoretical regret bounds, no randomness.
+**Cons:** Discrete action space, can be slow to converge with many arms.
+
+**Tips:**
+- Use `c=1.0` for a good exploration-exploitation balance
+- Lower `c` (0.5) for less exploration, higher `c` (2.0) for more
+- Works best with 3-7 well-differentiated arms
+
+See: [`examples/07_ucb1.py`](../examples/07_ucb1.py)
+
+## Strategy 8: Contextual Bandit (LinUCB)
+
+Unlike standard bandits that ignore context, LinUCB uses the full signal vector (enrollment, activity, experiment day) to make context-dependent decisions. Different arms may be best in different situations.
+
+**Pros:** Learns that different configs work in different contexts, principled exploration.
+**Cons:** Requires feature engineering, needs numpy, slower convergence than simple bandits.
+
+**Tips:**
+- Normalize context features to [0, 1]
+- Include enrollment ratio, activity ratio, experiment progress as features
+- Start with `alpha=1.5` and reduce as you get more data
+
+See: [`examples/08_contextual_bandit.py`](../examples/08_contextual_bandit.py)
+
+## Strategy 9: Bayesian Optimization
+
+Sample-efficient black-box optimization using a Gaussian Process surrogate model. Ideal for Arena's slow feedback loop where each evaluation is expensive.
+
+**Pros:** Finds good configs in very few iterations, handles continuous parameter spaces, principled exploration.
+**Cons:** Scales poorly with many parameters (>10), needs numpy, computationally heavier per iteration.
+
+**Tips:**
+- Start with 5 random samples before fitting the GP
+- Use Expected Improvement as the acquisition function
+- Keep the search space to 3-5 parameters for best results
+- For production use, consider scikit-optimize or BoTorch
+
+See: [`examples/09_bayesian_optimization.py`](../examples/09_bayesian_optimization.py)
+
+## Strategy 10: Ensemble (Strategy Committee)
+
+Combine multiple sub-strategies using the Hedge (multiplicative weights) algorithm. Each strategy proposes a config, the ensemble picks the highest-weighted one, and weights are updated based on outcomes.
+
+**Pros:** Robust — if one strategy fails, others take over. Adapts over time. Bring your own sub-strategies.
+**Cons:** Only as good as the best sub-strategy. More complex to debug.
+
+**Tips:**
+- Use 3-5 diverse sub-strategies (don't duplicate similar approaches)
+- Set `eta=0.3` for moderate adaptation speed
+- Mix simple (rule-based) and complex (bandit) sub-strategies
+
+See: [`examples/10_ensemble.py`](../examples/10_ensemble.py)
 
 ## Common Patterns
 

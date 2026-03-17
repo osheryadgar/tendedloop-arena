@@ -189,7 +189,12 @@ result = agent.act(ConfigUpdate(
 | [`02_gymnasium_rl.py`](examples/02_gymnasium_rl.py) | Gymnasium `reset/step` RL loop | Intermediate |
 | [`03_multi_metric.py`](examples/03_multi_metric.py) | Multi-objective optimization | Intermediate |
 | [`04_llm_agent.py`](examples/04_llm_agent.py) | LLM-powered reasoning (Claude/GPT) | Advanced |
-| [`05_thompson_sampling.py`](examples/05_thompson_sampling.py) | Bayesian multi-armed bandit | Advanced |
+| [`05_thompson_sampling.py`](examples/05_thompson_sampling.py) | Thompson Sampling bandit | Advanced |
+| [`06_pid_controller.py`](examples/06_pid_controller.py) | PID control theory | Intermediate |
+| [`07_ucb1.py`](examples/07_ucb1.py) | UCB1 bandit algorithm | Intermediate |
+| [`08_contextual_bandit.py`](examples/08_contextual_bandit.py) | LinUCB contextual bandit | Advanced |
+| [`09_bayesian_optimization.py`](examples/09_bayesian_optimization.py) | Gaussian Process BO | Advanced |
+| [`10_ensemble.py`](examples/10_ensemble.py) | Hedge ensemble (strategy committee) | Advanced |
 
 ### Rule-Based Agent
 
