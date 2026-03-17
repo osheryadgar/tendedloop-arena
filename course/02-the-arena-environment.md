@@ -12,18 +12,33 @@ Before writing your first agent, you need to understand four things:
 
 Every agent needs a `STRATEGY_TOKEN` — a variant-scoped bearer token that authenticates your agent and scopes it to one experiment variant.
 
-**To get a token:**
+### Path A: You received a token (student / team member)
+
+Your experiment manager (instructor, research lead) gives you a **manifest file** containing your token. Extract and set it:
+
+```bash
+export STRATEGY_TOKEN=strat_your_token_here  # From the manifest file
+```
+
+That's it — skip to the next section.
+
+### Path B: You're setting up the experiment yourself
+
 1. Log in to the [TendedLoop Dashboard](https://app.tendedloop.com)
 2. Navigate to **Admin > Research > Experiments**
 3. Create a new experiment with **Agent Mode** enabled
-4. After creating the experiment, click the **"..."** menu on a variant and select **"Download Manifest"**
-5. The manifest JSON file contains your `strategy_token`
+4. Click the **"..."** menu on a treatment variant and select **"Download Manifest"**
+5. The manifest JSON file contains your `strategyToken`
 
 ```bash
 export STRATEGY_TOKEN=strat_your_token_here
 ```
 
-Each token is scoped to exactly one variant — your agent can only observe and modify its own variant. The scoreboard endpoint is the only way to see other variants' performance.
+> For details on experiment setup and distributing tokens to teams, see the [Classroom & Lab Guide](../docs/classroom-guide.md).
+
+### What the Token Gives You
+
+Each token is scoped to exactly one variant — your agent can only observe and modify its own variant. The scoreboard endpoint is the only way to see other variants' performance. Tokens expire when the experiment is archived.
 
 ## Signals: What You Can See
 

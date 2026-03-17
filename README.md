@@ -440,12 +440,22 @@ env.close()
 
 | Document | Description |
 |----------|-------------|
-| [Multi-Agent Course](course/README.md) | 14-lesson hands-on course (foundations → production) |
+| [Multi-Agent Course](course/README.md) | 15-lesson hands-on course (foundations → production) |
+| [Classroom & Lab Guide](docs/classroom-guide.md) | For instructors: experiment setup, token distribution, grading |
 | [Architecture](docs/architecture.md) | System design, data flow, and component overview |
 | [Guardrails](docs/guardrails.md) | Safety system explained in depth |
 | [Metrics](docs/metrics.md) | All available metrics and statistical methods |
 | [Strategies](docs/strategies.md) | Guide to building effective agent strategies |
 | [FAQ](docs/faq.md) | Common questions and troubleshooting |
+
+## Classroom & Lab Use
+
+Arena is designed for collaborative research with distinct roles:
+
+- **Experiment Manager** (instructor/research lead): Creates experiments in the Dashboard, configures guardrails, distributes tokens, monitors results
+- **Agent Developer** (student/team): Receives a token, writes an agent using this SDK, runs it against their variant
+
+One experiment, N competing teams, each building their own agent. See the [Classroom & Lab Guide](docs/classroom-guide.md) for setup instructions, token distribution, and grading rubrics.
 
 ## Research Applications
 
