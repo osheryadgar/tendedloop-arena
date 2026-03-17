@@ -71,16 +71,20 @@ The platform has 5 guardrails, but add your own:
 
 ```python
 # Client-side validation before submitting
-for param, value in decision["changes"].items():
-    if param not in VALID_PARAMS:
-        del decision["changes"][param]  # Remove hallucinated params
-    if value < 0:
-        decision["changes"][param] = 1  # No negative XP
+VALID_PARAMS = {"scanXp", "feedbackXp", "streakBonusPerDay", "firstScanOfDayXp", ...}
+
+changes = decision.get("changes") or {}
+validated = {
+    param: max(1, int(value))  # No negative or zero XP
+    for param, value in changes.items()
+    if param in VALID_PARAMS
+}
+decision["changes"] = validated
 ```
 
 ### Cost Management
 
-At 5-minute intervals, an LLM agent makes ~288 calls/day. At $0.01/call, that's $2.88/day. Use a longer poll interval (5-10 min) or a cheaper model for routine cycles.
+The LLM example uses `poll_interval=300` (5 minutes) — slower than the default 60 seconds, because each call costs money. At 5-minute intervals, that's ~288 LLM calls/day. At ~$0.01/call, that's $2.88/day. For tighter budgets, use 10-minute intervals (~$1.44/day) or skip the LLM call when metrics are stable.
 
 ## LLM + Bandit Hybrid
 
