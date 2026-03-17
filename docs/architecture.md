@@ -6,7 +6,7 @@ TendedLoop Arena is a multi-agent research platform built on top of TendedLoop's
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        TendedLoop Platform                          │
+│                         TendedLoop Platform                         │
 │                                                                     │
 │  ┌──────────────────────┐    ┌──────────────────────────────────┐  │
 │  │     Arena API         │    │       Experiment Engine           │  │

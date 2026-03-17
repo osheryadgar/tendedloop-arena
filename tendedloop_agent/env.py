@@ -35,7 +35,7 @@ class ArenaEnv:
 
         obs = env.reset()
         for _ in range(100):
-            action = {"scanXp": 25, "streakBonusXp": 15}
+            action = {"scanXp": 25, "streakBonusPerDay": 15}
             obs, reward, terminated, truncated, info = env.step(action)
             if terminated:
                 break

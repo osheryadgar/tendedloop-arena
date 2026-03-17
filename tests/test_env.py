@@ -86,11 +86,13 @@ def env():
         strategy_token="strat_test",
         primary_metric="SCAN_FREQUENCY",
     )
+    original_client = e._agent._client
     e._agent._client = httpx.Client(
         base_url="https://api.test.com",
-        headers=e._agent._client.headers,
+        headers=original_client.headers,
         transport=mock_transport(MOCK_RESPONSES),
     )
+    original_client.close()
     yield e
     e.close()
 
