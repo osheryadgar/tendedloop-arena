@@ -5,11 +5,15 @@
 **Prerequisites**: Algorithms, Probability & Statistics, Python programming; Course A (Multi-Agent Systems) recommended but not required
 **Credits**: 3
 
+> **Note**: This course fills a gap in CS/AI curricula. Existing gamification courses (e.g., Werbach's Wharton/Coursera course, Chou's Octalysis) are design/business-oriented. No established university course treats gamification as a computational optimization problem with formal models, algorithms, and rigorous experimentation. This course is the first to do so. See [related courses](#related-courses-and-resources) at the bottom.
+
 ## Course Description
 
 This course treats gamification as a **computational optimization problem**. Students study the behavioral science foundations (motivation theory, reward psychology, behavioral economics) but with a CS/AI lens: how do we model user engagement mathematically, optimize reward structures algorithmically, and measure outcomes with statistical rigor?
 
-The course bridges behavioral science theory with AI implementation — covering the domain knowledge that multi-agent systems need to optimize effectively. The accompanying [workshop](../course/README.md) lets students deploy autonomous agents that optimize these gamification systems in real-time on the TendedLoop Arena platform.
+Where traditional gamification courses teach design principles, this course teaches the **engineering** of incentive systems — formalizing reward structures as parameterized functions, engagement as measurable signals, and optimization as the job of autonomous agents.
+
+The accompanying [workshop](../course/README.md) lets students deploy autonomous agents that optimize these gamification systems in real-time on the TendedLoop Arena platform.
 
 ## Learning Outcomes
 
@@ -188,11 +192,33 @@ By the end of this course, students will be able to:
 | Final project | 25% | Design and simulate a complete adaptive gamification system |
 | Workshop participation | 15% | Arena agent performance + research writeup (if paired with workshop) |
 
-## Recommended Textbooks and References
+## Required and Recommended References
 
-1. **Kohavi et al.** — *Trustworthy Online Controlled Experiments* (experimentation)
-2. **Werbach & Hunter** — *For the Win* (gamification foundations)
-3. **Schell** — *The Art of Game Design* (mechanics and progression)
-4. **Kahneman** — *Thinking, Fast and Slow* (behavioral economics)
-5. **Sutton & Barto** — *Reinforcement Learning: An Introduction* (reward shaping, Ch. 17)
-6. **Ng et al. (1999)** — "Policy Invariance Under Reward Transformations" (reward shaping theory)
+### Required
+1. **Kohavi, Tang, Xu** — *Trustworthy Online Controlled Experiments* (Cambridge, 2020). The definitive guide to A/B testing at scale.
+2. **Werbach & Hunter** — *For the Win: The Power of Gamification* (2012). Foundational gamification framework.
+3. **Kahneman** — *Thinking, Fast and Slow* (2011). Behavioral economics foundations.
+
+### Recommended
+4. **Schell** — *The Art of Game Design: A Book of Lenses* (3rd ed, 2019). Game mechanics and progression design.
+5. **Sutton & Barto** — *Reinforcement Learning: An Introduction* (2nd ed, 2018). Reward shaping (Ch. 17).
+6. **Chou** — *Actionable Gamification: Beyond Points, Badges, and Leaderboards* (2015). Octalysis framework (8 Core Drives).
+
+### Key Papers
+7. Ryan & Deci (2000) — "Self-Determination Theory and Intrinsic Motivation"
+8. Gneezy, Meier, Rey-Biel (2011) — "When and Why Incentives (Don't) Work"
+9. Ng, Harada, Russell (1999) — "Policy Invariance Under Reward Transformations"
+10. Hamari, Koivisto, Sarsa (2014) — "Does Gamification Work? A Literature Review"
+11. Gray et al. (2018) — "The Dark (Patterns) Side of UX Design"
+
+## Related Courses and Resources
+
+**No equivalent course exists** in CS/AI curricula. Existing gamification education is design-oriented:
+
+| Course | Institution | Orientation | How This Course Differs |
+|--------|-----------|------------|------------------------|
+| [Gamification](https://www.coursera.org/learn/gamification) | Wharton (Coursera) | Business/Design | We formalize with algorithms and models |
+| [Octalysis Framework](https://yukaichou.com/) | Yu-Kai Chou | Practitioner | We optimize computationally, not manually |
+| [CS 222](https://joonspk-research.github.io/cs222-fall24/) | Stanford | Agent simulation | We focus on real-world incentive optimization |
+
+This course fills the gap between behavioral science (which provides the domain knowledge) and multi-agent AI (which provides the optimization algorithms).

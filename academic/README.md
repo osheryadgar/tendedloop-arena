@@ -59,10 +59,10 @@ Not everyone takes both courses. The workshop accommodates three profiles:
 
 | Student Profile | Preparation | Workshop Strength |
 |----------------|------------|-------------------|
-| Course A only (CS/AI) | Strong on algorithms, weak on domain | Builds sophisticated agents but may need gamification guidance |
-| Course B only (Design/Psych) | Strong on domain, weak on algorithms | Brings engagement insights, may need coding support |
-| Both courses | Full preparation | Natural team leaders who bridge both worlds |
-| Neither (self-study) | Uses the [SDK course](../course/README.md) directly | Can participate but benefits from team with course background |
+| Course A only | Strong on algorithms, needs domain knowledge | Builds sophisticated agents, guided by Course B materials for domain |
+| Course B only | Strong on domain, needs algorithm skills | Designs effective reward structures, uses simpler agent strategies |
+| Both courses | Full preparation | Bridges both worlds — natural team leaders |
+| Neither (self-study) | Uses the [workshop](../course/README.md) directly | Self-contained, but benefits from team with course background |
 
 ## For Instructors
 
