@@ -2,10 +2,28 @@
 
 ## Overview
 
-Before writing your first agent, you need to understand three things:
-1. What **signals** the platform gives you (your observations)
-2. What **parameters** you can control (your actions)
-3. What **guardrails** constrain your actions (the rules)
+Before writing your first agent, you need to understand four things:
+1. How to **authenticate** (get a strategy token)
+2. What **signals** the platform gives you (your observations)
+3. What **parameters** you can control (your actions)
+4. What **guardrails** constrain your actions (the rules)
+
+## Getting a Strategy Token
+
+Every agent needs a `STRATEGY_TOKEN` — a variant-scoped bearer token that authenticates your agent and scopes it to one experiment variant.
+
+**To get a token:**
+1. Log in to the [TendedLoop Dashboard](https://app.tendedloop.com)
+2. Navigate to **Admin > Research > Experiments**
+3. Create a new experiment with **Agent Mode** enabled
+4. After creating the experiment, click the **"..."** menu on a variant and select **"Download Manifest"**
+5. The manifest JSON file contains your `strategy_token`
+
+```bash
+export STRATEGY_TOKEN=strat_your_token_here
+```
+
+Each token is scoped to exactly one variant — your agent can only observe and modify its own variant. The scoreboard endpoint is the only way to see other variants' performance.
 
 ## Signals: What You Can See
 
@@ -134,7 +152,7 @@ Here's the complete flow of a single cycle:
 ## Exercises
 
 1. **Read the signals**: Write a script that calls `agent.info()` and `agent.observe()`, and prints all available information in a readable format.
-2. **Understand clamping**: If `deltaLimitPct=50` and the current `scanXp=10`, what's the maximum value you can set in one update? What about in two consecutive updates (spaced by `updateIntervalMin`)?
+2. **Understand clamping**: If `deltaLimitPct=50` and the current `scanXp=10`, what's the maximum value you can set in one update? What about two consecutive updates? (Hint: delta clamping operates on the *current applied value*, so after the first update changes 10→15, the second update's 50% is relative to 15, not 10.)
 3. **Think about timing**: With a 60-second poll interval and 5-minute signal cache, how many cycles pass before you see the effect of a change?
 
 ## Next

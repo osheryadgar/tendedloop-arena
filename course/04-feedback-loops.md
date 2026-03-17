@@ -59,22 +59,30 @@ Target: 3.0 scans/day
 
 ```python
 class PIDController:
-    def __init__(self, setpoint, kp=0.5, ki=0.05, kd=0.1, dt=1.0):
+    def __init__(self, setpoint, kp=0.5, ki=0.05, kd=0.1, dt=1.0,
+                 integral_limit=20.0):
         self.setpoint = setpoint
         self.kp, self.ki, self.kd, self.dt = kp, ki, kd, dt
+        self.integral_limit = integral_limit
         self._integral = 0.0
         self._prev_measurement = 0.0
+        self._cycle = 0
 
     def update(self, current_value):
         error = self.setpoint - current_value
 
         # Integral (with anti-windup clamp)
         self._integral += error * self.dt
-        self._integral = clamp(self._integral, -limit, limit)
+        self._integral = max(-self.integral_limit,
+                             min(self.integral_limit, self._integral))
 
         # Derivative on measurement (avoids derivative kick)
-        derivative = -(current_value - self._prev_measurement) / self.dt
+        if self._cycle > 0:
+            derivative = -(current_value - self._prev_measurement) / self.dt
+        else:
+            derivative = 0.0  # No derivative on first cycle
         self._prev_measurement = current_value
+        self._cycle += 1
 
         return self.kp * error + self.ki * self._integral + self.kd * derivative
 ```

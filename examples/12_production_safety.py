@@ -124,12 +124,26 @@ class SafetyMonitor:
             return 0.75
         return 1.0
 
-    def record_decision(self, changes: dict[str, float]):
+    def record_decision(self, changes: dict[str, float], clamped: bool = False):
         """Track decision history for anomaly detection."""
-        self.decision_history.append({"changes": changes, "time": time.time()})
+        self.decision_history.append(
+            {
+                "changes": changes,
+                "clamped": clamped,
+                "time": time.time(),
+            }
+        )
         # Keep last 20 decisions
         if len(self.decision_history) > 20:
             self.decision_history = self.decision_history[-20:]
+
+        # Anomaly: 4+ consecutive clamped decisions suggests runaway behavior
+        recent = self.decision_history[-4:]
+        if len(recent) >= 4 and all(d.get("clamped") for d in recent):
+            logger.warning(
+                "4 consecutive clamped decisions — possible runaway agent. Entering cooldown."
+            )
+            self.cycles_since_reject = 0  # Force cooldown
 
 
 # ─── Core Strategy (simple threshold-based) ───
@@ -188,9 +202,6 @@ def decide(signals: Signals, current_config: dict) -> ConfigUpdate | None:
         logger.debug("Core strategy proposes no changes")
         return None
 
-    # Record decision for anomaly tracking
-    monitor.record_decision(changes)
-
     return ConfigUpdate(
         economy_overrides=changes,
         reasoning=f"Production agent: dampening={dampening:.0%}, changes={changes}",
@@ -248,6 +259,12 @@ def main():
 
                     if result.accepted and result.applied_config:
                         current_config.update(result.applied_config)
+                        # Track if any deltas were clamped (anomaly detection)
+                        was_clamped = bool(
+                            result.clamped_deltas
+                            and any(d.get("clamped") for d in result.clamped_deltas.values())
+                        )
+                        monitor.record_decision(update.economy_overrides, clamped=was_clamped)
                         logger.info(f"Cycle {cycle}: accepted — {update.reasoning}")
                     else:
                         logger.info(f"Cycle {cycle}: rejected — {result.rejection_reason}")

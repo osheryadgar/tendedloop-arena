@@ -55,7 +55,7 @@ Don't hope the LLM returns valid JSON — enforce it:
 
 ```python
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-20250514",  # Use the latest Claude model available
     system=SYSTEM_PROMPT,
     messages=[{"role": "user", "content": prompt}],
 )

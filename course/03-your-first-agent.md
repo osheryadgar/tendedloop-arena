@@ -95,8 +95,10 @@ From this simple example, three rules emerge:
 
 ## Exercises
 
-1. **Add retention logic**: Extend the decide function to also boost `streakBonusPerDay` when `RETENTION_RATE` drops below 0.5.
-2. **Add a cooldown**: After making a change, skip the next 3 cycles to let the effect stabilize before measuring again.
+The full `01_quickstart.py` already has retention logic and a high-frequency reduction. For these exercises, start from the simplified version above (frequency-only) and extend it:
+
+1. **Add hysteresis**: Boost `scanXp` when frequency drops below 1.8, but only reduce it when frequency exceeds 4.5. This gap prevents oscillation around a single threshold.
+2. **Add a cooldown**: After making a change, skip the next 3 cycles to let the effect stabilize before measuring again. (Hint: track `cycles_since_last_change` in a class.)
 3. **Add a ceiling**: Don't boost `scanXp` above 25 — at some point, higher rewards cause inflation without improving engagement.
 
 ## Next
