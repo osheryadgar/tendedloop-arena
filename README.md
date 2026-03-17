@@ -159,12 +159,14 @@ Each metric includes `value`, `std_dev`, `sample_size`, and `confidence` (low/me
 
 Every `act()` call passes through five sequential guardrails:
 
-```
-1. Control Variant Lock    ─── Control group is always immutable
-2. Experiment Status Gate  ─── Must be RUNNING
-3. Circuit Breaker         ─── Manual or auto-triggered safety stop
-4. Rate Limiter            ─── Min interval between updates (default: 60 min)
-5. Delta Clamping          ─── Max % change per parameter (default: ±50%)
+```mermaid
+flowchart LR
+    A["act(config)"] --> G1{"1. Control\nLock"}
+    G1 -->|"pass"| G2{"2. Status\nGate"}
+    G2 -->|"pass"| G3{"3. Circuit\nBreaker"}
+    G3 -->|"pass"| G4{"4. Rate\nLimiter"}
+    G4 -->|"pass"| G5{"5. Delta\nClamp"}
+    G5 --> OK["Accepted"]
 ```
 
 If your agent proposes a change too large, it's **clamped** (not rejected). The response tells you exactly what was applied vs. requested:
@@ -243,37 +245,49 @@ Uses the Gymnasium `reset/step/render` convention — adapt for your RL framewor
 
 ## Architecture
 
-```
-                         ┌─────────────────────────────────────────────┐
-                         │           TendedLoop Platform               │
-                         │                                             │
-  ┌──────────┐           │   ┌──────────┐     ┌──────────────────┐    │     ┌──────────┐
-  │ Agent A  │──observe──│──>│  Arena    │────>│  Experiment      │    │     │  Mobile  │
-  │ (Python) │<──signals─│───│  API      │     │  Engine          │    │     │  Users   │
-  │          │──act──────│──>│          │     │  ┌────────────┐  │    │     │  (Scout  │
-  │          │<──result──│───│  5 Guard- │     │  │ Variant A  │  │<───│─────│   PWA)   │
-  └──────────┘           │   │  rails    │     │  │ Variant B  │  │    │     │          │
-                         │   └──────────┘     │  │ Control    │  │────│────>│  QR scan │
-  ┌──────────┐           │                     │  └────────────┘  │    │     │  Feedback│
-  │ Agent B  │──observe──│──>  ┌──────────┐   │                  │    │     │  Streaks │
-  │ (Claude) │<──signals─│──── │ Health   │   │  ┌────────────┐  │    │     └──────────┘
-  │          │──act──────│──>  │ Monitor  │──>│  │ Statistics │  │    │
-  │          │<──result──│──── │ (5 min)  │   │  │ Engine     │  │    │
-  └──────────┘           │     └──────────┘   │  └────────────┘  │    │
-                         │                     └──────────────────┘    │
-                         └─────────────────────────────────────────────┘
+```mermaid
+graph LR
+    subgraph Agents["Your Agents"]
+        A1["Agent A<br/>(Python)"]
+        A2["Agent B<br/>(Claude)"]
+    end
+
+    subgraph Platform["TendedLoop Platform"]
+        API["Arena API<br/>+ 5 Guardrails"]
+        EE["Experiment Engine"]
+        SE["Statistics Engine"]
+        HM["Health Monitor"]
+    end
+
+    subgraph Users["Real Users"]
+        PWA["Scout PWA<br/>QR Scan, Feedback, Streaks"]
+    end
+
+    A1 -->|"observe()"| API
+    A2 -->|"observe()"| API
+    API -->|"signals"| A1
+    API -->|"signals"| A2
+    A1 -->|"act(config)"| API
+    A2 -->|"act(config)"| API
+    API --> EE
+    EE -->|"XP rules"| PWA
+    PWA -->|"engagement"| SE
+    SE -->|"metrics"| API
+    HM -->|"monitor"| EE
 ```
 
 ### Economy Resolution Chain
 
 When a user earns XP, the platform resolves the final values through three layers:
 
-```
-Global Defaults  ──merge──>  Tenant Config  ──merge──>  Variant Overrides  ──>  Final XP
-(scout-constants)            (Economy Lab)              (Agent's config)
+```mermaid
+graph LR
+    G["Global Defaults<br/><i>scanXp: 10</i>"] -->|"merge"| T["Tenant Config<br/><i>scanXp: 12</i>"]
+    T -->|"merge"| V["Variant Overrides<br/><i>scanXp: 18</i>"]
+    V --> F["Final XP"]
 ```
 
-This means your agent only needs to override the parameters it cares about — everything else inherits the tenant defaults.
+Your agent only needs to override the parameters it cares about — everything else inherits the tenant defaults.
 
 ## API Reference
 
