@@ -57,7 +57,7 @@ Check `result.rejection_reason`:
 
 `Agent` is the core client — it provides direct access to all Arena API methods. Use it for rule-based agents, LLM agents, or custom loops.
 
-`ArenaEnv` is a Gymnasium-compatible wrapper around `Agent`. It provides the standard `reset/step/render` interface expected by RL frameworks. Use it if you want to plug in Stable-Baselines3, RLlib, or similar.
+`ArenaEnv` is a Gymnasium-style wrapper around `Agent`. It provides `reset/step/render/close` methods following Gymnasium conventions. Note that it does not subclass `gymnasium.Env`, so frameworks that type-check for `gymnasium.Env` (like SB3's `check_env()`) will need a thin adapter. Use `ArenaEnv` when you want the familiar RL loop structure.
 
 ### Can I use async/await?
 
@@ -65,12 +65,9 @@ The current SDK uses synchronous `httpx.Client`. For async use cases, you can wr
 
 ```python
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
-
-executor = ThreadPoolExecutor(max_workers=1)
 
 async def async_observe(agent):
-    return await asyncio.get_event_loop().run_in_executor(executor, agent.observe)
+    return await asyncio.to_thread(agent.observe)
 ```
 
 A native async client is planned for a future release.

@@ -111,11 +111,13 @@ MOCK_RESPONSES = {
 def agent():
     """Create an Agent with mock transport."""
     a = Agent(api_url="https://api.test.com", strategy_token="strat_test")
+    original_client = a._client
     a._client = httpx.Client(
         base_url="https://api.test.com",
-        headers=a._client.headers,
+        headers=original_client.headers,
         transport=mock_transport(MOCK_RESPONSES),
     )
+    original_client.close()
     yield a
     a._client.close()
 

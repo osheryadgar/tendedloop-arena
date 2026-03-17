@@ -66,9 +66,9 @@ pip install -e "."
 Optional extras for specific use cases:
 
 ```bash
-pip install "tendedloop-agent[rl]"   # + gymnasium, numpy (for ArenaEnv)
-pip install "tendedloop-agent[llm]"  # + anthropic (for LLM agents)
-pip install "tendedloop-agent[all]"  # everything
+pip install "tendedloop-agent[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"   # + gymnasium, numpy
+pip install "tendedloop-agent[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # + anthropic
+pip install "tendedloop-agent[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # everything
 ```
 
 ### Write Your First Agent

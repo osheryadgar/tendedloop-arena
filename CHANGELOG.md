@@ -18,7 +18,7 @@ All notable changes to the TendedLoop Arena SDK will be documented in this file.
 - `ArenaEnv` Gymnasium-compatible environment wrapper
   - Standard `reset/step/render/close` interface
   - Configurable primary metric for reward computation
-  - Compatible with Stable-Baselines3, RLlib, CleanRL
+  - Follows Gymnasium `reset/step` conventions for RL framework integration
 - Type-safe dataclasses: `Signals`, `ConfigUpdate`, `ConfigResult`, `VariantInfo`, `ScoreboardEntry`, `WebhookInfo`
 - 5 example agent strategies:
   - Rule-based quickstart

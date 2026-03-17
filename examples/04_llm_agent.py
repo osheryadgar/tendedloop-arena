@@ -39,6 +39,7 @@ Your goal: maximize user engagement (scan frequency, retention, feedback quality
 You control these economy parameters:
 - scanXp (default 10): XP per QR code scan
 - feedbackXp (default 15): XP per feedback submission
+- statusReportXp (default 20): XP per status report
 - issueReportXp (default 25): XP per issue report
 - photoXp (default 10): XP per photo attachment
 - firstScanOfDayXp (default 15): bonus for first daily scan

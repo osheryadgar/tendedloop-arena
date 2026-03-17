@@ -252,6 +252,8 @@ class Agent:
             try:
                 resp = self._client.request(method, path, **kwargs)
                 resp.raise_for_status()
+                if resp.status_code == 204 or not resp.content:
+                    return {}
                 body = resp.json()
                 return body.get("data", body)
             except httpx.HTTPStatusError:
