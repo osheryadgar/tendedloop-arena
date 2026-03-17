@@ -32,10 +32,10 @@ TOKEN = os.environ.get("STRATEGY_TOKEN", "strat_your_token_here")
 
 # Define your optimization targets and weights
 TARGETS = {
-    "SCAN_FREQUENCY": {"target": 3.0, "weight": 0.35, "min_acceptable": 1.5},
-    "RETENTION_RATE": {"target": 0.7, "weight": 0.30, "min_acceptable": 0.4},
-    "FEEDBACK_QUALITY": {"target": 0.5, "weight": 0.20, "min_acceptable": 0.2},
-    "STREAK_LENGTH": {"target": 5.0, "weight": 0.15, "min_acceptable": 2.0},
+    "SCAN_FREQUENCY": {"target": 3.0, "weight": 0.35},
+    "RETENTION_RATE": {"target": 0.7, "weight": 0.30},
+    "FEEDBACK_QUALITY": {"target": 0.5, "weight": 0.20},
+    "STREAK_LENGTH": {"target": 5.0, "weight": 0.15},
 }
 
 # Which parameters influence which metrics
@@ -81,8 +81,8 @@ def decide(signals: Signals, current_config: dict) -> ConfigUpdate | None:
         print("  All metrics healthy — holding steady")
         return None
 
-    # Find the most underperforming metric
-    worst_metric = min(health, key=lambda m: health[m] * TARGETS[m]["weight"])
+    # Find the most underperforming metric (lowest health score)
+    worst_metric = min(health, key=lambda m: health[m])
     worst_score = health[worst_metric]
 
     if worst_score >= 0.8:

@@ -31,6 +31,7 @@ Run:
 import logging
 import math
 import os
+import random
 
 from tendedloop_agent import Agent, ConfigUpdate, Signals
 
@@ -62,11 +63,17 @@ def reactive_strategy(signals: Signals, config: dict) -> dict[str, int]:
 
 
 def conservative_strategy(signals: Signals, config: dict) -> dict[str, int]:
-    """Small 5% nudges toward slightly higher engagement."""
+    """Small 5% nudges — up if engagement is low, down if overspending."""
+    freq = signals.metrics.get("SCAN_FREQUENCY")
+    direction = 1.0  # Default: increase
+    if freq and freq.confidence != "low" and freq.value > 4.0:
+        direction = -1.0  # Reduce if engagement already high (save budget)
+
+    factor = 1.0 + direction * 0.05
     return {
-        "scanXp": round(config.get("scanXp", 10) * 1.05),
-        "feedbackXp": round(config.get("feedbackXp", 15) * 1.05),
-        "streakBonusPerDay": round(config.get("streakBonusPerDay", 5) * 1.03),
+        "scanXp": round(config.get("scanXp", 10) * factor),
+        "feedbackXp": round(config.get("feedbackXp", 15) * factor),
+        "streakBonusPerDay": round(config.get("streakBonusPerDay", 5) * (1.0 + direction * 0.03)),
     }
 
 
@@ -122,11 +129,20 @@ class Ensemble:
         self.last_composite: float | None = None
 
     def select(self) -> int:
-        """Select strategy with highest weight."""
+        """Select strategy by sampling proportionally to weights (Hedge)."""
         total = sum(self.weights)
         probs = [w / total for w in self.weights]
 
-        chosen = max(range(self.n), key=lambda i: probs[i])
+        # Weighted random selection — allows recovery from early bad luck
+        r = random.random()
+        cumulative = 0.0
+        chosen = 0
+        for i, p in enumerate(probs):
+            cumulative += p
+            if r <= cumulative:
+                chosen = i
+                break
+
         self.selections[chosen] += 1
         return chosen
 

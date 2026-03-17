@@ -55,6 +55,7 @@ class PIDController:
         kp: float = 0.5,
         ki: float = 0.05,
         kd: float = 0.1,
+        dt: float = 1.0,
         output_min: float = -5.0,
         output_max: float = 5.0,
         integral_limit: float = 20.0,
@@ -63,25 +64,28 @@ class PIDController:
         self.kp = kp
         self.ki = ki
         self.kd = kd
+        self.dt = (
+            dt  # Time step (normalized; set to 1.0 when gains are pre-tuned for your poll_interval)
+        )
         self.output_min = output_min
         self.output_max = output_max
         self.integral_limit = integral_limit
 
         self._integral = 0.0
-        self._prev_error = 0.0
+        self._prev_measurement = 0.0
         self._cycle = 0
 
     def update(self, current_value: float) -> float:
         """Compute PID output given current measurement."""
         error = self.setpoint - current_value
 
-        # Integral with anti-windup clamp
-        self._integral += error
+        # Integral with anti-windup clamp (scaled by dt)
+        self._integral += error * self.dt
         self._integral = max(-self.integral_limit, min(self.integral_limit, self._integral))
 
-        # Derivative (first cycle has no previous error)
-        derivative = error - self._prev_error if self._cycle > 0 else 0.0
-        self._prev_error = error
+        # Derivative-on-measurement (avoids derivative kick on setpoint change)
+        derivative = -(current_value - self._prev_measurement) / self.dt if self._cycle > 0 else 0.0
+        self._prev_measurement = current_value
         self._cycle += 1
 
         # PID output
