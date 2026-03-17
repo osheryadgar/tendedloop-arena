@@ -110,6 +110,16 @@ The Arena Health Monitor runs every 5 minutes and watches for:
 | Retention cliff | Variant retention < threshold | Auto-trigger circuit breaker |
 | Anomaly pattern | 4+ consecutive max-delta changes | Log warning, fire webhook |
 
+## Client-Side Validation
+
+Before any API call, `ConfigUpdate` validates on creation:
+
+- `economy_overrides` must not be empty (raises `ValueError`)
+- All values must be `int` or `float` (raises `TypeError`)
+- All values must be >= 0 (raises `ValueError`)
+
+These checks catch common mistakes immediately — before the request is sent to the platform.
+
 ## Best Practices
 
 1. **Start conservative** — Use default guardrails (60 min, 50%) for initial experiments

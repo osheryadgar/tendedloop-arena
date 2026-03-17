@@ -8,11 +8,24 @@ These are returned when `result.accepted == False`:
 
 | Code | Meaning | How to Respond |
 |------|---------|----------------|
-| `CONTROL_LOCKED` | Your variant is the control group — config changes are not allowed. | Check `info.is_control` before calling `act()`. Control variants should only observe. |
-| `STATUS_GATE` | The experiment is not in `RUNNING` status (paused, completed, or draft). | Stop the agent loop. Call `info()` to check `experiment_status`. |
-| `CIRCUIT_BREAKER` | A key metric has degraded significantly since the last config change. The platform is protecting users by freezing config updates until metrics stabilize. | Wait for `next_allowed_update` before retrying. Do not attempt to circumvent. |
+| `CONTROL_VARIANT_IMMUTABLE` | Your variant is the control group — config changes are not allowed. | Check `info.is_control` before calling `act()`. Control variants should only observe. |
+| `EXPERIMENT_NOT_RUNNING` | The experiment is not in `RUNNING` status (paused, completed, or draft). | Stop the agent loop. Call `info()` to check `experiment_status`. |
+| `CIRCUIT_BREAKER_ACTIVE` | A key metric has degraded significantly since the last config change. The platform is protecting users by freezing config updates until metrics stabilize. | Wait for `next_allowed_update` before retrying. Do not attempt to circumvent. |
 | `RATE_LIMITED` | You're updating config too frequently. Minimum interval is `update_interval_min` minutes. | Wait for `next_allowed_update`. Increase your `poll_interval`. |
-| `DELTA_CLAMPED` | The requested change exceeds the max allowed delta (±`delta_limit_pct`%). The change was **accepted but clamped** to the allowed range. | Check `result.clamped_deltas` to see what was applied vs. requested. Note: `accepted` will be `True` for clamped values — clamping is not rejection. |
+
+> **Note:** Delta clamping is not a rejection. When a change exceeds `delta_limit_pct`, it is **accepted but clamped** — see [Clamping vs. Rejection](#clamping-vs-rejection) below.
+
+## Client-Side Validation
+
+`ConfigUpdate` validates on creation — before any API call:
+
+| Constraint | Error | Example |
+|-----------|-------|---------|
+| `economy_overrides` must not be empty | `ValueError` | `ConfigUpdate(economy_overrides={})` |
+| All values must be `int` or `float` | `TypeError` | `ConfigUpdate(economy_overrides={"scanXp": "ten"})` |
+| All values must be >= 0 | `ValueError` | `ConfigUpdate(economy_overrides={"scanXp": -5})` |
+
+These checks fail immediately with a clear exception — no API call is made.
 
 ## HTTP Status Codes
 
@@ -30,6 +43,20 @@ These are returned when `result.accepted == False`:
 | `503` | Service unavailable | **Yes** |
 | `504` | Gateway timeout | **Yes** |
 
+## SDK Safety Behaviors
+
+### HTTPS Enforcement
+
+The SDK refuses to connect over plain HTTP to prevent credential leakage. Only `localhost` / `127.0.0.1` are allowed over HTTP (for local development). Attempting `http://api.example.com` raises `ValueError`.
+
+### Automatic Retry
+
+Transient errors (connection failures, timeouts, 5xx status codes) are retried with exponential backoff up to `max_retries` (default: 2). Client errors (4xx) are never retried.
+
+### Consecutive Error Limit
+
+`agent.run()` tracks consecutive errors. After 5 consecutive failures (API errors or exceptions in your `decide_fn`), the loop re-raises the last exception instead of continuing silently. A single successful cycle resets the counter.
+
 ## Handling in Your Agent
 
 ```python
@@ -37,16 +64,16 @@ result = agent.act(update)
 
 if not result.accepted:
     reason = result.rejection_reason
-    if reason == "CIRCUIT_BREAKER":
+    if reason == "CIRCUIT_BREAKER_ACTIVE":
         # Metrics degraded — wait and observe
         logging.warning(f"Circuit breaker active until {result.next_allowed_update}")
     elif reason == "RATE_LIMITED":
         # Too frequent — wait for next window
         logging.info(f"Rate limited, next update at {result.next_allowed_update}")
-    elif reason == "CONTROL_LOCKED":
+    elif reason == "CONTROL_VARIANT_IMMUTABLE":
         # Should not happen if you check is_control first
         logging.error("Agent assigned to control variant — cannot update config")
-    elif reason == "STATUS_GATE":
+    elif reason == "EXPERIMENT_NOT_RUNNING":
         # Experiment is no longer running
         logging.warning("Experiment not running, stopping agent")
         agent.stop()
@@ -68,3 +95,5 @@ result = agent.act(ConfigUpdate(
 # result.applied_config == {"scanXp": 15}  # Clamped to +50%
 # result.clamped_deltas == {"scanXp": {"requested": 100, "applied": 15, "clamped": True}}
 ```
+
+See also: [Guardrails](guardrails.md) | [Classroom Guide](classroom-guide.md) | [FAQ](faq.md)

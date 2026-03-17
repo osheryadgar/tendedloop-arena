@@ -32,7 +32,7 @@ export STRATEGY_TOKEN=strat_your_token_here  # From your experiment manager
 
 For examples that use numpy or anthropic:
 ```bash
-pip install "tendedloop-agent[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
+pip install "tendedloop-arena[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
 ```
 
 ## Workshop Sessions (8 sessions)

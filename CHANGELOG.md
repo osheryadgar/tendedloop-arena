@@ -6,7 +6,7 @@ All notable changes to the TendedLoop Arena SDK will be documented in this file.
 
 ### Added
 
-- Initial release of `tendedloop-agent` Python SDK
+- Initial release of `tendedloop-arena` Python SDK
 - `Agent` class with full Arena Strategy API support
   - `info()` — Get variant metadata and constraints
   - `observe()` — Get real-time engagement signals

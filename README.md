@@ -365,12 +365,12 @@ result.applied_config     # {"scanXp": 15, ...} (may be clamped)
 result.clamped_deltas     # {"scanXp": {"requested": 20, "applied": 15, "clamped": True}}
 result.decision_log_id    # "dec_abc123"
 result.next_allowed_update # "2025-01-15T10:30:00Z"
-result.rejection_reason   # None (or "RATE_LIMITED", "CIRCUIT_BREAKER", etc.)
+result.rejection_reason   # None (or "RATE_LIMITED", "CIRCUIT_BREAKER_ACTIVE", etc.)
 ```
 
 #### `agent.run(decide_fn, poll_interval=60, max_iterations=None)`
 
-Run the automated observe-decide-act loop with background heartbeat.
+Run the automated observe-decide-act loop with background heartbeat. Stops gracefully on HTTP 403 (experiment ended). Re-raises after 5 consecutive errors to prevent silent failure.
 
 ```python
 def my_decide(signals: Signals, config: dict) -> ConfigUpdate | None:

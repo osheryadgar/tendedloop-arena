@@ -29,6 +29,10 @@ Strategy tokens (`strat_...`) are scoped to a single experiment variant and gran
 - Rotate tokens if compromised
 - Tokens expire with the experiment
 
+## HTTPS Enforcement
+
+The SDK enforces HTTPS for all non-localhost connections to prevent credential leakage. Attempting to connect over plain HTTP raises `ValueError`. HTTP is only allowed for `localhost` / `127.0.0.1` during local development.
+
 ## Supported Versions
 
 | Version | Supported |
