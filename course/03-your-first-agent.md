@@ -74,14 +74,15 @@ TendedLoop Arena — Quickstart Agent
   Constraints: update every 60min, delta limit 50%
 
 2026-03-17 10:00:00 Agent started for variant 'Treatment-A' in 'XP Boost Test'
-2026-03-17 10:00:00   Skipping — insufficient data
 2026-03-17 10:01:00   Skipping — insufficient data
-2026-03-17 10:02:00   Metrics within acceptable range — no change
-2026-03-17 10:03:00 Config accepted: scan frequency low (1.8/day)
-2026-03-17 10:04:00   Metrics within acceptable range — no change
+2026-03-17 10:02:00   Skipping — insufficient data
+2026-03-17 10:03:00   Metrics within acceptable range — no change
+...
+2026-03-17 11:04:00 Config accepted: scan frequency low (1.8/day)
+2026-03-17 11:05:00   Metrics within acceptable range — no change
 ```
 
-Notice the first two cycles skip — not enough data yet. This is correct behavior. Patient agents outperform hasty ones.
+The agent polls every 60 seconds (the `poll_interval`), but can only submit changes every 60 *minutes* (the `updateIntervalMin` guardrail). Most cycles observe without acting. Notice the first cycles skip due to insufficient data — this is correct behavior. Patient agents outperform hasty ones.
 
 ## The Three Rules of Good Agents
 

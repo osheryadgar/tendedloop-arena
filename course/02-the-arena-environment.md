@@ -168,7 +168,7 @@ Here's the complete flow of a single cycle:
 
 1. **Read the signals**: Write a script that calls `agent.info()` and `agent.observe()`, and prints all available information in a readable format.
 2. **Understand clamping**: If `deltaLimitPct=50` and the current `scanXp=10`, what's the maximum value you can set in one update? What about two consecutive updates? (Hint: delta clamping operates on the *current applied value*, so after the first update changes 10→15, the second update's 50% is relative to 15, not 10.)
-3. **Think about timing**: With a 60-second poll interval and 5-minute signal cache, how many cycles pass before you see the effect of a change?
+3. **Think about timing**: Your agent's `poll_interval` (how often it checks signals) is 60 seconds. The signal cache refreshes every 5 minutes. The `updateIntervalMin` (how often the platform allows config changes) is 60 minutes. Given these three timers, how many poll cycles pass before (a) you see updated metrics after a change, and (b) you can submit another change?
 
 ## Next
 

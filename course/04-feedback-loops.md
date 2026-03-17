@@ -84,7 +84,10 @@ class PIDController:
         self._prev_measurement = current_value
         self._cycle += 1
 
-        return self.kp * error + self.ki * self._integral + self.kd * derivative
+        output = self.kp * error + self.ki * self._integral + self.kd * derivative
+
+        # Output clamping — prevents extreme corrections
+        return max(-5.0, min(5.0, output))
 ```
 
 Two subtle details:

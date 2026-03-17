@@ -22,13 +22,14 @@ if not result.accepted:
     match result.rejection_reason:
         case "RATE_LIMITED":
             # Expected — wait until next_allowed_update
-            pass
+            monitor.record_rejection()
         case "CIRCUIT_BREAKER_ACTIVE":
             # Something is wrong — back off significantly
-            enter_safe_mode()
+            monitor.record_rejection()
+            # Consider entering a longer cooldown
         case "EXPERIMENT_NOT_RUNNING":
-            # Experiment paused or completed — stop gracefully
-            agent.stop()
+            # Experiment paused or completed — exit the loop
+            break
         case "CONTROL_VARIANT_IMMUTABLE":
             # Misconfiguration — you have the wrong token
             raise RuntimeError("Agent assigned to control variant")
@@ -74,16 +75,30 @@ def check_drift(self, signals):
 
 ## Pattern 4: Anomaly Self-Detection
 
-Track your own decisions and flag anomalies:
+Track your own decisions and flag anomalies. The `record_decision()` method stores whether each change was clamped by the platform:
 
 ```python
-# Flag if the last 4 decisions all hit the max delta
-recent = self.decision_history[-4:]
-if all(any(d.get("clamped") for d in decision["changes"].values()) for decision in recent):
-    logger.warning("4 consecutive max-delta changes — possible runaway")
+def record_decision(self, changes, clamped=False):
+    self.decision_history.append({"changes": changes, "clamped": clamped})
+
+    # Flag if the last 4 decisions were all clamped by guardrails
+    recent = self.decision_history[-4:]
+    if len(recent) >= 4 and all(d.get("clamped") for d in recent):
+        logger.warning("4 consecutive clamped decisions — possible runaway")
+        self.cycles_since_reject = 0  # Force cooldown
 ```
 
-The health monitor detects this server-side too, but client-side detection is faster.
+After `act()` returns, check `result.clamped_deltas` to determine if clamping occurred:
+
+```python
+was_clamped = bool(
+    result.clamped_deltas
+    and any(d.get("clamped") for d in result.clamped_deltas.values())
+)
+monitor.record_decision(update.economy_overrides, clamped=was_clamped)
+```
+
+The health monitor detects this server-side too, but client-side detection is faster and triggers an immediate cooldown.
 
 ## Pattern 5: Structured Logging
 

@@ -55,6 +55,39 @@ METRIC_LEVERS = {
 
 Notice `firstScanOfDayXp` appears in both SCAN_FREQUENCY and RETENTION_RATE — it's a lever that affects multiple metrics. This creates interdependencies that make the problem interesting.
 
+## Code Walkthrough
+
+The `decide()` function follows three steps:
+
+```python
+def decide(signals, current_config):
+    # 1. Score every metric (0-1 scale, 1.0 = at target)
+    health = compute_health_score(signals)
+
+    # 2. If everything is healthy, do nothing
+    if all(score >= 0.8 for score in health.values()):
+        return None
+
+    # 3. Find the worst metric, boost its levers
+    worst = min(health, key=lambda m: health[m])
+    boost = 1.20 if health[worst] < 0.5 else 1.12  # Stronger boost if critical
+
+    changes = {}
+    for lever in METRIC_LEVERS[worst]:
+        changes[lever] = round(current_config[lever] * boost)
+
+    # Bonus: reduce levers for overperforming metrics (save budget)
+    for metric, score in health.items():
+        if score > 1.3:  # 30%+ above target
+            for lever in METRIC_LEVERS[metric]:
+                if lever not in changes:
+                    changes[lever] = round(current_config[lever] * 0.92)
+
+    return ConfigUpdate(economy_overrides=changes, reasoning=f"Boosting {worst}")
+```
+
+The key insight: **boost the weakest metric** while **trimming the strongest**. This naturally balances resources across objectives.
+
 ## Tradeoff Management
 
 The real challenge isn't boosting one metric — it's managing tradeoffs:
