@@ -6,7 +6,7 @@ based on real-time engagement signals. Great starting point
 for understanding the observe-decide-act loop.
 
 Run:
-    pip install tendedloop-agent
+    pip install git+https://github.com/osheryadgar/tendedloop-arena.git
     export STRATEGY_TOKEN=strat_your_token_here
     python examples/01_quickstart.py
 """
@@ -84,7 +84,9 @@ def main():
         info = agent.info()
         print(f"  Variant:     {info.variant_name}")
         print(f"  Experiment:  {info.experiment_name} ({info.experiment_status})")
-        print(f"  Constraints: update every {info.update_interval_min}min, delta limit {info.delta_limit_pct}%")
+        print(
+            f"  Constraints: update every {info.update_interval_min}min, delta limit {info.delta_limit_pct}%"
+        )
         print()
 
         # Run the automated loop (50 iterations, then stop)

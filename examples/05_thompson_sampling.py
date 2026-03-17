@@ -11,7 +11,7 @@ This is well-suited for Arena because:
 - Thompson Sampling naturally handles uncertainty
 
 Run:
-    pip install tendedloop-agent numpy
+    pip install git+https://github.com/osheryadgar/tendedloop-arena.git
     export STRATEGY_TOKEN=strat_your_token_here
     python examples/05_thompson_sampling.py
 """
@@ -49,7 +49,12 @@ ARMS = [
     },
     {
         "name": "Streak-Master",
-        "config": {"scanXp": 10, "streakBonusPerDay": 10, "streakBonusCap": 60, "firstScanOfDayXp": 20},
+        "config": {
+            "scanXp": 10,
+            "streakBonusPerDay": 10,
+            "streakBonusCap": 60,
+            "firstScanOfDayXp": 20,
+        },
         "description": "Heavy streak incentives for retention",
     },
     {
@@ -83,8 +88,7 @@ class ThompsonSampler:
     def select_arm(self) -> int:
         """Sample from each arm's posterior and pick the highest."""
         samples = [
-            random.betavariate(self.alphas[i], self.betas[i])
-            for i in range(len(self.alphas))
+            random.betavariate(self.alphas[i], self.betas[i]) for i in range(len(self.alphas))
         ]
         chosen = max(range(len(samples)), key=lambda i: samples[i])
 
@@ -102,9 +106,11 @@ class ThompsonSampler:
             self.betas[arm] += 1
 
         win_rate = self.alphas[arm] / (self.alphas[arm] + self.betas[arm])
-        print(f"  Updated arm {arm} ({ARMS[arm]['name']}): "
-              f"{'win' if reward else 'loss'}, "
-              f"win_rate={win_rate:.2f}, pulls={self.pulls[arm]}")
+        print(
+            f"  Updated arm {arm} ({ARMS[arm]['name']}): "
+            f"{'win' if reward else 'loss'}, "
+            f"win_rate={win_rate:.2f}, pulls={self.pulls[arm]}"
+        )
 
     def compute_composite(self, signals: Signals) -> float:
         """Compute a composite engagement score from signals."""
@@ -175,9 +181,11 @@ def main():
         print("\nFinal arm statistics:")
         for i, arm in enumerate(ARMS):
             win_rate = sampler.alphas[i] / (sampler.alphas[i] + sampler.betas[i])
-            print(f"  [{i}] {arm['name']}: pulls={sampler.pulls[i]}, "
-                  f"win_rate={win_rate:.2f}, "
-                  f"alpha={sampler.alphas[i]:.0f}, beta={sampler.betas[i]:.0f}")
+            print(
+                f"  [{i}] {arm['name']}: pulls={sampler.pulls[i]}, "
+                f"win_rate={win_rate:.2f}, "
+                f"alpha={sampler.alphas[i]:.0f}, beta={sampler.betas[i]:.0f}"
+            )
 
 
 if __name__ == "__main__":

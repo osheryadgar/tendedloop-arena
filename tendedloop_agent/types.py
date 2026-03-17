@@ -15,6 +15,10 @@ class MetricSignal:
     sample_size: int = 0
     confidence: str = "low"  # low | medium | high
 
+    def __repr__(self) -> str:
+        std = f" +/-{self.std_dev:.2f}" if self.std_dev else ""
+        return f"MetricSignal({self.value:.3f}{std}, n={self.sample_size}, {self.confidence})"
+
 
 @dataclass
 class Signals:
@@ -46,12 +50,19 @@ class Signals:
             metrics=metrics,
         )
 
+    def __repr__(self) -> str:
+        metric_keys = ", ".join(self.metrics.keys()) if self.metrics else "none"
+        return (
+            f"Signals(enrolled={self.enrolled}, active_today={self.active_today}, "
+            f"day={self.experiment_days}, metrics=[{metric_keys}])"
+        )
+
 
 @dataclass
 class ConfigUpdate:
     """A proposed config change."""
 
-    economy_overrides: dict[str, float]
+    economy_overrides: dict[str, int | float]
     reasoning: str = ""
     signals: dict[str, Any] | None = None
 
@@ -61,7 +72,7 @@ class ConfigResult:
     """Result of a config update attempt."""
 
     accepted: bool
-    applied_config: dict[str, float] | None = None
+    applied_config: dict[str, int | float] | None = None
     clamped_deltas: dict[str, dict[str, Any]] | None = None
     rejection_reason: str | None = None
     next_allowed_update: str | None = None
@@ -77,6 +88,11 @@ class ConfigResult:
             next_allowed_update=data.get("nextAllowedUpdate"),
             decision_log_id=data.get("decisionLogId", ""),
         )
+
+    def __repr__(self) -> str:
+        if self.accepted:
+            return f"ConfigResult(accepted=True, log={self.decision_log_id})"
+        return f"ConfigResult(rejected: {self.rejection_reason})"
 
 
 @dataclass
@@ -111,6 +127,12 @@ class VariantInfo:
             delta_limit_pct=data.get("deltaLimitPct", 50),
         )
 
+    def __repr__(self) -> str:
+        return (
+            f"VariantInfo('{self.variant_name}' in '{self.experiment_name}', "
+            f"status={self.experiment_status})"
+        )
+
 
 @dataclass
 class ScoreboardEntry:
@@ -119,7 +141,7 @@ class ScoreboardEntry:
     variant_id: str = ""
     variant_name: str = ""
     is_control: bool = False
-    current_config: dict[str, float] | None = None
+    current_config: dict[str, int | float] | None = None
     last_config_update: str | None = None
     last_heartbeat: str | None = None
     metrics: dict[str, Any] | None = None
@@ -140,4 +162,25 @@ class ScoreboardEntry:
             enrolled_count=data.get("enrolledCount", 0),
             active_count=data.get("activeCount", 0),
             total_decisions=data.get("totalDecisions", 0),
+        )
+
+    def __repr__(self) -> str:
+        role = "control" if self.is_control else "treatment"
+        return f"ScoreboardEntry('{self.variant_name}', {role}, enrolled={self.enrolled_count})"
+
+
+@dataclass
+class WebhookInfo:
+    """A registered webhook."""
+
+    webhook_id: str = ""
+    url: str = ""
+    events: list[str] = field(default_factory=list)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> WebhookInfo:
+        return cls(
+            webhook_id=data.get("webhookId", data.get("id", "")),
+            url=data.get("url", ""),
+            events=data.get("events", []),
         )

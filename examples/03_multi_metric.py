@@ -12,7 +12,7 @@ Strategy:
   - Back off parameters linked to overperforming metrics (avoid waste)
 
 Run:
-    pip install tendedloop-agent
+    pip install git+https://github.com/osheryadgar/tendedloop-arena.git
     export STRATEGY_TOKEN=strat_your_token_here
     python examples/03_multi_metric.py
 """
@@ -58,7 +58,9 @@ def compute_health_score(signals: Signals) -> dict[str, float]:
         if not metric or metric.confidence == "low":
             scores[metric_name] = 0.5  # Assume neutral if insufficient data
             continue
-        scores[metric_name] = metric.value / target_config["target"] if target_config["target"] > 0 else 1.0
+        scores[metric_name] = (
+            metric.value / target_config["target"] if target_config["target"] > 0 else 1.0
+        )
     return scores
 
 
@@ -67,10 +69,7 @@ def decide(signals: Signals, current_config: dict) -> ConfigUpdate | None:
     health = compute_health_score(signals)
 
     # Compute weighted composite score
-    composite = sum(
-        min(score, 1.5) * TARGETS[metric]["weight"]
-        for metric, score in health.items()
-    )
+    composite = sum(min(score, 1.5) * TARGETS[metric]["weight"] for metric, score in health.items())
 
     print(f"  Composite health: {composite:.2f}")
     for metric, score in health.items():

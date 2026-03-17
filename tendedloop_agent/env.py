@@ -1,8 +1,10 @@
 """
-Gymnasium-compatible environment wrapper for TendedLoop Arena.
+Gymnasium-style environment wrapper for TendedLoop Arena.
 
-Follows the Gymnasium API conventions (reset, step, render)
-for compatibility with standard RL frameworks.
+Provides a reset/step/render interface inspired by Gymnasium
+for compatibility with RL training loops. Note: this does not
+subclass gymnasium.Env — see docs/strategies.md for integration
+guidance with specific RL frameworks.
 """
 
 from __future__ import annotations
@@ -18,6 +20,10 @@ from .types import ConfigUpdate, Signals
 class ArenaEnv:
     """
     Gymnasium-style environment for TendedLoop Arena.
+
+    Provides the familiar reset/step/render/close interface for RL workflows.
+    The observation is a flat dict, the action is economy overrides, and the
+    reward is the delta in your chosen primary metric.
 
     Usage::
 
@@ -60,7 +66,7 @@ class ArenaEnv:
 
     def step(
         self,
-        action: dict[str, float],
+        action: dict[str, int | float],
         reasoning: str = "",
     ) -> tuple[dict[str, Any], float, bool, bool, dict[str, Any]]:
         """
@@ -113,18 +119,24 @@ class ArenaEnv:
                 info_dict["rejection_reason"] = result.rejection_reason
                 return self._signals_to_obs(signals, {}), 0.0, False, True, info_dict
 
-            current_config = self._agent.info().current_config or {}
-            return self._signals_to_obs(signals, current_config), reward, False, False, info_dict
+            current_config = self._agent._info.current_config if self._agent._info else {}
+            return (
+                self._signals_to_obs(signals, current_config or {}),
+                reward,
+                False,
+                False,
+                info_dict,
+            )
 
         except httpx.HTTPStatusError as e:
             if e.response.status_code == 403:
-                obs = self._signals_to_obs(self._last_signals or Signals(), {})
+                obs = self._signals_to_obs(self._last_signals, {}) if self._last_signals else {}
                 return obs, 0.0, True, False, {"error": str(e)}
             raise
         except Exception as e:
             err_msg = str(e)
             if "EXPERIMENT_PAUSED" in err_msg:
-                obs = self._signals_to_obs(self._last_signals or Signals(), {})
+                obs = self._signals_to_obs(self._last_signals, {}) if self._last_signals else {}
                 return obs, 0.0, True, False, {"error": err_msg}
             raise
 
@@ -151,8 +163,7 @@ class ArenaEnv:
 
     def close(self) -> None:
         """Clean up resources."""
-        self._agent.stop()
-        self._agent._client.close()
+        self._agent.close()
 
     def _signals_to_obs(self, signals: Signals, config: dict[str, Any]) -> dict[str, Any]:
         """Convert signals to a flat observation dict."""

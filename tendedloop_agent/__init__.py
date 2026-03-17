@@ -2,7 +2,15 @@
 
 from .agent import Agent
 from .env import ArenaEnv
-from .types import ConfigResult, ConfigUpdate, MetricSignal, ScoreboardEntry, Signals, VariantInfo
+from .types import (
+    ConfigResult,
+    ConfigUpdate,
+    MetricSignal,
+    ScoreboardEntry,
+    Signals,
+    VariantInfo,
+    WebhookInfo,
+)
 
 __all__ = [
     "Agent",
@@ -13,6 +21,7 @@ __all__ = [
     "ScoreboardEntry",
     "Signals",
     "VariantInfo",
+    "WebhookInfo",
 ]
 
 __version__ = "0.1.0"

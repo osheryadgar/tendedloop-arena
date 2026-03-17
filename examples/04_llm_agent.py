@@ -9,7 +9,7 @@ This example uses Anthropic's Claude, but the pattern works
 with any LLM that supports structured output.
 
 Run:
-    pip install tendedloop-agent anthropic
+    pip install "tendedloop-agent[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
     export STRATEGY_TOKEN=strat_your_token_here
     export ANTHROPIC_API_KEY=sk-ant-...
     python examples/04_llm_agent.py
@@ -144,7 +144,7 @@ def main():
         info = agent.info()
         print(f"  Variant:    {info.variant_name}")
         print(f"  Experiment: {info.experiment_name}")
-        print(f"  Model:      claude-sonnet-4-20250514")
+        print("  Model:      claude-sonnet-4-20250514")
         print()
 
         # Run with longer poll interval (LLM calls are expensive)

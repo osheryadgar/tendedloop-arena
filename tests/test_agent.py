@@ -1,8 +1,5 @@
 """Tests for Agent client using httpx mock transport."""
 
-import json
-import threading
-
 import httpx
 import pytest
 
@@ -75,12 +72,31 @@ MOCK_RESPONSES = {
         },
     },
     "POST /api/arena/heartbeat": {"success": True, "data": {}},
+    "POST /api/arena/webhooks": {
+        "success": True,
+        "data": {
+            "webhookId": "wh_001",
+            "url": "https://example.com/hook",
+            "events": ["config_updated"],
+        },
+    },
+    "DELETE /api/arena/webhooks": {"success": True, "data": {}},
     "GET /api/arena/scoreboard": {
         "success": True,
         "data": {
             "variants": [
-                {"variantId": "v0", "variantName": "Control", "isControl": True, "enrolledCount": 50},
-                {"variantId": "v1", "variantName": "Treatment-A", "isControl": False, "enrolledCount": 50},
+                {
+                    "variantId": "v0",
+                    "variantName": "Control",
+                    "isControl": True,
+                    "enrolledCount": 50,
+                },
+                {
+                    "variantId": "v1",
+                    "variantName": "Treatment-A",
+                    "isControl": False,
+                    "enrolledCount": 50,
+                },
             ],
         },
     },
@@ -130,20 +146,30 @@ class TestAgentObserve:
 
 class TestAgentAct:
     def test_act_accepted(self, agent):
-        result = agent.act(ConfigUpdate(
-            economy_overrides={"scanXp": 12},
-            reasoning="Test boost",
-        ))
+        result = agent.act(
+            ConfigUpdate(
+                economy_overrides={"scanXp": 12},
+                reasoning="Test boost",
+            )
+        )
         assert result.accepted is True
         assert result.applied_config == {"scanXp": 12}
         assert result.decision_log_id == "dec_001"
 
+    def test_act_updates_cached_config(self, agent):
+        agent.info()  # Populate cache
+        agent.act(ConfigUpdate(economy_overrides={"scanXp": 12}, reasoning="test"))
+        assert agent._info.current_config["scanXp"] == 12
+        assert agent._info.current_config["feedbackXp"] == 15  # Unchanged
+
     def test_act_with_signals(self, agent):
-        result = agent.act(ConfigUpdate(
-            economy_overrides={"scanXp": 15},
-            reasoning="Boost",
-            signals={"scan_frequency": 2.5},
-        ))
+        result = agent.act(
+            ConfigUpdate(
+                economy_overrides={"scanXp": 15},
+                reasoning="Boost",
+                signals={"scan_frequency": 2.5},
+            )
+        )
         assert result.accepted is True
 
 
@@ -163,11 +189,21 @@ class TestAgentDecisions:
         assert result["decisions"] == []
 
 
+class TestAgentWebhooks:
+    def test_register_webhook(self, agent):
+        webhook = agent.register_webhook("https://example.com/hook", events=["config_updated"])
+        assert webhook.webhook_id == "wh_001"
+        assert webhook.url == "https://example.com/hook"
+        assert webhook.events == ["config_updated"]
+
+    def test_delete_webhook(self, agent):
+        agent.delete_webhook("wh_001")  # Should not raise
+
+
 class TestAgentContextManager:
     def test_context_manager(self):
         with Agent(api_url="https://api.test.com", strategy_token="strat_test") as agent:
-            assert agent._running is False
-        # After exit, client should be closed
+            assert not agent._stop_event.is_set()
 
 
 class TestAgentRun:
@@ -179,7 +215,6 @@ class TestAgentRun:
             call_count += 1
             return None  # No changes
 
-        # Run with max 2 iterations and short poll
         agent.run(decide, poll_interval=0, max_iterations=2)
         assert call_count == 2
 
@@ -199,7 +234,27 @@ class TestAgentRun:
         agent.run(decide, poll_interval=0, max_iterations=2)
         assert len(updates) == 1
 
+    def test_run_updates_config_cache(self, agent):
+        """Verify that run() updates local config after successful act()."""
+        configs_seen = []
+
+        def decide(signals, config):
+            configs_seen.append(dict(config))
+            if len(configs_seen) == 1:
+                return ConfigUpdate(economy_overrides={"scanXp": 12}, reasoning="boost")
+            return None
+
+        agent.run(decide, poll_interval=0, max_iterations=2)
+        # First call sees original config
+        assert configs_seen[0]["scanXp"] == 10
+        # Second call sees updated config (from act result)
+        assert configs_seen[1]["scanXp"] == 12
+
     def test_stop(self, agent):
-        agent._running = True
         agent.stop()
-        assert agent._running is False
+        assert agent._stop_event.is_set()
+
+    def test_is_running_property(self, agent):
+        assert agent.is_running is True  # Event not set = running
+        agent.stop()
+        assert agent.is_running is False

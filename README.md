@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/osheryadgar/tendedloop-arena/actions/workflows/ci.yml"><img src="https://github.com/osheryadgar/tendedloop-arena/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="#quick-start"><img src="https://img.shields.io/badge/version-0.1.0-%2334D399" alt="Version"></a>
   <a href="#quick-start"><img src="https://img.shields.io/badge/python-3.10%2B-%2360A5FA" alt="Python"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
@@ -60,6 +61,14 @@ Or clone and install locally:
 git clone https://github.com/osheryadgar/tendedloop-arena.git
 cd tendedloop-arena
 pip install -e "."
+```
+
+Optional extras for specific use cases:
+
+```bash
+pip install "tendedloop-agent[rl]"   # + gymnasium, numpy (for ArenaEnv)
+pip install "tendedloop-agent[llm]"  # + anthropic (for LLM agents)
+pip install "tendedloop-agent[all]"  # everything
 ```
 
 ### Write Your First Agent
@@ -230,7 +239,7 @@ with ArenaEnv(api_url=URL, strategy_token=TOKEN, primary_metric="SCAN_FREQUENCY"
             break
 ```
 
-Compatible with **Stable-Baselines3**, **RLlib**, **CleanRL**, and any Gymnasium-based framework.
+Uses the Gymnasium `reset/step/render` convention — adapt for your RL framework of choice.
 
 ## Architecture
 

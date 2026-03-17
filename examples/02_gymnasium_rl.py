@@ -8,7 +8,7 @@ This example uses a simple momentum-based policy. In practice,
 replace it with your RL model of choice.
 
 Run:
-    pip install tendedloop-agent
+    pip install "tendedloop-agent[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
     export STRATEGY_TOKEN=strat_your_token_here
     python examples/02_gymnasium_rl.py
 """
@@ -81,6 +81,7 @@ def main():
         print(env.render())
         print()
 
+        steps_completed = 0
         for step in range(MAX_STEPS):
             action = policy.select_action(obs)
             obs, reward, terminated, truncated, info = env.step(
@@ -90,11 +91,16 @@ def main():
 
             policy.update(reward)
             total_reward += reward
+            steps_completed += 1
 
             # Log progress
-            status = "accepted" if info.get("accepted") else f"rejected: {info.get('rejection_reason')}"
+            status = (
+                "accepted" if info.get("accepted") else f"rejected: {info.get('rejection_reason')}"
+            )
             scan_freq = obs.get("metric_scan_frequency", 0)
-            print(f"  Step {step + 1:3d} | reward={reward:+.3f} | scans/day={scan_freq:.2f} | {status}")
+            print(
+                f"  Step {step + 1:3d} | reward={reward:+.3f} | scans/day={scan_freq:.2f} | {status}"
+            )
 
             if terminated:
                 print("\n  Experiment ended.")
@@ -103,8 +109,8 @@ def main():
             if truncated:
                 print("  (action truncated — will retry next step)")
 
-        print(f"\n  Total reward: {total_reward:.3f} over {step + 1} steps")
-        print(f"\n  Final state:")
+        print(f"\n  Total reward: {total_reward:.3f} over {steps_completed} steps")
+        print("\n  Final state:")
         print(env.render())
 
 
