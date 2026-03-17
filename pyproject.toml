@@ -46,9 +46,9 @@ all = [
 
 [project.urls]
 Homepage = "https://tendedloop.com"
-Documentation = "https://github.com/tendedloop/arena/tree/main/docs"
-Repository = "https://github.com/tendedloop/arena"
-Issues = "https://github.com/tendedloop/arena/issues"
+Documentation = "https://github.com/osheryadgar/tendedloop-arena/tree/main/docs"
+Repository = "https://github.com/osheryadgar/tendedloop-arena"
+Issues = "https://github.com/osheryadgar/tendedloop-arena/issues"
 
 [tool.setuptools.packages.find]
 include = ["tendedloop_agent*"]

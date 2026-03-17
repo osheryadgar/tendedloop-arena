@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/tendedloop-agent/"><img src="https://img.shields.io/pypi/v/tendedloop-agent?color=%2334D399&label=PyPI" alt="PyPI"></a>
-  <a href="https://pypi.org/project/tendedloop-agent/"><img src="https://img.shields.io/pypi/pyversions/tendedloop-agent?color=%2360A5FA" alt="Python"></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/version-0.1.0-%2334D399" alt="Version"></a>
+  <a href="#quick-start"><img src="https://img.shields.io/badge/python-3.10%2B-%2360A5FA" alt="Python"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
   <a href="https://tendedloop.com"><img src="https://img.shields.io/badge/platform-TendedLoop-6366F1" alt="Platform"></a>
 </p>
@@ -51,7 +51,15 @@ Your Agent                    TendedLoop Arena                    Real Users
 ### Install
 
 ```bash
-pip install tendedloop-agent
+pip install git+https://github.com/osheryadgar/tendedloop-arena.git
+```
+
+Or clone and install locally:
+
+```bash
+git clone https://github.com/osheryadgar/tendedloop-arena.git
+cd tendedloop-arena
+pip install -e "."
 ```
 
 ### Write Your First Agent
@@ -409,7 +417,7 @@ If you use TendedLoop Arena in your research, please cite:
   title={TendedLoop Arena: Multi-Agent Gamification Research Platform},
   author={TendedLoop},
   year={2025},
-  url={https://github.com/tendedloop/arena}
+  url={https://github.com/osheryadgar/tendedloop-arena}
 }
 ```
 
@@ -432,5 +440,5 @@ MIT License. See [LICENSE](LICENSE) for details.
   <a href="https://tendedloop.com">Website</a> &bull;
   <a href="https://app.tendedloop.com">Dashboard</a> &bull;
   <a href="docs/architecture.md">Docs</a> &bull;
-  <a href="https://github.com/tendedloop/arena/issues">Issues</a>
+  <a href="https://github.com/osheryadgar/tendedloop-arena/issues">Issues</a>
 </p>

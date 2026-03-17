@@ -29,8 +29,7 @@
     <circle cx="40" cy="40" r="28" stroke="url(#accent)" stroke-width="0.5" fill="none" opacity="0.15"/>
   </g>
   <!-- Text -->
-  <text x="140" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="white">TendedLoop</text>
-  <text x="140" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="white" dx="222"> Arena</text>
+  <text x="140" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="white">TendedLoop Arena</text>
   <text x="140" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">Multi-Agent Gamification Research Platform</text>
   <!-- Decorative line -->
   <rect x="140" y="110" width="320" height="2" rx="1" fill="url(#accent)" opacity="0.4"/>
