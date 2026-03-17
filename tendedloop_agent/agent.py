@@ -70,7 +70,7 @@ class Agent:
 
     @property
     def is_running(self) -> bool:
-        """Whether the agent loop is currently running."""
+        """Whether the agent has not been stopped."""
         return not self._stop_event.is_set()
 
     # ─── Core API Methods ───
@@ -257,7 +257,7 @@ class Agent:
                 body = resp.json()
                 return body.get("data", body)
             except httpx.HTTPStatusError:
-                raise  # Don't retry client errors (4xx)
+                raise  # Don't retry HTTP errors (4xx/5xx)
             except (httpx.ConnectError, httpx.ReadTimeout, httpx.WriteTimeout) as e:
                 last_error = e
                 if attempt < self._max_retries:
