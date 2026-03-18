@@ -2,7 +2,7 @@
 
 **Department**: Computer Science / Artificial Intelligence
 **Level**: Advanced undergraduate or graduate
-**Prerequisites**: Algorithms, Probability & Statistics, Linear Algebra, Python programming
+**Prerequisites**: Algorithms, Probability & Statistics, Linear Algebra, Python programming; Course B (Computational Gamification) complements this course with behavioral science foundations
 **Credits**: 3-4
 
 > Inspired by MIT 6.S890 (Farina & Daskalakis), Stanford CS 224M (Shoham & Leyton-Brown), and CMU's Cooperative AI program. See [survey of related courses](#related-courses) at the bottom.
@@ -14,6 +14,8 @@ This course covers the theory and algorithms of multi-agent systems — autonomo
 The course progresses from foundational game theory through modern multi-agent reinforcement learning to frontier topics like LLM agents and AI safety. Each module is motivated by real AI breakthroughs (AlphaGo, Pluribus, Cicero) and grounded in rigorous theory.
 
 The accompanying [workshop](../course/README.md) provides a hands-on lab where students implement these algorithms as autonomous agents competing on the TendedLoop Arena platform.
+
+> **Tip:** Students can practice with the SDK immediately using the local sandbox: `python -m tendedloop_agent demo` — no account or experiment required.
 
 ## Learning Outcomes
 

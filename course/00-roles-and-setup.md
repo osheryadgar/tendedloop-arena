@@ -39,6 +39,8 @@ Arena has two distinct roles. You might play one or both — but understanding t
 
 **Tools**: Python + Arena SDK. No dashboard access needed.
 
+> **No token yet?** You can start building immediately with the local sandbox: `python -m tendedloop_agent demo`. It simulates the full Arena API on your machine. See [Setup](README.md#no-token-use-the-local-sandbox).
+
 ### The 1:N Relationship
 
 One experiment manager sets up the experiment. N agent developers each build agents for their assigned variants:

@@ -62,7 +62,7 @@ Not everyone takes both courses. The workshop accommodates three profiles:
 | Course A only | Strong on algorithms, needs domain knowledge | Builds sophisticated agents, guided by Course B materials for domain |
 | Course B only | Strong on domain, needs algorithm skills | Designs effective reward structures, uses simpler agent strategies |
 | Both courses | Full preparation | Bridges both worlds — natural team leaders |
-| Neither (self-study) | Uses the [workshop](../course/README.md) directly | Self-contained, but benefits from team with course background |
+| Neither (self-study) | Uses the [workshop](../course/README.md) directly | Self-contained — you'll also set up the experiment yourself — see [Lesson 0](../course/00-roles-and-setup.md) and the [Instructor Guide](../docs/instructor-guide.md), or use the [local sandbox](../course/README.md#no-token-use-the-local-sandbox) to start immediately. Benefits from team with course background |
 
 ## For Instructors
 

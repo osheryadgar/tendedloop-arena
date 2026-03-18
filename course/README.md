@@ -8,7 +8,7 @@ This workshop is the **practical implementation lab** for two theoretical course
 
 You can also take this workshop **standalone** — it's self-contained with all the theory you need.
 
-> **Total time:** ~7.5 hours across 15 lessons (8 sessions). Each lesson includes learning objectives, a time estimate, and a complexity rating (Beginner / Intermediate / Advanced).
+> **Total time:** ~7.5 hours of instruction (plus additional time for exercises and experimentation). Each lesson includes learning objectives, a time estimate, and a complexity rating (Beginner / Intermediate / Advanced).
 
 ## Who Is This For?
 
@@ -28,14 +28,30 @@ If you're an **experiment manager** (instructor, research lead) setting up exper
 ## Setup
 
 ```bash
-pip install git+https://github.com/osheryadgar/tendedloop-arena.git
+pip install tendedloop-arena
 export STRATEGY_TOKEN=strat_your_token_here  # From your experiment manager
 ```
 
 For examples that use numpy or anthropic:
 ```bash
-pip install "tendedloop-arena[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"
+pip install "tendedloop-arena[all]"
 ```
+
+### No Token? Use the Local Sandbox
+
+You can try every example without a TendedLoop account using the built-in sandbox server:
+
+```bash
+# Terminal 1: Start the sandbox (simulates the full Arena API locally)
+python -m tendedloop_agent demo
+
+# Terminal 2: Run any example against it
+export ARENA_URL=http://localhost:7860
+export STRATEGY_TOKEN=strat_demo_local
+python examples/00_demo_sandbox.py
+```
+
+The sandbox simulates all 5 guardrails, stateful economy tracking, and metrics that respond to config changes. Great for learning before connecting to a real experiment.
 
 ## Workshop Sessions (8 sessions)
 

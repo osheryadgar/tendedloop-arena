@@ -21,10 +21,10 @@ Every agent needs a `STRATEGY_TOKEN` — a variant-scoped bearer token that auth
 
 ### Path A: You received a token (student / team member)
 
-Your experiment manager (instructor, research lead) gives you a **manifest file** containing your token. Extract and set it:
+Your experiment manager (instructor, research lead) gives you an **Arena Manifest** containing your token. Extract and set it:
 
 ```bash
-export STRATEGY_TOKEN=strat_your_token_here  # From the manifest file
+export STRATEGY_TOKEN=strat_your_token_here  # From the Arena Manifest
 ```
 
 That's it — skip to the next section.
@@ -35,7 +35,7 @@ That's it — skip to the next section.
 2. Navigate to **Admin > Research > Experiments**
 3. Create a new experiment with **Agent Mode** enabled
 4. Click the **"..."** menu on a treatment variant and select **"Download Manifest"**
-5. The manifest JSON file contains your `strategyToken`
+5. The Arena Manifest JSON file contains your `strategyToken`
 
 ```bash
 export STRATEGY_TOKEN=strat_your_token_here

@@ -30,7 +30,9 @@ You want to use Arena in your course next semester. Here is what to do, in order
 
 2. **Verify connectivity.** Have every team run the quickstart example (`01_quickstart.py`) to confirm their token works and they can observe signals.
 
-3. **Set expectations.** Share the primary metric they should optimize, the experiment duration, and the grading rubric.
+3. **Pre-class practice (optional).** Assign the local sandbox as homework before the first lab: `python -m tendedloop_agent demo` lets students experiment with the SDK without consuming experiment resources.
+
+4. **Set expectations.** Share the primary metric they should optimize, the experiment duration, and the grading rubric.
 
 ### During the Experiment
 
@@ -235,6 +237,8 @@ For multi-team competitions where agents compete head-to-head in a shared experi
 
 **Grade boundaries:** A: 90+, B: 80-89, C: 70-79, D: 60-69, F: below 60.
 
+> **Tip:** For classes with 8+ teams, consider percentile-based scoring instead: top 25% = 30 pts, 25-50% = 25 pts, 50-75% = 20 pts, bottom 25% = 17 pts. This reduces the penalty for teams in larger classes.
+
 **Tournament logistics:**
 - All teams start at the same time (experiment launch).
 - The experiment runs for a fixed duration (recommended: 7-14 days).
@@ -296,6 +300,7 @@ For multi-team competitions where agents compete head-to-head in a shared experi
 - Use `agent.run()` instead of a manual loop — it has built-in retry logic (re-raises after 5 consecutive errors).
 - Run the agent on a server or cloud VM rather than a laptop that goes to sleep.
 - For classroom settings, emphasize that agents do not need to run 24/7. Running during daytime hours when users are active is sufficient.
+- For debugging, use the local sandbox (`python -m tendedloop_agent demo`) to test agent logic without affecting the live experiment.
 - Add error handling: catch `httpx.HTTPError`, log it, wait, retry.
 
 ### Students Cannot Interpret Results

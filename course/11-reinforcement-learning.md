@@ -26,6 +26,59 @@ for step in range(100):
     obs, reward, terminated, truncated, info = env.step(action)
 ```
 
+## Code Walkthrough
+
+### Setting Up ArenaEnv
+
+```python
+from tendedloop_agent import ArenaEnv
+
+env = ArenaEnv(
+    api_url=ARENA_URL,
+    strategy_token=TOKEN,
+    primary_metric="SCAN_FREQUENCY",  # Used for reward computation
+)
+```
+
+### The Reset/Step Loop
+
+```python
+obs = env.reset()
+print(f"Initial state: {obs['enrolled']} enrolled, freq={obs['metric_scan_frequency']:.2f}")
+
+for step in range(50):
+    # Your policy decides the action
+    action = {"scanXp": choose_scan_xp(obs)}
+
+    obs, reward, terminated, truncated, info = env.step(action, reasoning=f"Step {step}")
+
+    print(f"Step {step}: reward={reward:.4f}, accepted={info['accepted']}")
+
+    if terminated:  # Experiment ended
+        break
+    if truncated:   # Action rejected
+        print(f"  Rejected: {info.get('rejection_reason')}")
+```
+
+### Understanding the Observation Space
+
+The observation is a flat dict — ready for numpy/torch conversion:
+
+```python
+obs = {
+    "enrolled": 150,          # Total users in this variant
+    "active_today": 42,       # Users who scanned today
+    "active_7d": 98,          # Users active in last 7 days
+    "total_scans": 1847,      # Cumulative scans
+    "experiment_days": 12,    # Days since experiment started
+    "config": {"scanXp": 15, ...},  # Current economy config
+    "metric_scan_frequency": 3.2,    # Primary metric value
+    "metric_scan_frequency_std": 1.4, # Standard deviation
+    "metric_scan_frequency_n": 42,    # Sample size
+    # ... same pattern for all metrics
+}
+```
+
 ## The Honest Truth About RL in Arena
 
 RL is the most powerful approach in theory. In practice, it's the **hardest to make work** in Arena because:
@@ -53,6 +106,17 @@ reward = 0.4 * freq_delta + 0.3 * retention + 0.2 * quality - 0.1 * xp_inflation
 ```
 
 **Warning**: Reward shaping is an art. A poorly designed reward creates agents that optimize the reward without improving the actual objective (Goodhart's Law).
+
+## When to Use RL vs. Alternatives
+
+| Situation | Best Approach | Why |
+|-----------|--------------|-----|
+| < 50 experiment days | Bandits (UCB1, Thompson) | RL needs hundreds of steps to converge |
+| Single target metric | PID controller | Simpler, faster convergence, no training |
+| Discrete config options | Thompson Sampling | Designed for discrete arm selection |
+| Continuous parameters, few dims | Bayesian Optimization | More sample-efficient than RL for < 10 dims |
+| 100+ days, complex dynamics | **RL** | Can learn non-linear state-action mappings |
+| Need explainability | LLM agent or Rule-based | RL policies are opaque |
 
 ## Policy Design
 

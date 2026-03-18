@@ -15,6 +15,8 @@ Where traditional gamification courses teach design principles, this course teac
 
 The accompanying [workshop](../course/README.md) lets students deploy autonomous agents that optimize these gamification systems in real-time on the TendedLoop Arena platform.
 
+> **Tip:** Students can practice with the SDK immediately using the local sandbox: `python -m tendedloop_agent demo` — no account or experiment required.
+
 ## Learning Outcomes
 
 By the end of this course, students will be able to:
@@ -37,7 +39,7 @@ By the end of this course, students will be able to:
 - Formal model: engagement = f(reward_params, user_state, time)
 
 **Readings**: Deterding et al. (2011) "From Game Design Elements to Gamefulness"; Morschheuser et al. (2018)
-**Workshop link**: [Lesson 1 — What is Arena](../course/01-what-is-arena.md), [Lesson 2 — The Environment](../course/02-the-arena-environment.md)
+**Workshop link**: [Session 1](../course/README.md) — [Lesson 1 — What is Arena](../course/01-what-is-arena.md), [Lesson 2 — The Environment](../course/02-the-arena-environment.md)
 
 #### Week 2: Motivation Theory for Reward Function Design
 - Self-Determination Theory (SDT): autonomy, competence, relatedness
@@ -57,7 +59,7 @@ By the end of this course, students will be able to:
 - Engagement metrics as proxy reward signals for AI agents
 
 **Readings**: Csikszentmihalyi (1990) *Flow*; Hunicke (2005) "The Case for Dynamic Difficulty Adjustment in Games"
-**Workshop link**: [Lesson 4 — PID Control](../course/04-feedback-loops.md) (control theory for engagement targets)
+**Workshop link**: [Session 3](../course/README.md) — [Lesson 4 — PID Control](../course/04-feedback-loops.md) (control theory for engagement targets)
 
 #### Week 4: Behavioral Economics and Computational Nudging
 - Prospect theory: modeling loss aversion mathematically (Kahneman-Tversky value function)
@@ -66,7 +68,7 @@ By the end of this course, students will be able to:
 - Computational nudge design: optimal default selection
 - Connection to mechanism design (Course A, Week 4)
 
-**Readings**: Kahneman & Tversky (1979) "Prospect Theory"; Thaler & Sunstein (2008) *Nudge*
+**Readings**: Kahneman & Tversky (1979) "Prospect Theory" (required — sections 1-3). *Recommended:* Thaler & Sunstein (2008) *Nudge*, Ch. 1-3
 **Assignment 2**: Implement a streak system with loss aversion — compare user retention curves for "streak freeze" (loss frame) vs. "bonus day" (gain frame) using simulation
 
 ### Module 2: Reward System Engineering (Weeks 5-8)
@@ -80,7 +82,7 @@ By the end of this course, students will be able to:
 - Constraint space: budget, fairness, inflation limits
 
 **Readings**: Werbach & Hunter (2012) *For the Win*; Hamari (2017) "Do badges increase user activity?"
-**Workshop link**: [Lesson 2 — The Arena Environment](../course/02-the-arena-environment.md) (the 10 tunable parameters)
+**Workshop link**: [Session 1](../course/README.md) — [Lesson 2 — The Arena Environment](../course/02-the-arena-environment.md) (the 10 tunable parameters)
 
 #### Week 6: Reinforcement Schedules and Reward Shaping
 - Operant conditioning as a formal reward model
@@ -102,7 +104,7 @@ By the end of this course, students will be able to:
 - Diminishing returns and marginal utility
 
 **Readings**: Schell (2019) *The Art of Game Design*; Adams (2014) *Fundamentals of Game Design*
-**Workshop link**: [Lesson 5 — Multi-Objective](../course/05-multi-objective.md) (managing XP inflation as a constraint)
+**Workshop link**: [Session 3](../course/README.md) — [Lesson 5 — Multi-Objective](../course/05-multi-objective.md) (managing XP inflation as a constraint)
 
 #### Week 8: Social Dynamics and Network Effects
 - Social comparison: Festinger's theory formalized as utility functions
@@ -125,7 +127,7 @@ By the end of this course, students will be able to:
 - The Arena's 6 metrics as measurement instruments
 
 **Readings**: Kohavi et al. (2020) *Trustworthy Online Controlled Experiments*, Ch. 1-3; Imbens & Rubin (2015)
-**Workshop link**: [Lesson 2 — Signals](../course/02-the-arena-environment.md) (the 6 metrics Arena measures)
+**Workshop link**: [Session 1](../course/README.md) — [Lesson 2 — Signals](../course/02-the-arena-environment.md) (the 6 metrics Arena measures)
 
 #### Week 10: A/B Testing and Statistical Methods
 - Experimental design: hypothesis, randomization, control
@@ -137,7 +139,7 @@ By the end of this course, students will be able to:
 - Common pitfalls: peeking, novelty effects, network interference
 
 **Readings**: Kohavi et al. (2020) Ch. 4-8; Johari et al. (2017) "Peeking at A/B Tests"
-**Workshop link**: [Lesson 5 — Multi-Objective](../course/05-multi-objective.md)
+**Workshop link**: [Session 3](../course/README.md) — [Lesson 5 — Multi-Objective](../course/05-multi-objective.md)
 **Assignment 4**: Given a dataset of 1000 users across 3 variants, compute all statistical tests (t-test, Fisher's exact, Cohen's d, power) and determine which variant wins. Implement in Python.
 
 #### Week 11: Reward Hacking, Alignment, and Ethics
@@ -150,7 +152,7 @@ By the end of this course, students will be able to:
 - When an AI agent optimizes engagement — who is responsible for outcomes?
 
 **Readings**: Gray et al. (2018) "The Dark Side of UX Design"; Amodei et al. (2016) "Concrete Problems in AI Safety"
-**Workshop link**: [Lesson 14 — Safety](../course/14-production-safety.md) (guardrails preventing harmful incentive structures)
+**Workshop link**: [Session 8](../course/README.md) — [Lesson 14 — Safety](../course/14-production-safety.md) (guardrails preventing harmful incentive structures)
 
 ### Module 4: Adaptive Systems and Research Frontiers (Weeks 12-14)
 
@@ -162,7 +164,7 @@ By the end of this course, students will be able to:
 - Privacy-preserving personalization: federated learning, differential privacy
 
 **Readings**: Tondello et al. (2016) "The Gamification User Types Hexad Scale"; Li et al. (2010) "LinUCB"
-**Workshop link**: [Lesson 9 — Contextual Bandits](../course/09-contextual-bandits.md)
+**Workshop link**: [Session 5](../course/README.md) — [Lesson 9 — Contextual Bandits](../course/09-contextual-bandits.md)
 
 #### Week 13: Case Studies — Computational Analysis
 - **Duolingo**: Reverse-engineer the XP economy, model the streak mechanics, estimate the reward schedule
@@ -222,3 +224,5 @@ By the end of this course, students will be able to:
 | [CS 222](https://joonspk-research.github.io/cs222-fall24/) | Stanford | Agent simulation | We focus on real-world incentive optimization |
 
 This course fills the gap between behavioral science (which provides the domain knowledge) and multi-agent AI (which provides the optimization algorithms).
+
+> **Note:** The courses above provide excellent foundational knowledge. Students with background in Wharton's gamification course or Chou's Octalysis framework bring valuable design intuition to this computational course.
