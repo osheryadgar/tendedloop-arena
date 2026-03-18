@@ -124,7 +124,7 @@ At Day 1: $R_C(1) = 0.76$, $R_T(1) = 0.70$. Treatment looks worse. But at Day 30
 
 ### Example 2: Selection Bias in Feature Rollout
 
-A company adds badges to its feedback platform. They compare engagement before and after. Post-launch engagement is 40% higher. But during the same period, three new buildings onboarded (more users = more activity), and a holiday period ended (seasonal effect). The naive pre/post comparison conflates the badge effect with confounders. A difference-in-differences approach — comparing buildings that got badges vs. those that did not, before and after — isolates the causal effect. If the parallel trends assumption holds ($E[Y(0)_{\text{post}} - Y(0)_{\text{pre}} | \text{treated}] = E[Y(0)_{\text{post}} - Y(0)_{\text{pre}} | \text{control}]$), the DiD estimator is unbiased.
+A company adds badges to its feedback platform. They compare engagement before and after. Post-launch engagement is 40% higher. But during the same period, three new buildings onboarded (more users = more activity), and a holiday period ended (seasonal effect). The naive pre/post comparison conflates the badge effect with confounders. A difference-in-differences approach — comparing groups that received badges vs. those that did not, before and after — isolates the causal effect. If the parallel trends assumption holds ($E[Y(0)_{\text{post}} - Y(0)_{\text{pre}} | \text{treated}] = E[Y(0)_{\text{post}} - Y(0)_{\text{pre}} | \text{control}]$), the DiD estimator is unbiased.
 
 ### Example 3: Sample Size for Detecting Engagement Change
 

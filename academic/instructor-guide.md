@@ -10,9 +10,9 @@ You want to use Arena in your course next semester. Here is what to do, in order
 
 ### Before the Semester
 
-1. **Get a TendedLoop account.** Sign up at [tendedloop.com](https://tendedloop.com). The free tier includes 1 building, which is sufficient for most lab setups.
+1. **Get a TendedLoop account.** Sign up at [tendedloop.com](https://tendedloop.com). The free tier includes a single environment, which is sufficient for most lab setups.
 
-2. **Complete the setup wizard.** Create at least one building with amenities and QR codes. This is the real-world environment your students' agents will optimize.
+2. **Complete the setup wizard.** Complete the initial setup to create the real-world environment your students' agents will optimize.
 
 3. **Decide on your course format.** Arena supports four integration models (see [Section 2](#2-course-integration-options) below). Pick the one that fits your schedule.
 
@@ -136,7 +136,7 @@ Arena works well as a capstone or final project platform where students demonstr
 ### Pre-Semester Preparation
 
 - [ ] **TendedLoop account created** at [app.tendedloop.com](https://app.tendedloop.com)
-- [ ] **Building configured** with at least one location, amenities, and QR codes
+- [ ] **Environment configured** with locations and interaction points
 - [ ] **Experiment created** in Admin > Research > Experiments
   - [ ] Hypothesis documented
   - [ ] Primary metric selected (SCAN_FREQUENCY is recommended for first-time use)
@@ -320,7 +320,7 @@ For multi-team competitions where agents compete head-to-head in a shared experi
 ### Free Tier
 
 The TendedLoop free tier includes:
-- 1 building with up to 10 amenities and QR codes
+- 1 environment with up to 10 interaction points
 - Full experiment functionality with Agent Mode
 - Up to 5 variants per experiment
 - All SDK features and API access
@@ -329,10 +329,10 @@ This is sufficient for most classroom lab setups with up to 4 teams competing.
 
 ### Academic Discounts
 
-For larger deployments (multiple buildings, more QR codes, longer experiments, or campus-wide research programs), academic discounts are available:
-- Multi-building experiments for cross-location studies
+For larger deployments (multiple environments, longer experiments, or campus-wide research programs), academic discounts are available:
+- Multi-environment experiments for cross-location studies
 - Extended experiment durations for semester-long research
-- Higher QR code limits for large-scale deployments
+- Higher interaction point limits for large-scale deployments
 - Priority support during exam periods
 
 ### Contact

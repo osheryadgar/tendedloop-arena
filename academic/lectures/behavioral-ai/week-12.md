@@ -166,7 +166,7 @@ A new user joins with no behavioral history. The Hexad questionnaire yields $\ma
 
 ### Example 3: Differential Privacy Budget
 
-An enterprise wants to publish per-building engagement statistics while protecting individual users. Building has $N = 80$ users. Query: mean daily XP. Sensitivity $\Delta_1 = \text{maxXP}/N$. With `dailyXpCap = 200`: $\Delta_1 = 200/80 = 2.5$. For $\epsilon = 1.0$, $\delta = 10^{-5}$:
+An enterprise wants to publish per-group engagement statistics while protecting individual users. Group has $N = 80$ users. Query: mean daily XP. Sensitivity $\Delta_1 = \text{maxXP}/N$. With `dailyXpCap = 200`: $\Delta_1 = 200/80 = 2.5$. For $\epsilon = 1.0$, $\delta = 10^{-5}$:
 
 $$\text{Noise } \sigma = \frac{\sqrt{2\ln(1.25/10^{-5})} \cdot 2.5}{1.0} = \frac{\sqrt{23.5} \cdot 2.5}{1.0} = 4.85 \cdot 2.5 = 12.1$$
 

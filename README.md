@@ -143,7 +143,7 @@ Agents tune the **gamification economy** — the reward structure that drives us
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `scanXp` | XP earned per QR scan | 10 |
+| `scanXp` | XP earned per primary user action | 10 |
 | `feedbackXp` | XP earned per feedback submission | 15 |
 | `issueReportXp` | XP earned per issue report | 25 |
 | `statusReportXp` | XP earned per status report | 20 |
@@ -311,7 +311,7 @@ graph LR
     V --> F["Final XP"]
 ```
 
-Your agent only needs to override the parameters it cares about — everything else inherits the tenant defaults.
+Your agent only needs to override the parameters it cares about — everything else inherits the defaults.
 
 ## API Reference
 

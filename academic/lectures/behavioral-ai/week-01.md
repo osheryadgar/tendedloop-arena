@@ -21,7 +21,7 @@ The key shift is from "apply game elements" (a design heuristic) to "optimize re
 We borrow from the MDP formalism. A gamified system can be described as a tuple (S, A, T, R_theta):
 
 - **S** = user state space (XP, level, streak count, badges earned, days active)
-- **A** = action space (scan a QR code, leave feedback, refer a friend, log in)
+- **A** = action space (perform an action (scan, submit feedback, complete a task), refer a friend, log in)
 - **T**: S x A -> S = state transition function (deterministic in most gamification systems)
 - **R_theta**: S x A -> R = reward function parameterized by theta
 

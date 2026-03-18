@@ -10,7 +10,7 @@ This lecture confronts the failure modes of gamification systems through the len
 
 ### Goodhart's Law Formalized
 
-Goodhart's Law: "When a measure becomes a target, it ceases to be a good measure." We formalize this. Let $\theta$ be the true objective (e.g., facility quality) and $m$ be the measurable proxy (e.g., feedback submission count). In normal operation, $\text{Corr}(\theta, m) > 0$. But when we optimize for $m$ — setting rewards $r = f(m)$ — users shift behavior to maximize $m$, potentially breaking the correlation.
+Goodhart's Law: "When a measure becomes a target, it ceases to be a good measure." We formalize this. Let $\theta$ be the true objective (e.g., service quality) and $m$ be the measurable proxy (e.g., feedback submission count). In normal operation, $\text{Corr}(\theta, m) > 0$. But when we optimize for $m$ — setting rewards $r = f(m)$ — users shift behavior to maximize $m$, potentially breaking the correlation.
 
 Define the Goodhart gap:
 
@@ -24,7 +24,7 @@ where $\pi^*_m = \arg\max_\pi E_\pi[m]$ (policy optimizing the proxy) and $\pi^*
 
 2. **Extremal.** The relationship $m \approx \theta$ holds in the training distribution but breaks down at extreme values. Example: streak length correlates with retention for streaks of 1-30 days, but at 365+ days, users may continue solely from sunk-cost anxiety, not genuine engagement.
 
-3. **Causal.** Intervening on $m$ disrupts the causal mechanism linking $m$ to $\theta$. Example: feedback count correlates with facility satisfaction because satisfied users give feedback. Rewarding feedback count causes submission of meaningless feedback, breaking the causal link.
+3. **Causal.** Intervening on $m$ disrupts the causal mechanism linking $m$ to $\theta$. Example: feedback count correlates with user satisfaction because satisfied users give feedback. Rewarding feedback count causes submission of meaningless feedback, breaking the causal link.
 
 4. **Adversarial.** Users strategically manipulate $m$. Example: clicking "submit" with empty feedback forms to earn XP. This is reward hacking in the narrow sense.
 
@@ -56,7 +56,7 @@ Define two objectives:
 
 The alignment problem: we optimize $E$ because it is measurable, but we care about $W$. When is $\max E \neq \max W$?
 
-**Case 1: Aligned.** Gamification increases both. User enjoys the feedback process, develops a habit, facility improves. $\nabla_\theta E \cdot \nabla_\theta W > 0$.
+**Case 1: Aligned.** Gamification increases both. User enjoys the feedback process, develops a habit, service quality improves. $\nabla_\theta E \cdot \nabla_\theta W > 0$.
 
 **Case 2: Misaligned.** Dark patterns increase $E$ at the expense of $W$. Guilt-based streak notifications cause anxiety; loss-framed leaderboards cause status anxiety; variable-ratio rewards create compulsive checking. $\nabla_\theta E \cdot \nabla_\theta W < 0$.
 
@@ -164,7 +164,7 @@ Arena embeds safety considerations into its experiment platform:
 - **Delta clamping.** Arena limits how much an agent can change parameters between update cycles. This prevents whiplash experiences for users and ensures stability.
 - **The 6 metrics as proxy checks.** While no single metric captures "wellbeing," monitoring all 6 simultaneously reduces Goodhart risk — gaming one metric (e.g., scan rate) at the expense of another (e.g., feedback quality) is visible in the multi-metric dashboard.
 - **Experiment duration limits.** Arena experiments have fixed durations, preventing indefinite optimization that might slowly degrade user experience through a sequence of individually small changes.
-- **Ethical experimentation.** Arena experiments involve real users in enterprise contexts (employees providing facility feedback). Students must consider that their agents affect real people's experience — a concrete instance of the alignment problem.
+- **Ethical experimentation.** Arena experiments involve real users in enterprise contexts (employees providing feedback). Students must consider that their agents affect real people's experience — a concrete instance of the alignment problem.
 
 ## Discussion Questions
 

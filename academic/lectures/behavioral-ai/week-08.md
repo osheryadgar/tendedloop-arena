@@ -100,7 +100,7 @@ A gamification system has 500 users with XP scores $\sim \text{LogNormal}(\mu=7,
 
 ### Example 2: Threshold Public Goods
 
-A facility sets a monthly goal: if total feedback submissions exceed $T = 200$, all contributors share a bonus pool of $B = 1000$ XP. With $N = 50$ active users and cost $c = 5$ XP-equivalent per submission, the threshold requires $200/50 = 4$ submissions per user. The per-user payoff if the threshold is met: $1000/50 - 5 \cdot 4 = 20 - 20 = 0$. This is a knife-edge — increasing $B$ to $1500$ makes contribution strictly dominant ($30 - 20 > 0$), creating a cooperative equilibrium.
+A platform sets a monthly goal: if total feedback submissions exceed $T = 200$, all contributors share a bonus pool of $B = 1000$ XP. With $N = 50$ active users and cost $c = 5$ XP-equivalent per submission, the threshold requires $200/50 = 4$ submissions per user. The per-user payoff if the threshold is met: $1000/50 - 5 \cdot 4 = 20 - 20 = 0$. This is a knife-edge — increasing $B$ to $1500$ makes contribution strictly dominant ($30 - 20 > 0$), creating a cooperative equilibrium.
 
 ### Example 3: Viral Coefficient Calculation
 

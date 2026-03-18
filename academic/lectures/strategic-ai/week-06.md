@@ -4,7 +4,7 @@
 
 ## Overview
 
-Standard bandits assume that all arms have the same reward distribution regardless of when or where they are pulled. In practice, context matters: a cleaning schedule that works well on weekdays may fail on weekends; a configuration optimal for one building may be suboptimal for another. Contextual bandits formalize this by allowing the agent to observe a feature vector (context) before each decision. This lecture derives LinUCB — the workhorse algorithm for contextual bandits — from ridge regression and explores how to engineer features, evaluate policies offline, and connect to modern recommendation systems.
+Standard bandits assume that all arms have the same reward distribution regardless of when or where they are pulled. In practice, context matters: a reward configuration that works well on weekdays may fail on weekends; a strategy optimal for one user population may be suboptimal for another. Contextual bandits formalize this by allowing the agent to observe a feature vector (context) before each decision. This lecture derives LinUCB — the workhorse algorithm for contextual bandits — from ridge regression and explores how to engineer features, evaluate policies offline, and connect to modern recommendation systems.
 
 ## Key Concepts
 
@@ -32,7 +32,7 @@ The most tractable assumption is that the expected reward is linear in a feature
 >
 > **E[r_t | x_t, a_t = a] = x_t^T theta_a***
 
-The context vector x_t might include features like: day of week, time of day, building occupancy, weather, historical feedback scores. The parameter theta_a* captures how these features affect the reward of arm *a*.
+The context vector x_t might include features like: day of week, time of day, user activity level, population size, historical engagement scores. The parameter theta_a* captures how these features affect the reward of arm *a*.
 
 Alternatively, we can use arm-specific features: **phi(x_t, a) in R^d** encodes both context and arm, with a single shared theta*:
 
@@ -114,9 +114,9 @@ The power of contextual bandits lies in choosing the right features. In the Aren
 - Is holiday (binary)
 
 **Environmental features:**
-- Building occupancy level (continuous)
-- Weather conditions (categorical, one-hot)
-- Recent feedback trend (rolling average)
+- User activity level (continuous)
+- Population size (continuous)
+- Recent engagement trend (rolling average)
 
 **Arm-specific features:**
 - Historical performance of this arm (mean, variance)
@@ -155,7 +155,7 @@ In many applications, we cannot deploy a new policy and observe its performance 
 
 This is unbiased but can have high variance when pi_1 differs greatly from pi_0 (the propensity weights explode). Doubly-robust estimators combine IPS with a reward model to reduce variance.
 
-Offline evaluation is crucial for safe deployment: before switching from the current service configuration to a new one, estimate the new policy's expected performance using historical feedback data.
+Offline evaluation is crucial for safe deployment: before switching from the current reward configuration to a new one, estimate the new policy's expected performance using historical engagement data.
 
 ## Formal Definitions
 
@@ -190,16 +190,16 @@ Now theta_hat_1 = A_1^{-1} b_1, which points roughly toward (1, 0). Future conte
 
 ### Example 2: Feature Engineering for Arena
 
-Arena experiment with 3 arms (cleaning schedules: morning, midday, evening). Context features:
+Arena experiment with 3 arms (reward strategies: conservative, moderate, aggressive). Context features:
 
-x_t = [day_mon, day_tue, ..., day_sun, occupancy, temperature, prev_rating]
+x_t = [day_mon, day_tue, ..., day_sun, activity_level, population_size, experiment_day]
 
 This gives d = 10 dimensions. A LinUCB agent learns that:
-- theta_morning* has high weights on weekday indicators and morning occupancy.
-- theta_evening* has high weights on weekend indicators.
-- theta_midday* performs uniformly across contexts.
+- theta_conservative* has high weights on early experiment days and small populations.
+- theta_aggressive* has high weights on weekend indicators and high-activity contexts.
+- theta_moderate* performs uniformly across contexts.
 
-After 200 rounds, the agent has learned to select morning cleaning on busy weekdays and evening cleaning on weekends — a context-dependent policy that a standard bandit could never discover.
+After 200 rounds, the agent has learned to select conservative rewards for new experiments and aggressive rewards during high-activity periods — a context-dependent policy that a standard bandit could never discover.
 
 ### Example 3: Offline Evaluation with IPS
 
@@ -223,8 +223,8 @@ Caution: variance is high. The 95% confidence interval might be (0.71, 1.01). Mo
 Contextual bandits are the natural next step for Arena agents. The Arena platform provides context through the experiment's metadata and environmental signals:
 
 - **Time-of-day** and **day-of-week** are directly available from the SDK.
-- **Building occupancy** and **recent feedback** can be queried as contextual features.
-- **Arm metadata** (cleaning type, schedule parameters) serve as arm-specific features.
+- **User activity level** and **recent engagement trends** can be queried as contextual features.
+- **Arm metadata** (economy configuration parameters) serve as arm-specific features.
 
 Workshop Session 5 (contextual approaches) has students:
 1. Implement a `LinUCBAgent` that ingests context features from the Arena API.

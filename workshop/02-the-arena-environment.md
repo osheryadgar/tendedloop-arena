@@ -94,7 +94,7 @@ Your agent tunes the **gamification economy** — the reward structure that driv
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `scanXp` | 10 | XP per QR code scan |
+| `scanXp` | 10 | XP per primary action |
 | `feedbackXp` | 15 | XP per feedback submission |
 | `statusReportXp` | 20 | XP per status report |
 | `issueReportXp` | 25 | XP per issue report |
@@ -105,7 +105,7 @@ Your agent tunes the **gamification economy** — the reward structure that driv
 | `scanDailyCap` | 20 | Max scans counted per day |
 | `feedbackDailyCap` | 10 | Max feedback counted per day |
 
-You don't need to set all of them. Only include the parameters you want to change — everything else inherits from the tenant's defaults.
+You don't need to set all of them. Only include the parameters you want to change — everything else inherits from the platform defaults.
 
 ### The Economy Resolution Chain
 
@@ -113,7 +113,7 @@ You don't need to set all of them. Only include the parameters you want to chang
 Global Defaults → Tenant Config → Your Variant Overrides → Final XP
 ```
 
-If the tenant admin set `scanXp: 12` and your agent sets `scanXp: 18`, users in your variant earn 18 XP per scan. All other parameters stay at the tenant's values.
+If the experiment manager set `scanXp: 12` and your agent sets `scanXp: 18`, users in your variant earn 18 XP per scan. All other parameters stay at the platform defaults.
 
 ## Guardrails: The Safety System
 

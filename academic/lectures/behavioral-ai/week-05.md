@@ -76,7 +76,7 @@ Arena defines d = 10 parameters:
 | 6 | missionRewardXp | Continuous | [5, 200] | Goal-directed reward |
 | 7 | badgeXp | Continuous | [0, 100] | Achievement reward |
 | 8 | referralXp | Continuous | [0, 500] | Growth incentive |
-| 9 | leaderboardScope | Categorical | {building, tenant, global} | Competition scope |
+| 9 | leaderboardScope | Categorical | {local, tenant, global} | Competition scope |
 | 10 | capWindow | Categorical | {daily, weekly} | Cap reset period |
 
 Not all parameters are continuously tunable. Some are categorical (leaderboardScope), some are functional (levelThresholds), and some have complex interactions (feedbackXp is only meaningful if feedback is enabled). The configuration space Theta is a mixed-type space, which complicates optimization.

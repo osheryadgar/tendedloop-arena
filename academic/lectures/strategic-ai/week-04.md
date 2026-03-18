@@ -166,7 +166,7 @@ Arms: mu_1 = 0.51, mu_2 = 0.49. Delta = 0.02. Optimal ETC exploration: m = (4/0.
 
 ## Arena Connection
 
-The multi-armed bandit is the *direct* model of the Arena platform. Each Arena experiment presents K arms representing different service configurations (e.g., cleaning schedules, amenity layouts). The agent's job is to identify and exploit the best configuration while minimizing cumulative regret.
+The multi-armed bandit is the *direct* model of the Arena platform. Each Arena experiment presents K arms representing different reward configurations (e.g., XP values, streak bonuses, daily caps). The agent's job is to identify and exploit the best configuration while minimizing cumulative regret.
 
 Workshop Session 4 has students implement three agents:
 1. **EpsilonGreedyAgent**: Fixed epsilon = 0.1, observing linear regret.
@@ -176,7 +176,7 @@ Workshop Session 4 has students implement three agents:
 The SDK's `agent.pull(arm_id)` corresponds to selecting an arm, and the returned reward is the bandit feedback. Students can plot cumulative regret against the theoretical bounds derived in this lecture.
 
 Key Arena-specific nuances:
-- Reward distributions may be non-stationary (facility conditions change) — motivating sliding-window or discounted UCB variants.
+- Reward distributions may be non-stationary (user behavior evolves over time) — motivating sliding-window or discounted UCB variants.
 - The budget T is finite and known, enabling Bayesian approaches (Week 5).
 - In competitive experiments, other agents' pulls may affect your rewards, breaking the i.i.d. assumption.
 

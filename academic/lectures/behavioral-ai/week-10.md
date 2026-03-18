@@ -83,7 +83,7 @@ $$n = \frac{2(1.96 + 0.84)^2}{d^2} = \frac{15.68}{d^2}$$
 | 0.2 (small) | 393 | 786 |
 | 0.1 (tiny) | 1,568 | 3,136 |
 
-**Implication for gamification.** If you expect a small effect ($d = 0.2$), you need ~400 users per variant. With 3 variants, that is 1,200 users. Enterprise gamification systems with 50-200 users per building cannot detect small effects with statistical confidence — they must either pool across buildings, run longer experiments, or accept that only large effects ($d \geq 0.5$) are detectable.
+**Implication for gamification.** If you expect a small effect ($d = 0.2$), you need ~400 users per variant. With 3 variants, that is 1,200 users. Enterprise gamification systems with 50-200 users per site cannot detect small effects with statistical confidence — they must either pool across sites, run longer experiments, or accept that only large effects ($d \geq 0.5$) are detectable.
 
 ### Multiple Testing Correction
 
@@ -150,7 +150,7 @@ $$= 2(0.7442) - 2(0.6847) = 1.4884 - 1.3694 = 0.119$$
 
 Required sample size: $n = \frac{(z_{0.025} + z_{0.20})^2}{h^2} = \frac{(1.96+0.84)^2}{0.119^2} = \frac{7.84}{0.0142} = 552$ per group.
 
-With 3 variants: $3 \times 552 = 1{,}656$ users needed. If the building has 300 users, the experiment needs at least 6 buildings pooled, or a longer observation window to convert the retention question into a repeated-measures design.
+With 3 variants: $3 \times 552 = 1{,}656$ users needed. If the site has 300 users, the experiment needs at least 6 sites pooled, or a longer observation window to convert the retention question into a repeated-measures design.
 
 ### Example 3: Multiple Testing in Practice
 
@@ -172,9 +172,9 @@ Under Bonferroni: only test 1 survives ($0.018 < 0.05$). Under BH (FDR $= 0.05$)
 Before launching any gamification A/B test, verify:
 
 1. **Pre-registration.** State the primary metric, expected effect direction, sample size, and analysis plan. This prevents HARKing (Hypothesizing After Results are Known).
-2. **Randomization check.** After assignment, verify that treatment and control groups are balanced on key covariates (tenure, baseline activity, building). Run a chi-squared test on categorical variables and t-tests on continuous ones. Any $p < 0.05$ suggests a randomization failure.
+2. **Randomization check.** After assignment, verify that treatment and control groups are balanced on key covariates (tenure, baseline activity, site). Run a chi-squared test on categorical variables and t-tests on continuous ones. Any $p < 0.05$ suggests a randomization failure.
 3. **Minimum duration.** Run the experiment for at least 2 full weekly cycles (14 days) to capture weekday/weekend patterns. For retention metrics, run for at least 30 days.
-4. **Interference check.** If users can communicate across variants (same building, shared Slack channels), SUTVA may be violated. Consider cluster randomization (randomize by building, not by user) if interference is likely.
+4. **Interference check.** If users can communicate across variants (same building, shared Slack channels), SUTVA may be violated. Consider cluster randomization (randomize by site, not by user) if interference is likely.
 5. **Pre-commit to analysis.** Decide in advance: will you use one-sided or two-sided tests? What multiple testing correction? When will you analyze (fixed horizon or group sequential)? Changing these after seeing data invalidates the statistical guarantees.
 
 ### Variance Reduction: CUPED

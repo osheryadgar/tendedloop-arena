@@ -91,8 +91,8 @@ $$a_t = \text{LLM}(\text{context}_t, \text{user}_t, \text{history}_t)$$
 The action space becomes the space of natural language instructions — effectively infinite. The reward model must evaluate arbitrary generated content, requiring a learned reward predictor $\hat{r}(a)$ rather than a lookup table.
 
 **Examples:**
-- "Submit feedback about the 3rd floor restroom before noon — a maintenance check was requested yesterday." (Contextual, time-bound, narratively motivated.)
-- "You've scanned 5 amenities this week but none in Building B. Explore a new building for double XP." (Behavioral, personalized, exploration-incentivizing.)
+- "Submit feedback about the 3rd floor restroom before noon — a maintenance check was requested yesterday." (Contextual, time-bound, narratively motivated — this is one domain example from TendedLoop's facility feedback use case.)
+- "You've completed 5 actions this week but none in Zone B. Explore a new zone for double XP." (Behavioral, personalized, exploration-incentivizing.)
 - "Team Challenge: Your floor has the most diverse feedback this month. Keep it up for a collective badge." (Social, cooperative, progress-referenced.)
 
 **Risks:**

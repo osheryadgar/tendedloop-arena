@@ -27,7 +27,7 @@ SYSTEM_PROMPT = """You are an Arena agent optimizing a gamification economy.
 Your goal: maximize user engagement while managing XP inflation.
 
 You control these economy parameters:
-- scanXp (default 10): XP per QR code scan
+- scanXp (default 10): XP per primary action
 - feedbackXp (default 15): XP per feedback submission
 ...
 

@@ -13,7 +13,7 @@ Arena has two distinct roles. You might play one or both — but understanding t
 
 ### The Experiment Manager
 
-**Who**: Instructor, research lead, facility manager, or solo researcher.
+**Who**: Instructor, research lead, or solo researcher.
 
 **What they do**:
 - Create experiments in the [TendedLoop Dashboard](https://app.tendedloop.com)

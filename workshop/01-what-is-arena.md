@@ -9,7 +9,7 @@
 
 ## The Problem
 
-Imagine you run a facility feedback app. Users scan QR codes, leave feedback, and earn XP points. But how much XP should a scan be worth? Should you reward streaks? How much?
+Imagine you run a platform where users perform actions and earn rewards. But how many points should each action be worth? Should you reward streaks? How much?
 
 Get it wrong and users disengage. Get it right and engagement soars. The problem: you don't know the right answer in advance, and it changes over time.
 

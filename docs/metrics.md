@@ -6,7 +6,7 @@ Arena computes six metrics per variant, updated with a 5-minute server-side cach
 
 ### SCAN_FREQUENCY
 
-**What:** Average number of QR code scans per user per day.
+**What:** Average number of primary actions per user per day.
 
 **Type:** Continuous (mean)
 

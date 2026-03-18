@@ -61,7 +61,7 @@ The misalignment: Duolingo optimizes DAU/retention (engagement), but the true ob
 
 ### Case Study 2: TendedLoop Enterprise Gamification
 
-TendedLoop's facility feedback platform (the Arena domain) represents enterprise gamification with fundamentally different constraints.
+TendedLoop is an enterprise gamification platform (and the platform Arena runs on) that represents enterprise gamification with fundamentally different constraints from consumer apps.
 
 **Parameter extraction (Arena's 10 tunable parameters):**
 
@@ -81,8 +81,8 @@ TendedLoop's facility feedback platform (the Arena domain) represents enterprise
 **Key differences from consumer gamification:**
 
 1. **Involuntary population.** Employees do not choose to use the system; it is deployed by management. Engagement cannot be assumed — it must be earned.
-2. **Non-anonymous impact.** Unlike Duolingo (where only the user is affected by their engagement), feedback quality affects facility operations, maintenance scheduling, and other employees' work environment.
-3. **Small populations.** Typically 50-500 users per building, compared to millions for consumer apps. Statistical detection of effects requires larger relative effect sizes (Week 10).
+2. **Non-anonymous impact.** Unlike Duolingo (where only the user is affected by their engagement), feedback quality affects service operations, task routing, and other employees' work environment.
+3. **Small populations.** Typically 50-500 users per deployment, compared to millions for consumer apps. Statistical detection of effects requires larger relative effect sizes (Week 10).
 4. **Institutional constraints.** Reward budgets may be limited. Aggressive gamification (dark patterns) risks employee backlash and HR complaints.
 
 **Reward function:**
