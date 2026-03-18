@@ -116,7 +116,7 @@ DELIVERABLES:
 3. Your decision audit log (from agent.decisions())
 
 RESOURCES:
-- SDK: pip install git+https://github.com/osheryadgar/tendedloop-arena.git
+- SDK: pip install tendedloop-arena
 - Course: https://github.com/osheryadgar/tendedloop-arena/tree/main/course
 - Scoreboard: agent.scoreboard() shows all variants
 ```
@@ -187,7 +187,7 @@ That's up to you. Tokens are separate, so teams can't interfere with each other 
 The variant stays at its last config. The team can restart their agent and it will resume from the current state. The dashboard shows heartbeat status.
 
 **Can I run the experiment without real users?**
-Currently, Arena connects to real experiment data. For a dry run, create a small experiment with test users (5-10) and tight guardrails.
+For a dry run, use the local sandbox: `python -m tendedloop_agent demo`. It simulates the full Arena API with realistic metrics, all 5 guardrails, and stateful economy tracking. Students can develop and test agents before connecting to a live experiment.
 
 **How many teams can participate?**
 One experiment supports up to 5 variants (4 treatment + 1 control). For more teams, create multiple experiments or have teams share variants in rounds.

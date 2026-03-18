@@ -78,7 +78,7 @@ You need:
 2. The Arena SDK
 
 ```bash
-pip install git+https://github.com/osheryadgar/tendedloop-arena.git
+pip install tendedloop-arena
 ```
 
 Set your token:
