@@ -455,7 +455,10 @@ env.close()
 
 | Document | Description |
 |----------|-------------|
-| [Workshop](workshop/README.md) | 15-lesson hands-on course (foundations → production) |
+| [Workshop](workshop/README.md) | 15-lesson hands-on workshop (foundations → production) |
+| [Strategic AI](academic/strategic-ai.md) | 14-week course: From Agents to Multi-Agent Systems |
+| [Behavioral AI](academic/behavioral-ai.md) | 14-week course: The Science of Incentive Design |
+| [Lecture Notes](academic/lectures/) | Complete lecture notes for both courses (28 weeks) |
 | [Classroom & Lab Guide](academic/classroom-guide.md) | For instructors: experiment setup, token distribution, grading |
 | [Instructor Guide](academic/instructor-guide.md) | Rubrics, course integration options, common pitfalls |
 | [Architecture](docs/architecture.md) | System design, data flow, and component overview |
