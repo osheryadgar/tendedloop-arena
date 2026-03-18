@@ -1,8 +1,8 @@
-# Course A: Multi-Agent Systems
+# Strategic AI: Multi-Agent Systems & Optimization
 
 **Department**: Computer Science / Artificial Intelligence
 **Level**: Advanced undergraduate or graduate
-**Prerequisites**: Algorithms, Probability & Statistics, Linear Algebra, Python programming; Course B (Computational Gamification) complements this course with behavioral science foundations
+**Prerequisites**: Algorithms, Probability & Statistics, Linear Algebra, Python programming; [Behavioral AI](behavioral-ai.md) complements this course with behavioral science foundations
 **Credits**: 3-4
 
 > Inspired by MIT 6.S890 (Farina & Daskalakis), Stanford CS 224M (Shoham & Leyton-Brown), and CMU's Cooperative AI program. See [survey of related courses](#related-courses) at the bottom.

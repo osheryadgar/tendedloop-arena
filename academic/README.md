@@ -4,10 +4,10 @@ Three interconnected educational offerings that bridge multi-agent systems theor
 
 ```
 ┌──────────────────────────┐     ┌──────────────────────────┐
-│  Course A                │     │  Course B                │
+│  Strategic AI            │     │  Behavioral AI           │
 │  Multi-Agent Systems     │     │  Computational           │
-│  (CS / AI)               │     │  Gamification &          │
-│                          │     │  Behavioral AI (CS / AI) │
+│  & Optimization          │     │  Gamification &          │
+│                          │     │  Engagement              │
 │  14 weeks, theory        │     │  14 weeks, theory        │
 └────────────┬─────────────┘     └─────────────┬────────────┘
              │                                  │
@@ -26,23 +26,23 @@ Three interconnected educational offerings that bridge multi-agent systems theor
 
 | Component | Audience | Focus | Duration |
 |-----------|----------|-------|----------|
-| [Course A: Multi-Agent Systems](course-a-multi-agent-systems.md) | CS/AI students | Agent theory, game theory, bandits, RL, mechanism design | 14 weeks |
-| [Course B: Computational Gamification](course-b-gamification-design.md) | CS/AI students | Reward modeling, behavioral economics, engagement optimization | 14 weeks |
-| [Workshop: Applied Research](../workshop/README.md) | Students from A and/or B | Build agents on TendedLoop Arena | 8 sessions |
+| [Strategic AI: Multi-Agent Systems](strategic-ai.md) | CS/AI students | Agent theory, game theory, bandits, RL, mechanism design | 14 weeks |
+| [Behavioral AI: Computational Gamification](behavioral-ai.md) | CS/AI students | Reward modeling, behavioral economics, engagement optimization | 14 weeks |
+| [Workshop: Applied Research](../workshop/README.md) | Students from either or both | Build agents on TendedLoop Arena | 8 sessions |
 
 ## How They Connect
 
 Students can take the courses independently, but the workshop is where theory meets practice:
 
-- **Course A students** bring: agent architectures, optimization algorithms, game theory, bandit theory
-- **Course B students** bring: reward function design, behavioral models, engagement metrics, ethical awareness
+- **Strategic AI students** bring: agent architectures, optimization algorithms, game theory, bandit theory
+- **Behavioral AI students** bring: reward function design, behavioral models, engagement metrics, ethical awareness
 - **In the workshop**: Teams combine algorithmic skills with domain knowledge to build and compete real autonomous agents
 
 ### Cross-Reference Map
 
 Each workshop session maps to specific topics from both courses:
 
-| Workshop Session | Course A Topics | Course B Topics |
+| Workshop Session | Strategic AI | Behavioral AI |
 |-----------------|----------------|----------------|
 | 1. Setup & Orientation | Agents & environments | Gamification landscape |
 | 2. First Agent | Rational agents, decision theory | Points, XP, core mechanics |
@@ -59,8 +59,8 @@ Not everyone takes both courses. The workshop accommodates three profiles:
 
 | Student Profile | Preparation | Workshop Strength |
 |----------------|------------|-------------------|
-| Course A only | Strong on algorithms, needs domain knowledge | Builds sophisticated agents, guided by Course B materials for domain |
-| Course B only | Strong on domain, needs algorithm skills | Designs effective reward structures, uses simpler agent strategies |
+| Strategic AI only | Strong on algorithms, needs domain knowledge | Builds sophisticated agents, guided by Behavioral AI materials for domain |
+| Behavioral AI only | Strong on domain, needs algorithm skills | Designs effective reward structures, uses simpler agent strategies |
 | Both courses | Full preparation | Bridges both worlds — natural team leaders |
 | Neither (self-study) | Uses the [workshop](../workshop/README.md) directly | Self-contained with all theory included — see note below |
 
@@ -68,7 +68,7 @@ Not everyone takes both courses. The workshop accommodates three profiles:
 
 ## For Instructors
 
-- [Course A Syllabus](course-a-multi-agent-systems.md) — Full 14-week syllabus with readings, assignments, and exam topics
-- [Course B Syllabus](course-b-gamification-design.md) — Full 14-week syllabus with readings, projects, and case studies
+- [Strategic AI Syllabus](strategic-ai.md) — Full 14-week syllabus with readings, assignments, and exam topics
+- [Behavioral AI Syllabus](behavioral-ai.md) — Full 14-week syllabus with readings, projects, and case studies
 - [Workshop Guide](classroom-guide.md) — Experiment setup, token distribution, grading
 - [Workshop Lessons](../workshop/README.md) — The 8-session hands-on curriculum

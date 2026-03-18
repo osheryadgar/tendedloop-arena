@@ -3,8 +3,8 @@
 A hands-on workshop for building autonomous agents that optimize gamification economies using the TendedLoop Arena SDK.
 
 This workshop is the **practical implementation lab** for two theoretical courses:
-- [Course A: Multi-Agent Systems](../academic/course-a-multi-agent-systems.md) — agent theory, game theory, bandits, RL
-- [Course B: Computational Gamification](../academic/course-b-gamification-design.md) — reward modeling, behavioral economics, engagement optimization
+- [Strategic AI: Multi-Agent Systems](../academic/strategic-ai.md) — agent theory, game theory, bandits, RL
+- [Behavioral AI: Computational Gamification](../academic/behavioral-ai.md) — reward modeling, behavioral economics, engagement optimization
 
 You can also take this workshop **standalone** — it's self-contained with all the theory you need.
 
@@ -55,12 +55,12 @@ The sandbox simulates all 5 guardrails, stateful economy tracking, and metrics t
 
 ## Workshop Sessions (8 sessions)
 
-Each session maps to specific topics from the theoretical courses. The "Course A/B" column shows which lectures provide the theoretical foundation.
+Each session maps to specific topics from the theoretical courses. The "Strategic AI / Behavioral AI" column shows which lectures provide the theoretical foundation.
 
 ### Session 1: Setup and Orientation
 
-| Lesson | Title | Course A | Course B |
-|--------|-------|---------|---------|
+| Lesson | Title | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|
 | [00](00-roles-and-setup.md) | Roles and Setup | — | — |
 | [01](01-what-is-arena.md) | What is Multi-Agent Optimization? | Week 1: Agents | Week 1: Gamification as optimization |
 | [02](02-the-arena-environment.md) | The Arena Environment | Week 1: Environments | Week 5: Parameterized rewards |
@@ -69,16 +69,16 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 ### Session 2: Your First Agent
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [03](03-your-first-agent.md) | Your First Agent | `01_quickstart.py` | Week 2: Decision theory | Week 5: Core mechanics |
 
 **Goal**: Write and run a rule-based agent. Understand the observe-decide-act loop.
 
 ### Session 3: Control Theory for Engagement
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [04](04-feedback-loops.md) | PID Control | `06_pid_controller.py` | Week 2: Rational agents | Week 3: Flow & DDA |
 | [05](05-multi-objective.md) | Multi-Objective Optimization | `03_multi_metric.py` | Week 4: Mechanism design | Week 9: Engagement metrics |
 
@@ -86,8 +86,8 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 ### Session 4: The Bandit Problem
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [06](06-explore-exploit.md) | Explore-Exploit Dilemma | `11_explore_then_exploit.py` | Week 5: Bandits intro | Week 6: Reward schedules |
 | [07](07-ucb1.md) | UCB1 | `07_ucb1.py` | Week 5: UCB analysis | Week 10: A/B testing |
 
@@ -95,8 +95,8 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 ### Session 5: Bayesian and Contextual Approaches
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [08](08-thompson-sampling.md) | Thompson Sampling | `05_thompson_sampling.py` | Week 6: Bayesian bandits | Week 6: Variable schedules |
 | [09](09-contextual-bandits.md) | Contextual Bandits | `08_contextual_bandit.py` | Week 7: LinUCB | Week 12: Personalization |
 
@@ -104,8 +104,8 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 ### Session 6: Advanced Optimization
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [10](10-bayesian-optimization.md) | Bayesian Optimization | `09_bayesian_optimization.py` | Week 10: GP & BO | Week 7: XP economics |
 | [11](11-reinforcement-learning.md) | Reinforcement Learning | `02_gymnasium_rl.py` | Week 8-9: RL & MARL | Week 6: Reward shaping |
 
@@ -113,8 +113,8 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 ### Session 7: AI Agents and Ensembles
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [12](12-llm-agents.md) | LLM Agents | `04_llm_agent.py` | Week 12: LLM agents | Week 12: Adaptive systems |
 | [13](13-ensemble-methods.md) | Ensemble Methods | `10_ensemble.py` | Week 11: Hedge algorithm | Week 8: Social dynamics |
 
@@ -122,8 +122,8 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 ### Session 8: Safety, Competition, and Results
 
-| Lesson | Title | Example | Course A | Course B |
-|--------|-------|---------|---------|---------|
+| Lesson | Title | Example | Strategic AI | Behavioral AI |
+|--------|-------|-------------|---------------|---------|
 | [14](14-production-safety.md) | Going to Production | `12_production_safety.py` | Week 13: Safety & alignment | Week 11: Ethics & dark patterns |
 
 **Goal**: Deploy safely. Present results. Compare agent performance across teams.

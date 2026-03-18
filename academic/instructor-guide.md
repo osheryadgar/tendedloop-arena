@@ -60,8 +60,8 @@ Use one of the two semester-length courses in the [Academic Program](../academic
 
 | Course | Focus | Best For |
 |--------|-------|----------|
-| [Course A: Multi-Agent Systems](../academic/course-a-multi-agent-systems.md) | Agent theory, game theory, bandits, RL, mechanism design | CS/AI departments |
-| [Course B: Computational Gamification](../academic/course-b-gamification-design.md) | Reward modeling, behavioral economics, engagement optimization | CS/AI or HCI departments |
+| [Strategic AI: Multi-Agent Systems](../academic/strategic-ai.md) | Agent theory, game theory, bandits, RL, mechanism design | CS/AI departments |
+| [Behavioral AI: Computational Gamification](../academic/behavioral-ai.md) | Reward modeling, behavioral economics, engagement optimization | CS/AI or HCI departments |
 
 Both courses include the 8-session workshop as the practical lab component (15% of the grade). Students build increasingly sophisticated agents throughout the semester, culminating in a competitive experiment in the final weeks.
 
@@ -363,6 +363,6 @@ If you use TendedLoop Arena in your research or course materials, please cite:
 
 - [Classroom & Lab Guide](classroom-guide.md) — Step-by-step experiment setup, token distribution, and monitoring
 - [Workshop (8 sessions)](../workshop/README.md) — The hands-on curriculum students follow
-- [Academic Program](../academic/README.md) — Full 14-week syllabi for Course A (Multi-Agent Systems) and Course B (Computational Gamification)
+- [Academic Program](../academic/README.md) — Full 14-week syllabi for Strategic AI and Behavioral AI
 - [Strategies Guide](strategies.md) — Algorithmic strategies for building effective agents
 - [FAQ](faq.md) — Common questions and troubleshooting

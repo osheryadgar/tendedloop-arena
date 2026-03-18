@@ -1,8 +1,8 @@
-# Course B: Computational Gamification & Behavioral AI
+# Behavioral AI: Computational Gamification & Engagement
 
 **Department**: Computer Science / Artificial Intelligence
 **Level**: Advanced undergraduate or graduate
-**Prerequisites**: Algorithms, Probability & Statistics, Python programming; Course A (Multi-Agent Systems) recommended but not required
+**Prerequisites**: Algorithms, Probability & Statistics, Python programming; [Strategic AI](strategic-ai.md) recommended but not required
 **Credits**: 3
 
 > **Note**: This course fills a gap in CS/AI curricula. Existing gamification courses (e.g., Werbach's Wharton/Coursera course, Chou's Octalysis) are design/business-oriented. No established university course treats gamification as a computational optimization problem with formal models, algorithms, and rigorous experimentation. This course is the first to do so. See [related courses](#related-courses-and-resources) at the bottom.
@@ -66,7 +66,7 @@ By the end of this course, students will be able to:
 - Temporal discounting: hyperbolic vs. exponential models
 - Anchoring and framing effects in reward presentation
 - Computational nudge design: optimal default selection
-- Connection to mechanism design (Course A, Week 4)
+- Connection to mechanism design (Strategic AI, Week 4)
 
 **Readings**: Kahneman & Tversky (1979) "Prospect Theory" (required — sections 1-3). *Recommended:* Thaler & Sunstein (2008) *Nudge*, Ch. 1-3
 **Assignment 2**: Implement a streak system with loss aversion — compare user retention curves for "streak freeze" (loss frame) vs. "bonus day" (gain frame) using simulation
