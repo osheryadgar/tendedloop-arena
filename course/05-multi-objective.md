@@ -1,5 +1,12 @@
 # Lesson 5: Multi-Objective Optimization
 
+> **Time:** ~30 minutes | **Complexity:** Intermediate
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Compare weighted-score and Pareto-dominance approaches to multi-objective optimization
+> 2. Analyze tradeoffs between competing engagement metrics using lever mappings
+> 3. Differentiate between metric boosting and XP inflation and evaluate their effects
+
 > **Example**: [`examples/03_multi_metric.py`](../examples/03_multi_metric.py)
 
 ## The Problem

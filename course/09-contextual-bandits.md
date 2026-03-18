@@ -1,5 +1,12 @@
 # Lesson 9: Contextual Bandits — Using Context
 
+> **Time:** ~35 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Design a feature vector from Arena signals with proper normalization for linear models
+> 2. Construct a LinUCB agent that learns context-dependent arm-reward relationships
+> 3. Optimize feature engineering by evaluating which context dimensions improve arm selection
+
 > **Example**: [`examples/08_contextual_bandit.py`](../examples/08_contextual_bandit.py)
 
 ## The Limitation of Standard Bandits

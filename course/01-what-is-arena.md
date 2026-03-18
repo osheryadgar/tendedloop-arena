@@ -1,5 +1,12 @@
 # Lesson 1: What is Multi-Agent Optimization?
 
+> **Time:** ~25 minutes | **Complexity:** Beginner
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Describe the limitations of traditional manual gamification tuning
+> 2. Explain the observe-decide-act-learn agent loop and its four stages
+> 3. List the key advantages of multi-agent optimization over static A/B testing
+
 ## The Problem
 
 Imagine you run a facility feedback app. Users scan QR codes, leave feedback, and earn XP points. But how much XP should a scan be worth? Should you reward streaks? How much?

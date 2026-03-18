@@ -1,5 +1,12 @@
 # Lesson 4: Feedback Loops and PID Control
 
+> **Time:** ~30 minutes | **Complexity:** Intermediate
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Implement a PID controller with proportional, integral, and derivative terms
+> 2. Use anti-windup clamping and derivative-on-measurement to avoid common PID pitfalls
+> 3. Build a feedback loop that maintains a target metric value over time
+
 > **Example**: [`examples/06_pid_controller.py`](../examples/06_pid_controller.py)
 
 ## The Problem with Rules

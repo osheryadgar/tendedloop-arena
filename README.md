@@ -47,31 +47,43 @@ Your Agent                    TendedLoop Arena                    Real Users
 - **Research-grade** — Statistical significance, confidence intervals, and complete audit trails.
 - **Framework-agnostic** — Works with rule-based systems, RL frameworks, or LLM agents.
 
-> **Prerequisites:** Arena requires a [TendedLoop](https://tendedloop.com) account with an active experiment in Agent Mode. Academic and research discounts are available — contact research@tendedloop.com.
+> **Prerequisites:** Arena requires a [TendedLoop](https://tendedloop.com) account with an active experiment in Agent Mode. Or try the [local sandbox](#try-it-locally) — no account needed. Academic and research discounts are available — contact research@tendedloop.com.
 
 ## Quick Start
 
 ### Install
 
 ```bash
-pip install git+https://github.com/osheryadgar/tendedloop-arena.git
-```
-
-Or clone and install locally:
-
-```bash
-git clone https://github.com/osheryadgar/tendedloop-arena.git
-cd tendedloop-arena
-pip install -e "."
+pip install tendedloop-arena
 ```
 
 Optional extras for specific use cases:
 
 ```bash
-pip install "tendedloop-arena[rl] @ git+https://github.com/osheryadgar/tendedloop-arena.git"   # + gymnasium, numpy
-pip install "tendedloop-arena[llm] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # + anthropic
-pip install "tendedloop-arena[all] @ git+https://github.com/osheryadgar/tendedloop-arena.git"  # everything
+pip install tendedloop-arena[rl]    # + gymnasium, numpy
+pip install tendedloop-arena[llm]   # + anthropic
+pip install tendedloop-arena[all]   # everything
 ```
+
+Or install from source:
+
+```bash
+pip install git+https://github.com/osheryadgar/tendedloop-arena.git
+```
+
+### Try It Locally
+
+No TendedLoop account needed — start the built-in sandbox server and run an agent against it:
+
+```bash
+# Terminal 1: Start the sandbox
+python -m tendedloop_agent demo
+
+# Terminal 2: Run the demo agent
+python examples/00_demo_sandbox.py
+```
+
+The sandbox simulates the full Arena API with realistic metrics, all 5 guardrails, and stateful economy tracking. See [`examples/00_demo_sandbox.py`](examples/00_demo_sandbox.py) for the complete example.
 
 ### Write Your First Agent
 
@@ -187,6 +199,7 @@ result = agent.act(ConfigUpdate(
 
 | Example | Strategy | Complexity |
 |---------|----------|-----------|
+| [`00_demo_sandbox.py`](examples/00_demo_sandbox.py) | Local sandbox (no account needed) | Beginner |
 | [`01_quickstart.py`](examples/01_quickstart.py) | Rule-based thresholds | Beginner |
 | [`02_gymnasium_rl.py`](examples/02_gymnasium_rl.py) | Gymnasium `reset/step` RL loop | Intermediate |
 | [`03_multi_metric.py`](examples/03_multi_metric.py) | Multi-objective optimization | Intermediate |
@@ -444,6 +457,7 @@ env.close()
 |----------|-------------|
 | [Multi-Agent Course](course/README.md) | 15-lesson hands-on course (foundations → production) |
 | [Classroom & Lab Guide](docs/classroom-guide.md) | For instructors: experiment setup, token distribution, grading |
+| [Instructor Guide](docs/instructor-guide.md) | Rubrics, course integration options, common pitfalls |
 | [Architecture](docs/architecture.md) | System design, data flow, and component overview |
 | [Guardrails](docs/guardrails.md) | Safety system explained in depth |
 | [Error Codes](docs/error-codes.md) | API error codes and rejection reasons |

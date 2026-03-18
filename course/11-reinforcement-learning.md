@@ -1,5 +1,12 @@
 # Lesson 11: Reinforcement Learning
 
+> **Time:** ~25 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Integrate the ArenaEnv Gymnasium wrapper to frame gamification tuning as an MDP
+> 2. Compose reward-shaping functions that balance multiple objectives without Goodhart's Law pitfalls
+> 3. Adapt policy complexity to Arena's data-scarce environment constraints
+
 > **Example**: [`examples/02_gymnasium_rl.py`](../examples/02_gymnasium_rl.py)
 
 ## RL in Arena

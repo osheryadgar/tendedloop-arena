@@ -1,5 +1,12 @@
 # Lesson 14: Going to Production
 
+> **Time:** ~45 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Assess rejection types and select appropriate backoff strategies for each
+> 2. Justify the inclusion of drift detection, anomaly self-detection, and cooldown logic in production agents
+> 3. Select the right agent architecture for a given experiment by evaluating data budget, objectives, and safety requirements
+
 > **Example**: [`examples/12_production_safety.py`](../examples/12_production_safety.py)
 
 ## The Gap Between Demo and Production

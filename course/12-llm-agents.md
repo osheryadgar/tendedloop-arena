@@ -1,5 +1,12 @@
 # Lesson 12: LLM Agents
 
+> **Time:** ~35 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Compose effective system prompts that encode domain constraints for LLM-based decision-making
+> 2. Integrate client-side validation and structured output parsing to make LLM agents production-safe
+> 3. Adapt LLM reasoning with bandit execution in a hybrid architecture
+
 > **Example**: [`examples/04_llm_agent.py`](../examples/04_llm_agent.py)
 
 ## A Different Paradigm

@@ -8,6 +8,8 @@ This workshop is the **practical implementation lab** for two theoretical course
 
 You can also take this workshop **standalone** — it's self-contained with all the theory you need.
 
+> **Total time:** ~7.5 hours across 15 lessons (8 sessions). Each lesson includes learning objectives, a time estimate, and a complexity rating (Beginner / Intermediate / Advanced).
+
 ## Who Is This For?
 
 This workshop is for **agent developers** — the people who write the code. You might be a student in a class, a researcher in a lab, or a solo developer running your own experiments.

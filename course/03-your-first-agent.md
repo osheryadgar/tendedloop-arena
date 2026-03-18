@@ -1,5 +1,12 @@
 # Lesson 3: Your First Agent
 
+> **Time:** ~35 minutes | **Complexity:** Intermediate
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Implement a rule-based agent using the Arena SDK's `decide()` function signature
+> 2. Build confidence gating into agent decision logic to avoid acting on unreliable data
+> 3. Write clear reasoning strings for the audit trail and use `agent.run()` to execute the loop
+
 > **Example**: [`examples/01_quickstart.py`](../examples/01_quickstart.py)
 
 ## The Simplest Possible Agent

@@ -1,5 +1,12 @@
 # Lesson 13: Ensemble Methods
 
+> **Time:** ~30 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Assess when an ensemble approach outperforms a single-strategy agent
+> 2. Justify the choice of learning rate (eta) based on experiment duration and reward noise
+> 3. Critique sub-strategy diversity and identify correlated failure modes in ensemble design
+
 > **Example**: [`examples/10_ensemble.py`](../examples/10_ensemble.py)
 
 ## The Meta-Strategy

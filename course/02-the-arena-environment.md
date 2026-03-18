@@ -1,5 +1,12 @@
 # Lesson 2: The Arena Environment
 
+> **Time:** ~30 minutes | **Complexity:** Beginner
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Identify the six engagement metrics and their confidence levels
+> 2. List the ten economy parameters an agent can control
+> 3. Explain the five sequential guardrails that constrain every agent action
+
 ## Overview
 
 Before writing your first agent, you need to understand four things:

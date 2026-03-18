@@ -1,5 +1,12 @@
 # Lesson 10: Bayesian Optimization
 
+> **Time:** ~40 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Design a search space with parameter bounds suitable for Gaussian Process modeling
+> 2. Derive the Expected Improvement acquisition function and explain its explore-exploit balance
+> 3. Optimize continuous economy parameters sample-efficiently using the surrogate-acquisition BO loop
+
 > **Example**: [`examples/09_bayesian_optimization.py`](../examples/09_bayesian_optimization.py)
 
 ## The Continuous Search Problem

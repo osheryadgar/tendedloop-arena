@@ -1,5 +1,12 @@
 # Lesson 8: Thompson Sampling — Bayesian Bandits
 
+> **Time:** ~30 minutes | **Complexity:** Advanced
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Design a Beta-Bernoulli model for binary reward tracking and posterior updating
+> 2. Construct a Thompson Sampling agent that explores through posterior randomness rather than explicit bonuses
+> 3. Derive binary reward signals from continuous Arena metrics using threshold-based conversion
+
 > **Example**: [`examples/05_thompson_sampling.py`](../examples/05_thompson_sampling.py)
 
 ## The Bayesian Perspective

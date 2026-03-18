@@ -1,5 +1,12 @@
 # Lesson 0: Roles and Setup
 
+> **Time:** ~20 minutes | **Complexity:** Beginner
+>
+> **Learning objectives** — by the end of this lesson you will be able to:
+> 1. Describe the two Arena personas (Experiment Manager and Agent Developer) and their responsibilities
+> 2. Identify which tools and credentials each persona requires
+> 3. Explain how strategy tokens scope an agent to a single experiment variant
+
 ## Two Personas, One Platform
 
 Arena has two distinct roles. You might play one or both — but understanding the separation is key to how the system works.
