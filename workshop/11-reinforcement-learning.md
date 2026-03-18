@@ -131,6 +131,30 @@ The example uses a simple momentum policy. For production RL, consider:
 
 **For Arena, start with the simplest policy that works.** A linear policy mapping observations to actions often outperforms complex networks given Arena's data constraints.
 
+### The ArenaEnv Loop
+
+```
+         ┌───────────┐
+    ┌───>│  reset()   │─── obs ──┐
+    │    └───────────┘           │
+    │                            v
+    │    ┌───────────┐    ┌──────────┐
+    │    │ terminated │<───│ policy   │
+    │    │   = True   │    │ select   │
+    │    └─────┬─────┘    │ action   │
+    │          │          └────┬─────┘
+    │       (done)             │
+    │          v          ┌────v─────┐
+    │    ┌───────────┐    │ step()   │
+    │    │  close()  │    │ → obs    │
+    │    └───────────┘    │ → reward │
+    │                     │ → done   │
+    │                     └────┬─────┘
+    │                          │
+    └──────────────────────────┘
+              (loop)
+```
+
 ## Exercises
 
 1. **Reward shaping**: Replace the raw delta reward with distance-to-target. Does the agent converge faster?

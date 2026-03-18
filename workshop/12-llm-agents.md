@@ -39,6 +39,29 @@ PRINCIPLES:
 Respond with JSON: {"changes": {...}, "reasoning": "..."}"""
 ```
 
+### Formatting Signals for the LLM
+
+The quality of LLM decisions depends on how you present the data. The example uses a structured format:
+
+```python
+def format_signals(signals):
+    """Convert signals to a readable prompt section."""
+    lines = [
+        f"Enrolled users: {signals.enrolled}",
+        f"Active today: {signals.active_today}",
+        f"Active last 7 days: {signals.active_7d}",
+        f"Experiment day: {signals.experiment_days}",
+        "",
+        "Metrics:",
+    ]
+    for name, m in signals.metrics.items():
+        conf_emoji = {"high": "■■■", "medium": "■■□", "low": "■□□"}.get(m.confidence, "□□□")
+        lines.append(f"  {name}: {m.value:.3f} (±{m.std_dev or 0:.3f}, n={m.sample_size}, {conf_emoji})")
+    return "\n".join(lines)
+```
+
+**Tip:** Include confidence levels in the prompt — a good LLM will notice "low confidence" and recommend waiting for more data rather than acting on noise.
+
 ## Why LLMs Are Compelling
 
 1. **Zero-shot**: Works without any training data or tuning
@@ -93,6 +116,18 @@ decision["changes"] = validated
 
 The LLM example uses `poll_interval=300` (5 minutes) — slower than the default 60 seconds, because each call costs money. At 5-minute intervals, that's ~288 LLM calls/day. At ~$0.01/call, that's $2.88/day. For tighter budgets, use 10-minute intervals (~$1.44/day) or skip the LLM call when metrics are stable.
 
+## When to Use LLM Agents
+
+| Situation | LLM? | Why |
+|-----------|------|-----|
+| Need explainable reasoning | **Yes** | LLMs produce natural language explanations for every decision |
+| Complex multi-factor decisions | **Yes** | LLMs can reason about subtle interactions between metrics |
+| Rapid prototyping | **Yes** | Describe your strategy in English, not code |
+| Tight latency requirements | No | API calls take 1-5 seconds |
+| Cost-sensitive | No | ~$0.01-0.05 per decision adds up over long experiments |
+| Reproducibility required | No | Same prompt can produce different outputs |
+| Hybrid approach (LLM + bandit) | **Best of both** | Use LLM for reasoning, bandit for exploration |
+
 ## LLM + Bandit Hybrid
 
 The most powerful pattern: use an LLM for **strategy selection** and a bandit for **execution**:
@@ -112,6 +147,8 @@ This combines the LLM's reasoning about what matters with the bandit's statistic
 1. **Add memory**: Pass the last 5 decisions and their outcomes to the LLM. Does it learn from its mistakes?
 2. **Multi-model**: Use Claude for important decisions (confidence is low, metrics are changing) and skip the LLM when metrics are stable.
 3. **LLM + PID**: Use the LLM to set the PID setpoint ("what should the target frequency be?") and PID to maintain it.
+
+> **Full example**: [`examples/04_llm_agent.py`](../examples/04_llm_agent.py) includes error handling (`json.JSONDecodeError`, `anthropic.APIError`), structured output parsing, and a complete system prompt. Read it for production patterns.
 
 ## Next
 

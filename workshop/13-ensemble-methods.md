@@ -50,6 +50,63 @@ STRATEGIES = [
 ]
 ```
 
+### The Three Sub-Strategies
+
+Each sub-strategy encodes a different philosophy:
+
+**1. Reactive** — threshold-based, like Lesson 3:
+```python
+def reactive_strategy(signals, config):
+    freq = signals.metrics.get("SCAN_FREQUENCY")
+    if freq and freq.value < 2.0:
+        return {"scanXp": round(config["scanXp"] * 1.15)}
+    elif freq and freq.value > 4.0:
+        return {"scanXp": round(config["scanXp"] * 0.9)}
+    return None  # No change needed
+```
+
+**2. Conservative** — small incremental steps toward the weakest metric:
+```python
+def conservative_strategy(signals, config):
+    # Find the weakest metric and nudge its lever up by 5%
+    worst_metric, worst_value = None, float('inf')
+    for name, m in signals.metrics.items():
+        if m.confidence != "low" and m.value < worst_value:
+            worst_metric, worst_value = name, m.value
+    if worst_metric == "SCAN_FREQUENCY":
+        return {"scanXp": round(config["scanXp"] * 1.05)}
+    elif worst_metric == "RETENTION_RATE":
+        return {"streakBonusPerDay": round(config.get("streakBonusPerDay", 5) * 1.05)}
+    return None
+```
+
+**3. Bold** — large shifts toward high-reward configs:
+```python
+def bold_strategy(signals, config):
+    # If things are going well, push harder. If not, pull back hard.
+    freq = signals.metrics.get("SCAN_FREQUENCY")
+    if freq and freq.value > 3.0:
+        return {"scanXp": round(config["scanXp"] * 1.3)}  # Big boost
+    elif freq and freq.value < 1.5:
+        return {"scanXp": max(5, round(config["scanXp"] * 0.7))}  # Big cut
+    return None
+```
+
+### How the Ensemble Decides
+
+```
+                    ┌─── Reactive:   {scanXp: 12}  weight: 0.35
+                    │
+Signals ──> Ensemble┼─── Conservative: {scanXp: 11} weight: 0.45  ← Selected!
+                    │
+                    └─── Bold:       {scanXp: 15}  weight: 0.20
+
+After observing the result:
+  - If composite improved: winning strategy's weight increases
+  - If composite dropped: winning strategy's weight decreases
+  - Weights are renormalized (Hedge algorithm)
+```
+
 **Good ensemble properties:**
 - Strategies should **disagree** in many situations
 - Include at least one **conservative** strategy (safety net)
@@ -83,6 +140,16 @@ Top-level Ensemble
 ```
 
 Each sub-ensemble selects among its strategies, and the top-level ensemble selects among families. This is useful when you have many strategies and want to organize them.
+
+## When to Use Ensembles
+
+| Situation | Ensemble? | Why |
+|-----------|----------|-----|
+| Uncertain which strategy is best | **Yes** | The ensemble discovers it automatically |
+| Different strategies work in different phases | **Yes** | Weights adapt as conditions change |
+| Already built multiple agents | **Yes** | Combine them without choosing |
+| Limited experiment time | No | Each cycle only tests one strategy — slow learning |
+| Need simplicity | No | Ensembles add a layer of complexity |
 
 ## Exercises
 

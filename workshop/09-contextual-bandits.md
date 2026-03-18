@@ -48,6 +48,37 @@ A[arm] += outer(context, context)  # Update feature correlations
 b[arm] += reward * context          # Update feature-reward correlations
 ```
 
+### Code Walkthrough
+
+The LinUCB algorithm maintains a design matrix `A` and reward vector `b` per arm:
+
+```python
+class LinUCB:
+    def __init__(self, n_arms, n_features, alpha=1.5):
+        self.n_arms = n_arms
+        self.alpha = alpha
+        # Per-arm matrices
+        self.A = [np.eye(n_features) for _ in range(n_arms)]
+        self.b = [np.zeros(n_features) for _ in range(n_arms)]
+
+    def select_arm(self, context):
+        best_arm, best_ucb = 0, -float('inf')
+        for i in range(self.n_arms):
+            A_inv = np.linalg.inv(self.A[i])
+            theta = A_inv @ self.b[i]
+            # Predicted reward + exploration bonus
+            ucb = theta @ context + self.alpha * np.sqrt(context @ A_inv @ context)
+            if ucb > best_ucb:
+                best_arm, best_ucb = i, ucb
+        return best_arm
+
+    def update(self, arm, context, reward):
+        self.A[arm] += np.outer(context, context)
+        self.b[arm] += reward * context
+```
+
+**Key insight**: `theta @ context` is the predicted reward (exploitation). `alpha * sqrt(context @ A_inv @ context)` is the confidence bonus (exploration). As more data arrives, `A` grows and `A_inv` shrinks — reducing exploration naturally.
+
 ## Feature Engineering
 
 The quality of contextual bandits depends entirely on your features. The example extracts 6 features from Arena signals:
@@ -81,6 +112,18 @@ Context helps when there's **heterogeneity** — when the best action depends on
 | All arms are context-independent | UCB1/TS is simpler | Unnecessary complexity |
 
 **Rule of thumb**: If you suspect "it depends on the situation," try a contextual bandit.
+
+## When to Use Contextual Bandits
+
+| Situation | Contextual? | Why |
+|-----------|------------|-----|
+| Weekday/weekend patterns matter | **Yes** | Context encodes temporal features |
+| Engagement varies with enrollment size | **Yes** | Population size as context feature |
+| Early vs. late experiment behavior | **Yes** | Experiment day as context |
+| Only one type of user population | No | Standard bandits are simpler |
+| Very few observations (<30) | No | LinUCB needs enough data to learn the linear model |
+
+> **Dependency note:** This example requires `numpy`. Install with `pip install tendedloop-arena[rl]`.
 
 ## Exercises
 

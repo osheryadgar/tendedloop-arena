@@ -173,9 +173,18 @@ Here's the complete flow of a single cycle:
 
 ## Exercises
 
-1. **Read the signals**: Write a script that calls `agent.info()` and `agent.observe()`, and prints all available information in a readable format.
-2. **Understand clamping**: If `deltaLimitPct=50` and the current `scanXp=10`, what's the maximum value you can set in one update? What about two consecutive updates? (Hint: delta clamping operates on the *current applied value*, so after the first update changes 10→15, the second update's 50% is relative to 15, not 10.)
-3. **Think about timing**: Your agent's `poll_interval` (how often it checks signals) is 60 seconds. The signal cache refreshes every 5 minutes. The `updateIntervalMin` (how often the platform allows config changes) is 60 minutes. Given these three timers, how many poll cycles pass before (a) you see updated metrics after a change, and (b) you can submit another change?
+1. **Inspect signals in code**: Write a script that calls `agent.observe()` and prints each metric with its confidence level and sample size. Which metrics have high confidence? Which are still low?
+
+```python
+signals = agent.observe()
+for name, m in signals.metrics.items():
+    status = "ready" if m.confidence in ("medium", "high") else "waiting"
+    print(f"{name:25s} {m.value:8.3f}  n={m.sample_size:4d}  {m.confidence:6s}  [{status}]")
+```
+
+2. **Map parameters to metrics**: Using the parameter table above, write down which economy parameters you think influence each metric. For example: `scanXp` → `SCAN_FREQUENCY`, `feedbackXp` → `FEEDBACK_QUALITY`. You'll test these hypotheses in Lesson 3.
+
+3. **Read your constraints**: Call `agent.info()` and print `update_interval_min` and `delta_limit_pct`. Calculate: if `scanXp` is currently 10 and `deltaLimitPct` is 50, what's the maximum value you can set it to in one update? What about after two updates?
 
 ## Next
 

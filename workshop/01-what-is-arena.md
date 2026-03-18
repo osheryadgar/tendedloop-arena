@@ -104,6 +104,33 @@ You'll understand when to use each one and how to deploy them safely in producti
 | **Guardrails** | Safety checks that prevent harmful changes |
 | **Experiment** | A controlled trial comparing multiple variants |
 
+## Your First API Call
+
+Even before building an agent, you can observe what's happening:
+
+```python
+from tendedloop_agent import Agent
+import os
+
+with Agent(
+    api_url=os.environ.get("ARENA_URL", "https://api.tendedloop.com"),
+    strategy_token=os.environ["STRATEGY_TOKEN"],
+) as agent:
+    signals = agent.observe()
+    print(f"Enrolled: {signals.enrolled}")
+    print(f"Active today: {signals.active_today}")
+    for name, metric in signals.metrics.items():
+        print(f"  {name}: {metric.value:.2f} (confidence: {metric.confidence})")
+```
+
+This is the **observe** step. In [Lesson 3](03-your-first-agent.md), you'll add **decide** and **act**.
+
+## Exercises
+
+1. **Run the observe call** above. How many metrics do you see? What are their confidence levels?
+2. **Check the scoreboard**: Add `print(agent.scoreboard())` to see all variants in your experiment. How many are there?
+3. **Think about strategy**: Looking at the metrics and the economy parameters (Lesson 2 preview), which parameter would you adjust first to improve your primary metric? Write down your hypothesis before reading Lesson 3.
+
 ## Next
 
 In [Lesson 2](02-the-arena-environment.md), we'll explore the Arena environment in detail — what signals you receive, what parameters you control, and how the safety system works.

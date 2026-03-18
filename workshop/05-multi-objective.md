@@ -95,6 +95,17 @@ def decide(signals, current_config):
 
 The key insight: **boost the weakest metric** while **trimming the strongest**. This naturally balances resources across objectives.
 
+### Decision Flow
+
+```
+Signals ──> Health Scores ──> Worst Metric ──> Lever Mapping ──> ConfigUpdate
+              │                    │                │
+              │  SCAN_FREQ: 0.7   │  Worst: 0.5    │  scanXp: +15%
+              │  RETENTION: 0.9   │  (FEEDBACK)     │
+              │  FEEDBACK:  0.5   │                 │  feedbackXp: +10%
+              │  XP_VEL:    0.8   │                 │
+```
+
 ## Tradeoff Management
 
 The real challenge isn't boosting one metric — it's managing tradeoffs:
@@ -115,6 +126,15 @@ A production multi-metric agent should include XP_VELOCITY as a constraint, not 
 1. **Add XP velocity constraint**: Modify the agent to reduce boosts when XP_VELOCITY exceeds a threshold.
 2. **Pareto analysis**: Instead of the weighted sum, implement Pareto dominance — a config is only "better" if it improves at least one metric without worsening any other.
 3. **Dynamic weights**: Adjust weights based on experiment phase (early: weight retention high; late: weight quality high).
+
+## When to Use Multi-Objective
+
+| Situation | Multi-Objective? | Why |
+|-----------|-----------------|-----|
+| Competing KPIs (engagement vs. quality) | **Yes** | Prevents optimizing one at the expense of others |
+| Single clear target | No | Use PID (Lesson 4) — simpler |
+| Unknown metric relationships | **Yes** | Health scores surface which metrics are lagging |
+| Production deployment | **Yes** | Real systems always have multiple concerns |
 
 ## Next
 

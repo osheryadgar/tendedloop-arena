@@ -59,6 +59,26 @@ EI(x) = E[max(f(x) - best_y, 0)]
 6. Back to step 2
 ```
 
+### The BO Loop Visualized
+
+```
+Iteration 1:        Iteration 3:        Iteration 6:
+GP knows nothing    GP has 3 points     GP is confident
+
+reward               reward               reward
+  │    ?????          │   ╱?╲  ?          │    ╱──╲
+  │  ??   ??          │  ╱   ╲ ?          │   ╱    ╲
+  │ ?      ?          │ ╱  ●  ╲ ?         │  ╱  ●   ╲
+  │?        ?         │╱ ●    ╲●          │ ╱ ●    ● ╲●
+  └──────────         └──────────         └──────────
+  5   scanXp  25      5   scanXp  25      5   scanXp  25
+
+  EI: high everywhere EI: peaks at gaps   EI: one clear peak
+  → explore randomly  → explore gap       → exploit peak ★
+```
+
+The shaded regions show uncertainty. EI is highest where the GP is uncertain AND predicts high reward.
+
 ## The Search Space
 
 Define bounds for each parameter:
@@ -73,6 +93,38 @@ PARAMS = {
 ```
 
 BO normalizes these to [0, 1] internally and searches over the hypercube.
+
+### Key Implementation Details
+
+The example implements a full GP from scratch for educational purposes. The core components:
+
+**1. RBF Kernel** — measures similarity between configs:
+```python
+def rbf_kernel(x1, x2, length_scale=1.0):
+    dist = np.sum((x1 - x2) ** 2)
+    return np.exp(-dist / (2 * length_scale ** 2))
+```
+
+**2. GP Prediction** — returns mean and uncertainty at a new point:
+```python
+mean = K_star @ K_inv @ y_train        # Predicted reward
+var = k_star_star - K_star @ K_inv @ K_star.T  # Uncertainty
+```
+
+**3. Expected Improvement** — acquisition function:
+```python
+improvement = mean - best_observed - xi
+ei = improvement * norm.cdf(z) + std * norm.pdf(z)
+```
+
+**4. Optimization** — finds the next point to try:
+```python
+# Generate 100 random candidates, pick the one with highest EI
+candidates = [random_config() for _ in range(100)]
+best = max(candidates, key=lambda c: expected_improvement(c))
+```
+
+> **For production use:** Replace the from-scratch GP with `scikit-optimize` or `BoTorch`. The pedagogical implementation here prioritizes clarity over numerical stability.
 
 ## Comparison with Other Approaches
 

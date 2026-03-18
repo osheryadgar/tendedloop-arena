@@ -101,6 +101,19 @@ From this simple example, three rules emerge:
 
 **Rule 3: Explain your reasoning.** The `reasoning` string is stored permanently in the decision audit log. Future-you (and your colleagues) will thank you.
 
+## When to Use Rule-Based Agents
+
+| Situation | Rule-Based? | Why |
+|-----------|------------|-----|
+| First experiment ever | **Yes** | Simple to debug, easy to understand, provides a baseline |
+| Well-understood domain | **Yes** | If you know "frequency below 2 is bad," encode it directly |
+| Need explainability | **Yes** | Every decision has a clear, logged reason |
+| Unknown optimal values | No | Rules can't discover — they only react to known thresholds |
+| Many interacting parameters | No | Hard to write rules that account for interactions |
+| Experiment longer than 2 weeks | No | Bandits or RL adapt better over time |
+
+Rule-based agents are the foundation. Most production agents start rule-based and graduate to bandits or RL once the domain is understood.
+
 ## Exercises
 
 The full `01_quickstart.py` already has retention logic and a high-frequency reduction. For these exercises, start from the simplified version above (frequency-only) and extend it:
@@ -108,6 +121,8 @@ The full `01_quickstart.py` already has retention logic and a high-frequency red
 1. **Add hysteresis**: Boost `scanXp` when frequency drops below 1.8, but only reduce it when frequency exceeds 4.5. This gap prevents oscillation around a single threshold.
 2. **Add a cooldown**: After making a change, skip the next 3 cycles to let the effect stabilize before measuring again. (Hint: track `cycles_since_last_change` in a class.)
 3. **Add a ceiling**: Don't boost `scanXp` above 25 — at some point, higher rewards cause inflation without improving engagement.
+
+> **Full example**: [`examples/01_quickstart.py`](../examples/01_quickstart.py) includes additional features not shown above: retention monitoring via `RETENTION_RATE` and streak bonus adjustment. Read it after completing the exercises.
 
 ## Next
 

@@ -102,6 +102,16 @@ with Agent(api_url="https://api.tendedloop.com", strategy_token="strat_...") as 
 
 If this prints your variant name, you're ready to start [Lesson 1](01-what-is-arena.md).
 
+### Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| `ModuleNotFoundError: tendedloop_agent` | Run `pip install tendedloop-arena` |
+| `ValueError: Refusing to connect over plain HTTP` | Use `https://` URL (HTTP only allowed for localhost) |
+| `httpx.HTTPStatusError: 401` | Check your strategy token — it may be expired or mistyped |
+| `httpx.ConnectError` | Verify the API URL and your internet connection |
+| Connection works but `experiment_status` is not `RUNNING` | The experiment hasn't been started yet — contact your experiment manager |
+
 ## Setup for Experiment Managers
 
 See the [Classroom & Lab Guide](../academic/classroom-guide.md) for:
@@ -109,6 +119,12 @@ See the [Classroom & Lab Guide](../academic/classroom-guide.md) for:
 - Configuring guardrails for student safety
 - Distributing manifests and tokens
 - Monitoring and grading
+
+## Exercises
+
+1. **Verify your setup**: Run the connection test above. Note your variant name, experiment name, and constraints (`updateIntervalMin`, `deltaLimitPct`).
+2. **Explore the info object**: Print all fields of `agent.info()`. Which fields will affect how aggressive your agent can be?
+3. **Try the sandbox**: If you have a token, also start the local sandbox (`python -m tendedloop_agent demo`) and connect to it with `api_url="http://localhost:7860"` and `strategy_token="strat_demo_local"`. Compare the info output.
 
 ## Next
 

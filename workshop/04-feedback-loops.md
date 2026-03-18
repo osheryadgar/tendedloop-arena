@@ -113,6 +113,12 @@ multiplier = 1.0 + (adjustment / 10.0)     # e.g., 1.23
 new_scan_xp = round(scan_xp * multiplier)  # e.g., 10 * 1.23 = 12
 ```
 
+### A Note on `dt`
+
+The `dt` parameter represents the time step between updates. In Arena, this equals your `poll_interval` (typically 60 seconds). But what matters for PID isn't wall-clock time — it's the **number of cycles between measurements**.
+
+Set `dt = 1.0` (one cycle = one unit) and tune your gains relative to that. The PID sees one new measurement per cycle regardless of how many minutes each cycle takes.
+
 ### Tuning Guide
 
 | Symptom | Adjust |

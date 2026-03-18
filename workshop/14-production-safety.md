@@ -164,6 +164,44 @@ for cycle in range(1000):
 
 This gives you full control over error handling, logging, and recovery — things `agent.run()` handles generically.
 
+### The Production Agent Flow
+
+```
+                    ┌──────────────────┐
+                    │   observe()      │
+                    └────────┬─────────┘
+                             │
+                    ┌────────v─────────┐
+              ┌─no─│  drift_ok?       │
+              │    └────────┬─────────┘
+              │             │ yes
+              │    ┌────────v─────────┐
+              │    │   decide()       │
+              │    └────────┬─────────┘
+              │             │
+              │    ┌────────v─────────┐
+              ├────│   act()          │
+              │    └────────┬─────────┘
+              │             │
+              │    ┌────────v─────────┐
+              │    │  accepted?       │──no──> handle_rejection()
+              │    └────────┬─────────┘                │
+              │             │ yes                      │
+              │    ┌────────v─────────┐        ┌───────v──────┐
+              │    │  anomaly_check() │        │  backoff()   │
+              │    └────────┬─────────┘        └──────────────┘
+              │             │
+              └─────────────┼──────────────────────────┐
+                            │                          │
+                   ┌────────v─────────┐       ┌────────v──────┐
+                   │  log_decision()  │       │  cooldown()   │
+                   └────────┬─────────┘       └───────────────┘
+                            │
+                   ┌────────v─────────┐
+                   │  sleep(interval) │
+                   └──────────────────┘
+```
+
 ## Production Checklist
 
 Before deploying an agent to a real experiment:
@@ -206,3 +244,11 @@ The right approach depends on your experiment:
 - **No idea what works** → Ensemble of everything
 
 Welcome to multi-agent gamification research.
+
+## Exercises
+
+1. **Add graceful shutdown**: Modify the production agent to handle `SIGINT` (Ctrl+C) gracefully — stop the loop, send a final heartbeat with metadata `{"reason": "shutdown"}`, and close the client.
+
+2. **Build a dashboard logger**: Create a `ProductionLogger` class that writes each decision to a JSON-lines file (`decisions.jsonl`). Include: timestamp, reasoning, applied config, rejection reason (if any), and all metric values. This gives you an offline audit trail.
+
+3. **Combine patterns**: Take your favorite agent from an earlier lesson (PID, Thompson, UCB1) and wrap it with the production safety patterns from this lesson. Add drift detection, rejection handling, and structured logging. Run it against the sandbox for 20 iterations.
