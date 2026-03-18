@@ -455,7 +455,6 @@ env.close()
 
 | Document | Description |
 |----------|-------------|
-| [Arena Playbook](blog/) | 10-part blog series for CS undergrads (start here!) |
 | [Workshop](workshop/README.md) | 15-lesson hands-on workshop (foundations → production) |
 | [Strategic AI](academic/strategic-ai.md) | 14-week course: From Agents to Multi-Agent Systems |
 | [Behavioral AI](academic/behavioral-ai.md) | 14-week course: The Science of Incentive Design |
