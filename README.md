@@ -213,7 +213,7 @@ result = agent.act(ConfigUpdate(
 | [`11_explore_then_exploit.py`](examples/11_explore_then_exploit.py) | Two-phase bandit | Beginner |
 | [`12_production_safety.py`](examples/12_production_safety.py) | Production safety patterns | Advanced |
 
-> **Want to learn the theory?** The [Multi-Agent Course](course/README.md) walks through all 12 strategies with explanations, diagrams, and exercises.
+> **Want to learn the theory?** The [Workshop](workshop/README.md) walks through all 12 strategies with explanations, diagrams, and exercises.
 
 ### Rule-Based Agent
 
@@ -455,9 +455,9 @@ env.close()
 
 | Document | Description |
 |----------|-------------|
-| [Multi-Agent Course](course/README.md) | 15-lesson hands-on course (foundations → production) |
-| [Classroom & Lab Guide](docs/classroom-guide.md) | For instructors: experiment setup, token distribution, grading |
-| [Instructor Guide](docs/instructor-guide.md) | Rubrics, course integration options, common pitfalls |
+| [Workshop](workshop/README.md) | 15-lesson hands-on course (foundations → production) |
+| [Classroom & Lab Guide](academic/classroom-guide.md) | For instructors: experiment setup, token distribution, grading |
+| [Instructor Guide](academic/instructor-guide.md) | Rubrics, course integration options, common pitfalls |
 | [Architecture](docs/architecture.md) | System design, data flow, and component overview |
 | [Guardrails](docs/guardrails.md) | Safety system explained in depth |
 | [Error Codes](docs/error-codes.md) | API error codes and rejection reasons |
@@ -472,7 +472,7 @@ Arena is designed for collaborative research with distinct roles:
 - **Experiment Manager** (instructor/research lead): Creates experiments in the Dashboard, configures guardrails, distributes tokens, monitors results
 - **Agent Developer** (student/team): Receives a token, writes an agent using this SDK, runs it against their variant
 
-One experiment, N competing teams, each building their own agent. See the [Classroom & Lab Guide](docs/classroom-guide.md) for setup instructions, token distribution, and grading rubrics.
+One experiment, N competing teams, each building their own agent. See the [Classroom & Lab Guide](academic/classroom-guide.md) for setup instructions, token distribution, and grading rubrics.
 
 ## Research Applications
 

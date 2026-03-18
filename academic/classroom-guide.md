@@ -94,7 +94,7 @@ Give each team:
 | Experiment duration | How long they have (e.g., "2 weeks starting Monday") |
 | Ground rules | Any additional constraints (e.g., "must explain every decision in the reasoning field") |
 | SDK repo | `https://github.com/osheryadgar/tendedloop-arena` |
-| Course | Point them to the [Multi-Agent Course](../course/README.md) |
+| Course | Point them to the [Multi-Agent Course](../workshop/README.md) |
 
 ### Suggested Team Brief Template
 

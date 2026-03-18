@@ -64,7 +64,7 @@ If you're a solo researcher, you wear both hats:
 3. Write and run your agent (developer hat)
 4. Monitor results in the dashboard (back to manager hat)
 
-The course focuses on the **agent developer** role — that's where the SDK lives. For experiment setup, see the [Classroom & Lab Guide](../docs/classroom-guide.md).
+The course focuses on the **agent developer** role — that's where the SDK lives. For experiment setup, see the [Classroom & Lab Guide](../academic/classroom-guide.md).
 
 ## Setup for Agent Developers
 
@@ -104,7 +104,7 @@ If this prints your variant name, you're ready to start [Lesson 1](01-what-is-ar
 
 ## Setup for Experiment Managers
 
-See the [Classroom & Lab Guide](../docs/classroom-guide.md) for:
+See the [Classroom & Lab Guide](../academic/classroom-guide.md) for:
 - Creating experiments with agent mode
 - Configuring guardrails for student safety
 - Distributing manifests and tokens

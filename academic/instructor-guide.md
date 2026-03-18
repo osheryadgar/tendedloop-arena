@@ -22,7 +22,7 @@ You want to use Arena in your course next semester. Here is what to do, in order
 
 6. **Download manifests.** Each variant produces a manifest JSON file containing a `strategyToken`. Download one per team.
 
-7. **Prepare your syllabus.** Point students to the [Workshop](../course/README.md) for self-study and the relevant example agents in `examples/`.
+7. **Prepare your syllabus.** Point students to the [Workshop](../workshop/README.md) for self-study and the relevant example agents in `examples/`.
 
 ### First Day of Class
 
@@ -72,7 +72,7 @@ Both courses include the 8-session workshop as the practical lab component (15% 
 
 ### Option B: 8-Session Workshop
 
-Use the standalone [Workshop](../course/README.md) as a focused hands-on course. Each session is 2-3 hours.
+Use the standalone [Workshop](../workshop/README.md) as a focused hands-on course. Each session is 2-3 hours.
 
 | Session | Topic | What Students Build |
 |---------|-------|-------------------|
@@ -93,7 +93,7 @@ Use the standalone [Workshop](../course/README.md) as a focused hands-on course.
 
 A self-contained lab that can be dropped into any AI, ML, or software engineering course.
 
-**Pre-lab (30 min):** Students read [Lesson 01](../course/01-what-is-arena.md) and [Lesson 02](../course/02-the-arena-environment.md) before class.
+**Pre-lab (30 min):** Students read [Lesson 01](../workshop/01-what-is-arena.md) and [Lesson 02](../workshop/02-the-arena-environment.md) before class.
 
 **In-lab schedule:**
 
@@ -362,7 +362,7 @@ If you use TendedLoop Arena in your research or course materials, please cite:
 ## Related Resources
 
 - [Classroom & Lab Guide](classroom-guide.md) — Step-by-step experiment setup, token distribution, and monitoring
-- [Workshop (8 sessions)](../course/README.md) — The hands-on curriculum students follow
+- [Workshop (8 sessions)](../workshop/README.md) — The hands-on curriculum students follow
 - [Academic Program](../academic/README.md) — Full 14-week syllabi for Course A (Multi-Agent Systems) and Course B (Computational Gamification)
 - [Strategies Guide](strategies.md) — Algorithmic strategies for building effective agents
 - [FAQ](faq.md) — Common questions and troubleshooting

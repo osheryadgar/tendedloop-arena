@@ -14,7 +14,7 @@ You can also take this workshop **standalone** — it's self-contained with all 
 
 This workshop is for **agent developers** — the people who write the code. You might be a student in a class, a researcher in a lab, or a solo developer running your own experiments.
 
-If you're an **experiment manager** (instructor, research lead) setting up experiments for others, start with the [Classroom & Lab Guide](../docs/classroom-guide.md) instead.
+If you're an **experiment manager** (instructor, research lead) setting up experiments for others, start with the [Classroom & Lab Guide](../academic/classroom-guide.md) instead.
 
 > **Wearing both hats?** Read [Lesson 0: Roles and Setup](00-roles-and-setup.md) first — it explains the two personas and how they interact.
 
@@ -159,6 +159,6 @@ Each session maps to specific topics from the theoretical courses. The "Course A
 
 **If you're a solo researcher**: Read [Lesson 0](00-roles-and-setup.md) to understand both roles, set up your experiment in the Dashboard, then work through the sessions.
 
-**If you're an instructor**: See the [Classroom & Lab Guide](../docs/classroom-guide.md) for experiment setup, token distribution, and grading. The [Academic Program](../academic/README.md) has full syllabi for the theoretical courses.
+**If you're an instructor**: See the [Classroom & Lab Guide](../academic/classroom-guide.md) for experiment setup, token distribution, and grading. The [Academic Program](../academic/README.md) has full syllabi for the theoretical courses.
 
 **Each session**: Read the lessons, run the examples, do the exercises. In a classroom setting, each session is a 2-3 hour lab with instructor support.

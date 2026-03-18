@@ -13,7 +13,7 @@ This course covers the theory and algorithms of multi-agent systems — autonomo
 
 The course progresses from foundational game theory through modern multi-agent reinforcement learning to frontier topics like LLM agents and AI safety. Each module is motivated by real AI breakthroughs (AlphaGo, Pluribus, Cicero) and grounded in rigorous theory.
 
-The accompanying [workshop](../course/README.md) provides a hands-on lab where students implement these algorithms as autonomous agents competing on the TendedLoop Arena platform.
+The accompanying [workshop](../workshop/README.md) provides a hands-on lab where students implement these algorithms as autonomous agents competing on the TendedLoop Arena platform.
 
 > **Tip:** Students can practice with the SDK immediately using the local sandbox: `python -m tendedloop_agent demo` — no account or experiment required.
 
@@ -39,7 +39,7 @@ By the end of this course, students will be able to:
 - Expected utility theory and rational choice
 
 **Readings**: Russell & Norvig, Ch. 2, 16.1-16.3
-**Workshop**: [Session 1](../course/README.md) — Setup and orientation
+**Workshop**: [Session 1](../workshop/README.md) — Setup and orientation
 
 #### Week 2: Normal-Form Games and Nash Equilibrium
 - Strategic form games: players, strategies, payoffs
@@ -72,7 +72,7 @@ By the end of this course, students will be able to:
 - UCB1: derivation from Hoeffding's inequality, proof of O(√(KT log T)) regret
 
 **Readings**: Lattimore & Szepesvari, Ch. 1-8
-**Workshop**: [Session 4](../course/README.md) — The bandit problem
+**Workshop**: [Session 4](../workshop/README.md) — The bandit problem
 **Assignment 2**: Implement UCB1, epsilon-greedy, and ETC. Prove the UCB1 regret bound. Compare empirically on synthetic and Arena data.
 
 #### Week 5: Bayesian Bandits and Thompson Sampling
@@ -83,7 +83,7 @@ By the end of this course, students will be able to:
 - Information-theoretic perspective: value of information
 
 **Readings**: Russo et al. (2018) "A Tutorial on Thompson Sampling"
-**Workshop**: [Session 5](../course/README.md) — Bayesian approaches
+**Workshop**: [Session 5](../workshop/README.md) — Bayesian approaches
 
 #### Week 6: Contextual Bandits and Beyond
 - From bandits to contextual bandits
@@ -94,7 +94,7 @@ By the end of this course, students will be able to:
 - Connection to personalization and recommendation
 
 **Readings**: Li et al. (2010) "LinUCB"; Agarwal et al. (2014)
-**Workshop**: [Session 5](../course/README.md) — Contextual approaches
+**Workshop**: [Session 5](../workshop/README.md) — Contextual approaches
 
 ### Module 3: Multi-Agent Learning (Weeks 7-10)
 
@@ -106,7 +106,7 @@ By the end of this course, students will be able to:
 - Function approximation and stability
 
 **Readings**: Sutton & Barto, Ch. 1-6, 13; Albrecht et al. (2024) Ch. 1-3
-**Workshop**: [Session 6](../course/README.md) — RL with Arena
+**Workshop**: [Session 6](../workshop/README.md) — RL with Arena
 
 #### Week 8: Multi-Agent Reinforcement Learning
 - Stochastic games (Markov games): formal definition
@@ -159,7 +159,7 @@ By the end of this course, students will be able to:
 - Hyperparameter optimization as a case study
 
 **Readings**: Shahriari et al. (2016) "Taking the Human Out of the Loop"
-**Workshop**: [Session 6](../course/README.md) — Bayesian Optimization with Arena
+**Workshop**: [Session 6](../workshop/README.md) — Bayesian Optimization with Arena
 
 ### Module 5: Frontier Topics (Weeks 13-14)
 
@@ -173,7 +173,7 @@ By the end of this course, students will be able to:
 - The alignment problem in multi-agent settings
 
 **Readings**: Yao et al. (2023) "ReAct"; Park et al. (2023) "Generative Agents"; Amodei et al. (2016)
-**Workshop**: [Sessions 7-8](../course/README.md) — LLM agents, ensembles, safety
+**Workshop**: [Sessions 7-8](../workshop/README.md) — LLM agents, ensembles, safety
 **Assignment 5**: Analyze failure modes of an unconstrained LLM agent in Arena. Propose and implement guardrails.
 
 #### Week 14: Open Problems and Student Presentations

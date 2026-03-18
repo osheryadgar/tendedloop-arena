@@ -96,4 +96,4 @@ result = agent.act(ConfigUpdate(
 # result.clamped_deltas == {"scanXp": {"requested": 100, "applied": 15, "clamped": True}}
 ```
 
-See also: [Guardrails](guardrails.md) | [Classroom Guide](classroom-guide.md) | [FAQ](faq.md)
+See also: [Guardrails](guardrails.md) | [Classroom Guide](../academic/classroom-guide.md) | [FAQ](faq.md)

@@ -41,7 +41,7 @@ That's it — skip to the next section.
 export STRATEGY_TOKEN=strat_your_token_here
 ```
 
-> For details on experiment setup and distributing tokens to teams, see the [Classroom & Lab Guide](../docs/classroom-guide.md).
+> For details on experiment setup and distributing tokens to teams, see the [Classroom & Lab Guide](../academic/classroom-guide.md).
 
 ### What the Token Gives You
 

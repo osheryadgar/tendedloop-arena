@@ -28,7 +28,7 @@ Three interconnected educational offerings that bridge multi-agent systems theor
 |-----------|----------|-------|----------|
 | [Course A: Multi-Agent Systems](course-a-multi-agent-systems.md) | CS/AI students | Agent theory, game theory, bandits, RL, mechanism design | 14 weeks |
 | [Course B: Computational Gamification](course-b-gamification-design.md) | CS/AI students | Reward modeling, behavioral economics, engagement optimization | 14 weeks |
-| [Workshop: Applied Research](../course/README.md) | Students from A and/or B | Build agents on TendedLoop Arena | 8 sessions |
+| [Workshop: Applied Research](../workshop/README.md) | Students from A and/or B | Build agents on TendedLoop Arena | 8 sessions |
 
 ## How They Connect
 
@@ -62,13 +62,13 @@ Not everyone takes both courses. The workshop accommodates three profiles:
 | Course A only | Strong on algorithms, needs domain knowledge | Builds sophisticated agents, guided by Course B materials for domain |
 | Course B only | Strong on domain, needs algorithm skills | Designs effective reward structures, uses simpler agent strategies |
 | Both courses | Full preparation | Bridges both worlds — natural team leaders |
-| Neither (self-study) | Uses the [workshop](../course/README.md) directly | Self-contained with all theory included — see note below |
+| Neither (self-study) | Uses the [workshop](../workshop/README.md) directly | Self-contained with all theory included — see note below |
 
-> **Self-study path:** You'll wear both hats (manager + developer). Start with [Lesson 0](../course/00-roles-and-setup.md) for the dual-role overview, or jump straight in with the [local sandbox](../course/README.md#no-token-use-the-local-sandbox) — no account needed. The [Instructor Guide](../docs/instructor-guide.md) covers experiment setup when you're ready for live data.
+> **Self-study path:** You'll wear both hats (manager + developer). Start with [Lesson 0](../workshop/00-roles-and-setup.md) for the dual-role overview, or jump straight in with the [local sandbox](../workshop/README.md#no-token-use-the-local-sandbox) — no account needed. The [Instructor Guide](instructor-guide.md) covers experiment setup when you're ready for live data.
 
 ## For Instructors
 
 - [Course A Syllabus](course-a-multi-agent-systems.md) — Full 14-week syllabus with readings, assignments, and exam topics
 - [Course B Syllabus](course-b-gamification-design.md) — Full 14-week syllabus with readings, projects, and case studies
-- [Workshop Guide](../docs/classroom-guide.md) — Experiment setup, token distribution, grading
-- [Workshop Lessons](../course/README.md) — The 8-session hands-on curriculum
+- [Workshop Guide](classroom-guide.md) — Experiment setup, token distribution, grading
+- [Workshop Lessons](../workshop/README.md) — The 8-session hands-on curriculum
