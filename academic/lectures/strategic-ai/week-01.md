@@ -143,7 +143,7 @@ The Arena environment is:
 - **Sequential**: Each pull consumes budget and generates information.
 - **Multi-agent** (in competitive experiments): Multiple agents share the same arm pool.
 
-The SDK's `observe()` -> `decide()` -> `act()` structure mirrors the formal agent function. Workshop Session 1 walks through setting up this loop with `tendedloop-agent`.
+The SDK's `observe()` -> `decide()` -> `act()` structure mirrors the formal agent function. Workshop Session 1 walks through setting up this loop with the Arena SDK.
 
 ## Discussion Questions
 
