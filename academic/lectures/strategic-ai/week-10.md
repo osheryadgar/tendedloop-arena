@@ -32,6 +32,25 @@ Communication can dramatically reduce the coordination problem's complexity.
 
 **Communication complexity matters:** Adding a 1-bit communication channel to a Dec-POMDP can exponentially reduce the policy space that needs to be searched. However, the optimal communication policy is itself hard to compute.
 
+### Agent Communication Languages
+
+Wooldridge (2009, Ch. 7) surveys formal approaches to agent communication:
+
+**Speech act theory** (Austin, 1962; Searle, 1969): Communication is action. Utterances have three components:
+- **Locutionary**: The literal content ("scanXp is 15")
+- **Illocutionary**: The intended effect (informing, requesting, promising)
+- **Perlocutionary**: The actual effect on the receiver
+
+**KQML and FIPA-ACL**: Standardized agent communication languages define performatives — message types with formal semantics:
+- `inform(sender, receiver, content)` — asserts a belief
+- `request(sender, receiver, action)` — asks for action
+- `propose(sender, receiver, deal)` — offers a negotiation term
+- `agree(sender, receiver, action)` — commits to action
+
+**Arena connection:** The Arena API is implicitly an agent communication language. `agent.observe()` is an `inform` from platform to agent. `agent.act(update)` is a `propose` from agent to platform. The guardrail response is either `agree` (accepted) or `refuse` (rejected with reason). The `reasoning` string is the agent's `inform` about its internal state — crucial for the audit trail.
+
+Multi-agent LLM systems (Week 13) effectively reinvent agent communication — but using natural language instead of formal performatives. Wooldridge's insight is that the *structure* of communication matters independently of the *content*.
+
 ### Negotiation and Contract Nets
 
 In mixed-motive settings (partially aligned incentives), agents negotiate.
@@ -80,6 +99,22 @@ The core represents allocations where no coalition has an incentive to "break aw
 **Bondareva-Shapley Theorem:** The core is non-empty if and only if the game is **balanced** --- a condition involving balanced collections of coalitions.
 
 The Shapley value may or may not lie in the core. When it does, it provides a focal allocation that is both fair (axiomatically) and stable (no coalition wants to deviate).
+
+### Coalition Formation
+
+Cooperative game theory tells us how to *divide* value once a coalition forms. But how do coalitions *form* in the first place?
+
+Wooldridge (2009, Ch. 13) identifies three stages of coalition formation:
+
+1. **Coalition structure generation**: Partition agents into disjoint coalitions. With *n* agents, the number of possible coalition structures grows as the Bell number *B(n)* — super-exponential. For *n = 15*, *B(15) ≈ 1.4 billion*.
+
+2. **Solving each coalition**: Compute the optimal joint strategy within each coalition. This is itself a hard optimization problem.
+
+3. **Dividing the payoff**: Apply Shapley value, core, or another solution concept to allocate rewards fairly within each coalition.
+
+**Greedy coalition formation:** Start with singleton coalitions. Iteratively merge the pair of coalitions whose merger produces the largest marginal gain: $v(S \cup T) - v(S) - v(T)$. Stop when no merge improves total value. This is O(n³) and produces reasonable (though not optimal) structures.
+
+**Arena connection:** In a multi-team Arena experiment, coalition formation maps to team composition. If students from Strategic AI and Behavioral AI form mixed teams, the coalition's value exceeds the sum of individual contributions — the Strategic AI student brings algorithms, the Behavioral AI student brings domain knowledge. The Shapley value tells us how much of the team's performance to attribute to each member (useful for individual grading in team projects).
 
 ## Formal Definitions
 

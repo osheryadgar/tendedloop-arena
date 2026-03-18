@@ -91,6 +91,31 @@ A *rational agent* selects the action that maximizes expected utility given its 
 
 This tension between optimal and tractable is central to algorithm design throughout the course: UCB1 (Week 4) gives near-optimal regret guarantees with minimal computation; deep RL (Week 7) sacrifices provable guarantees for scalability.
 
+### Agent Architectures: From Reactive to BDI
+
+Wooldridge (2009) identifies a spectrum of agent architectures:
+
+**Reactive agents** (Brooks, 1986) respond directly to stimuli without internal state. A rule-based Arena agent that says "if frequency < 2.0, boost XP" is reactive — it has no memory of past decisions or model of the world.
+
+**Deliberative agents** maintain an explicit world model and plan. They reason about the consequences of actions before committing. A Bayesian Optimization agent (Week 12) that builds a surrogate model of the reward function is deliberative.
+
+**BDI agents** (Rao & Georgeff, 1991) formalize deliberation with three mental attitudes:
+- **Beliefs**: The agent's information about the world (current metrics, config state, experiment day)
+- **Desires**: The agent's goals (maximize scan frequency, maintain retention above 0.6)
+- **Intentions**: The agent's committed plan of action (boost scanXp by 15% this cycle)
+
+The BDI loop:
+```
+beliefs = perceive(environment)        # observe()
+desires = generate_options(beliefs)     # what could we do?
+intentions = filter(desires, beliefs)   # commit to a plan
+execute(intentions)                     # act()
+```
+
+This maps directly to Arena's observe-decide-act cycle. The `reasoning` string in `ConfigUpdate` captures the agent's intention in human-readable form — a lightweight BDI audit trail.
+
+**Hybrid architectures** layer reactive and deliberative components. Wooldridge's InteRRaP architecture (Müller, 1996) uses three layers: cooperative planning (top), local planning (middle), behavior-based reaction (bottom). An Arena ensemble agent (Workshop Lesson 13) is a practical hybrid — multiple reactive/deliberative sub-strategies coordinated by a meta-level Hedge algorithm.
+
 ## Formal Definitions
 
 > **Definition (Agent Function).** An agent function **f : P* -> A** maps every possible percept sequence to an action.
@@ -160,3 +185,4 @@ The SDK's `observe()` -> `decide()` -> `act()` structure mirrors the formal agen
 - **Kaelbling, Littman, & Moore (1996), "Reinforcement Learning: A Survey"** — Excellent overview of the RL problem formulation including POMDPs; complements the MDP material with discussion of partial observability.
 - **Simon (1955), "A Behavioral Model of Rational Choice"** — The original paper on bounded rationality; essential context for understanding why optimal solutions are often impractical.
 - **Wooldridge & Jennings (1995), "Intelligent Agents: Theory and Practice"** — Foundational survey of agent architectures (reactive, deliberative, hybrid); gives a broader AI perspective on what "agent" means beyond the MDP formalism.
+- **Wooldridge (2009), *An Introduction to MultiAgent Systems*, Ch. 2-5** — The definitive taxonomy of agent architectures (reactive, deliberative, BDI, hybrid). Essential context for understanding why different Arena agent designs suit different situations.

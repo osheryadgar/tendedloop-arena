@@ -199,11 +199,12 @@ By the end of this course, students will be able to:
 ### Required
 1. **Shoham & Leyton-Brown** — *Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations* (2009). Free at [masfoundations.org](https://www.masfoundations.org/)
 2. **Albrecht, Christianos, Schafer** — *Multi-Agent Reinforcement Learning: Foundations and Modern Approaches* (MIT Press, 2024). Free at [marl-book.com](https://marl-book.com/)
+3. **Wooldridge** — *An Introduction to MultiAgent Systems* (2nd ed, 2009). Agent architectures, communication, cooperation, negotiation, and social choice. The most comprehensive single-volume treatment of MAS.
 
 ### Recommended
-3. **Lattimore & Szepesvari** — *Bandit Algorithms* (Cambridge, 2020). Free at [banditalgs.com](https://banditalgs.com/)
-4. **Sutton & Barto** — *Reinforcement Learning: An Introduction* (2nd ed, 2018). Free at [incompleteideas.net](http://incompleteideas.net/book/the-book.html)
-5. **Russell & Norvig** — *Artificial Intelligence: A Modern Approach* (4th ed, 2021)
+4. **Lattimore & Szepesvari** — *Bandit Algorithms* (Cambridge, 2020). Free at [banditalgs.com](https://banditalgs.com/)
+5. **Sutton & Barto** — *Reinforcement Learning: An Introduction* (2nd ed, 2018). Free at [incompleteideas.net](http://incompleteideas.net/book/the-book.html)
+6. **Russell & Norvig** — *Artificial Intelligence: A Modern Approach* (4th ed, 2021)
 
 ## Related Courses
 
