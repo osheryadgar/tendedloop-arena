@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/arena-header.png" alt="TendedLoop Arena" width="600">
+  <img src="docs/assets/arena-header.svg" alt="TendedLoop Arena" width="600">
 </p>
 
 <h1 align="center">TendedLoop Arena</h1>
