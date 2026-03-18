@@ -1,6 +1,6 @@
 # Week 6: Reinforcement Schedules and Reward Shaping
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

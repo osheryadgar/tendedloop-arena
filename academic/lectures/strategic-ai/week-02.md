@@ -1,6 +1,6 @@
 # Week 2: Normal-Form Games and Nash Equilibrium
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

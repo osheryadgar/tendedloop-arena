@@ -1,6 +1,6 @@
 # Week 1: Agents, Environments, and Decision Theory
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

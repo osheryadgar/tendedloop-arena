@@ -1,4 +1,4 @@
-# Strategic AI: Multi-Agent Systems & Optimization
+# Strategic AI: From Agents to Multi-Agent Systems
 
 **Department**: Computer Science / Artificial Intelligence
 **Level**: Advanced undergraduate or graduate

@@ -1,6 +1,6 @@
 # Week 12: Bayesian Optimization and Black-Box Methods
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

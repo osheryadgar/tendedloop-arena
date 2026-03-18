@@ -2,7 +2,7 @@
 
 Complete lecture notes for both 14-week courses.
 
-## Strategic AI: Multi-Agent Systems & Optimization
+## Strategic AI: From Agents to Multi-Agent Systems
 
 | Week | Topic | Module |
 |------|-------|--------|
@@ -21,7 +21,7 @@ Complete lecture notes for both 14-week courses.
 | [13](strategic-ai/week-13.md) | LLM Agents, Safety, and Alignment | Frontiers |
 | [14](strategic-ai/week-14.md) | Open Problems and Student Presentations | Frontiers |
 
-## Behavioral AI: Computational Gamification & Engagement
+## Behavioral AI: The Science of Incentive Design
 
 | Week | Topic | Module |
 |------|-------|--------|

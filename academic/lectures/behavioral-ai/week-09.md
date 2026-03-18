@@ -1,6 +1,6 @@
 # Week 9: Engagement Metrics and Causal Inference
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

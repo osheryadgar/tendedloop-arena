@@ -1,6 +1,6 @@
 # Week 4: The Multi-Armed Bandit Problem
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

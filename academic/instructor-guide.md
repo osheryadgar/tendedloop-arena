@@ -60,8 +60,8 @@ Use one of the two semester-length courses in the [Academic Program](../academic
 
 | Course | Focus | Best For |
 |--------|-------|----------|
-| [Strategic AI: Multi-Agent Systems](../academic/strategic-ai.md) | Agent theory, game theory, bandits, RL, mechanism design | CS/AI departments |
-| [Behavioral AI: Computational Gamification](../academic/behavioral-ai.md) | Reward modeling, behavioral economics, engagement optimization | CS/AI or HCI departments |
+| [Strategic AI: From Agents to Multi-Agent Systems](../academic/strategic-ai.md) | Agent theory, game theory, bandits, RL, mechanism design | CS/AI departments |
+| [Behavioral AI: The Science of Incentive Design](../academic/behavioral-ai.md) | Reward modeling, behavioral economics, engagement optimization | CS/AI or HCI departments |
 
 Both courses include the 8-session workshop as the practical lab component (15% of the grade). Students build increasingly sophisticated agents throughout the semester, culminating in a competitive experiment in the final weeks.
 

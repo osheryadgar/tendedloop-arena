@@ -1,6 +1,6 @@
 # Week 3: Extensive-Form Games and Sequential Reasoning
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # Week 2: Motivation Theory for Reward Function Design
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

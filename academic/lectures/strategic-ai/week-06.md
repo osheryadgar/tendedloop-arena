@@ -1,6 +1,6 @@
 # Week 6: Contextual Bandits and Beyond
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

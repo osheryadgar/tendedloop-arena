@@ -1,6 +1,6 @@
 # Week 9: Competitive Multi-Agent Systems
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

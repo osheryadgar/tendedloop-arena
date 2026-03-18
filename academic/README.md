@@ -26,8 +26,8 @@ Three interconnected educational offerings that bridge multi-agent systems theor
 
 | Component | Audience | Focus | Duration |
 |-----------|----------|-------|----------|
-| [Strategic AI: Multi-Agent Systems](strategic-ai.md) | CS/AI students | Agent theory, game theory, bandits, RL, mechanism design | 14 weeks |
-| [Behavioral AI: Computational Gamification](behavioral-ai.md) | CS/AI students | Reward modeling, behavioral economics, engagement optimization | 14 weeks |
+| [Strategic AI: From Agents to Multi-Agent Systems](strategic-ai.md) | CS/AI students | Agent theory, game theory, bandits, RL, mechanism design | 14 weeks |
+| [Behavioral AI: The Science of Incentive Design](behavioral-ai.md) | CS/AI students | Reward modeling, behavioral economics, engagement optimization | 14 weeks |
 | [Workshop: Applied Research](../workshop/README.md) | Students from either or both | Build agents on TendedLoop Arena | 8 sessions |
 
 ## How They Connect

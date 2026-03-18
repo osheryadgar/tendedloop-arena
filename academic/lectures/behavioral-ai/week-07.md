@@ -1,6 +1,6 @@
 # Week 7: Progression Systems and XP Economics
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

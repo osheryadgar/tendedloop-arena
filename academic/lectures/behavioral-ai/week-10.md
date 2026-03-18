@@ -1,6 +1,6 @@
 # Week 10: A/B Testing and Statistical Methods
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

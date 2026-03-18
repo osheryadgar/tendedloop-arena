@@ -1,6 +1,6 @@
 # Week 4: Behavioral Economics and Computational Nudging
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# Behavioral AI: Computational Gamification & Engagement
+# Behavioral AI: The Science of Incentive Design
 
 **Department**: Computer Science / Artificial Intelligence
 **Level**: Advanced undergraduate or graduate

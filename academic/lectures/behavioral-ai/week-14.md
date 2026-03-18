@@ -1,6 +1,6 @@
 # Week 14: Research Frontiers and Open Problems
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

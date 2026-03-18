@@ -3,8 +3,8 @@
 A hands-on workshop for building autonomous agents that optimize gamification economies using the TendedLoop Arena SDK.
 
 This workshop is the **practical implementation lab** for two theoretical courses:
-- [Strategic AI: Multi-Agent Systems](../academic/strategic-ai.md) — agent theory, game theory, bandits, RL
-- [Behavioral AI: Computational Gamification](../academic/behavioral-ai.md) — reward modeling, behavioral economics, engagement optimization
+- [Strategic AI: From Agents to Multi-Agent Systems](../academic/strategic-ai.md) — agent theory, game theory, bandits, RL
+- [Behavioral AI: The Science of Incentive Design](../academic/behavioral-ai.md) — reward modeling, behavioral economics, engagement optimization
 
 You can also take this workshop **standalone** — it's self-contained with all the theory you need.
 

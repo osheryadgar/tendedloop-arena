@@ -1,6 +1,6 @@
 # Week 1: Gamification as an Optimization Problem
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

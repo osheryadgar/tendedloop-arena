@@ -1,6 +1,6 @@
 # Week 3: Flow, Engagement, and Dynamic Difficulty
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

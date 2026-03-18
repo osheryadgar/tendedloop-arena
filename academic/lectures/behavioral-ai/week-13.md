@@ -1,6 +1,6 @@
 # Week 13: Case Studies — Computational Analysis
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

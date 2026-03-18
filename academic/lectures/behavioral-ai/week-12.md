@@ -1,6 +1,6 @@
 # Week 12: Personalization and Adaptive Gamification
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # Week 13: LLM Agents, Safety, and Alignment
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

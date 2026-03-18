@@ -1,6 +1,6 @@
 # Week 11: Reward Hacking, Alignment, and Ethics
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 

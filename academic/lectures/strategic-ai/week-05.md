@@ -1,6 +1,6 @@
 # Week 5: Bayesian Bandits and Thompson Sampling
 
-> Strategic AI: Multi-Agent Systems & Optimization
+> Strategic AI: From Agents to Multi-Agent Systems
 
 ## Overview
 

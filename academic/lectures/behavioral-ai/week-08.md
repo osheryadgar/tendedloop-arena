@@ -1,6 +1,6 @@
 # Week 8: Social Dynamics and Network Effects
 
-> Behavioral AI: Computational Gamification & Engagement
+> Behavioral AI: The Science of Incentive Design
 
 ## Overview
 
