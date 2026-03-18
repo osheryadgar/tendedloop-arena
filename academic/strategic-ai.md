@@ -29,9 +29,11 @@ By the end of this course, students will be able to:
 
 ## Weekly Schedule
 
+> **Lecture notes:** Complete lecture notes for each week are available in [lectures/strategic-ai/](lectures/strategic-ai/).
+
 ### Module 1: Foundations (Weeks 1-3)
 
-#### Week 1: Agents, Environments, and Decision Theory
+#### [Week 1: Agents, Environments, and Decision Theory](lectures/strategic-ai/week-01.md)
 - What is an agent? The agent-environment interaction loop
 - PEAS framework (Performance, Environment, Actuators, Sensors)
 - Sequential decision-making under uncertainty
@@ -41,7 +43,7 @@ By the end of this course, students will be able to:
 **Readings**: Russell & Norvig, Ch. 2, 16.1-16.3
 **Workshop**: [Session 1](../workshop/README.md) — Setup and orientation
 
-#### Week 2: Normal-Form Games and Nash Equilibrium
+#### [Week 2: Normal-Form Games and Nash Equilibrium](lectures/strategic-ai/week-02.md)
 - Strategic form games: players, strategies, payoffs
 - Dominant strategies, iterated dominance
 - Nash Equilibrium: existence (Nash's theorem), computation
@@ -51,7 +53,7 @@ By the end of this course, students will be able to:
 **Readings**: Shoham & Leyton-Brown, Ch. 3-4
 **Assignment 1**: Compute Nash Equilibria for 5 games (by hand + code verification)
 
-#### Week 3: Extensive-Form Games and Sequential Reasoning
+#### [Week 3: Extensive-Form Games and Sequential Reasoning](lectures/strategic-ai/week-03.md)
 - Game trees, information sets, subgame perfection
 - Backward induction
 - Imperfect information games: poker as a canonical example
@@ -63,7 +65,7 @@ By the end of this course, students will be able to:
 
 ### Module 2: Bandit Algorithms (Weeks 4-6)
 
-#### Week 4: The Multi-Armed Bandit Problem
+#### [Week 4: The Multi-Armed Bandit Problem](lectures/strategic-ai/week-04.md)
 - Formalization: arms, rewards, regret
 - The explore-exploit tradeoff
 - Lower bounds: Lai-Robbins theorem (logarithmic regret is optimal)
@@ -75,7 +77,7 @@ By the end of this course, students will be able to:
 **Workshop**: [Session 4](../workshop/README.md) — The bandit problem
 **Assignment 2**: Implement UCB1, epsilon-greedy, and ETC. Prove the UCB1 regret bound. Compare empirically on synthetic and Arena data.
 
-#### Week 5: Bayesian Bandits and Thompson Sampling
+#### [Week 5: Bayesian Bandits and Thompson Sampling](lectures/strategic-ai/week-05.md)
 - Bayesian formulation: prior → posterior → decision
 - Beta-Bernoulli Thompson Sampling
 - Gaussian Thompson Sampling for continuous rewards
@@ -85,7 +87,7 @@ By the end of this course, students will be able to:
 **Readings**: Russo et al. (2018) "A Tutorial on Thompson Sampling"
 **Workshop**: [Session 5](../workshop/README.md) — Bayesian approaches
 
-#### Week 6: Contextual Bandits and Beyond
+#### [Week 6: Contextual Bandits and Beyond](lectures/strategic-ai/week-06.md)
 - From bandits to contextual bandits
 - LinUCB: linear upper confidence bound with features (Li et al. 2010)
 - Contextual Thompson Sampling
@@ -98,7 +100,7 @@ By the end of this course, students will be able to:
 
 ### Module 3: Multi-Agent Learning (Weeks 7-10)
 
-#### Week 7: Single-Agent RL Review
+#### [Week 7: Single-Agent RL Review](lectures/strategic-ai/week-07.md)
 - MDPs revisited: value functions, Bellman equations
 - Tabular methods: Q-learning, SARSA
 - Policy gradient: REINFORCE, Actor-Critic
@@ -108,7 +110,7 @@ By the end of this course, students will be able to:
 **Readings**: Sutton & Barto, Ch. 1-6, 13; Albrecht et al. (2024) Ch. 1-3
 **Workshop**: [Session 6](../workshop/README.md) — RL with Arena
 
-#### Week 8: Multi-Agent Reinforcement Learning
+#### [Week 8: Multi-Agent Reinforcement Learning](lectures/strategic-ai/week-08.md)
 - Stochastic games (Markov games): formal definition
 - The non-stationarity problem: each agent's environment changes as others learn
 - Independent learners: treat other agents as part of the environment
@@ -118,7 +120,7 @@ By the end of this course, students will be able to:
 **Readings**: Albrecht et al. (2024) Ch. 4-7; Zhang et al. (2021)
 **Assignment 3**: Implement independent Q-learners in a matrix game. Analyze convergence (or failure to converge).
 
-#### Week 9: Competitive Multi-Agent Systems
+#### [Week 9: Competitive Multi-Agent Systems](lectures/strategic-ai/week-09.md)
 - Zero-sum games and minimax
 - Self-play: training against yourself
 - Fictitious play and convergence
@@ -128,7 +130,7 @@ By the end of this course, students will be able to:
 **Readings**: Zinkevich et al. (2008) "Regret Minimization in Games"; Brown & Sandholm (2019)
 **Case study**: How CFR solved No-Limit Texas Hold'em
 
-#### Week 10: Cooperative Multi-Agent Systems
+#### [Week 10: Cooperative Multi-Agent Systems](lectures/strategic-ai/week-10.md)
 - Team games and common-payoff games
 - Communication: cheap talk, signaling, emergent communication
 - Negotiation protocols and contract nets
@@ -140,7 +142,7 @@ By the end of this course, students will be able to:
 
 ### Module 4: Mechanism Design and Optimization (Weeks 11-12)
 
-#### Week 11: Mechanism Design
+#### [Week 11: Mechanism Design](lectures/strategic-ai/week-11.md)
 - Mechanism design as "reverse game theory"
 - Social choice functions and Arrow's theorem
 - Incentive compatibility and the revelation principle
@@ -151,7 +153,7 @@ By the end of this course, students will be able to:
 **Readings**: Shoham & Leyton-Brown, Ch. 10-11
 **Assignment 4**: Design an auction mechanism for allocating server resources. Prove incentive compatibility.
 
-#### Week 12: Bayesian Optimization and Black-Box Methods
+#### [Week 12: Bayesian Optimization and Black-Box Methods](lectures/strategic-ai/week-12.md)
 - Gaussian processes as surrogate models
 - Acquisition functions: Expected Improvement, UCB, Knowledge Gradient
 - Multi-point acquisition and parallel BO
@@ -163,7 +165,7 @@ By the end of this course, students will be able to:
 
 ### Module 5: Frontier Topics (Weeks 13-14)
 
-#### Week 13: LLM Agents, Safety, and Alignment
+#### [Week 13: LLM Agents, Safety, and Alignment](lectures/strategic-ai/week-13.md)
 - Language models as decision-making agents
 - ReAct, Chain-of-Thought, Tool Use
 - Generative agents: simulating human behavior (Park et al. 2023)
@@ -176,7 +178,7 @@ By the end of this course, students will be able to:
 **Workshop**: [Sessions 7-8](../workshop/README.md) — LLM agents, ensembles, safety
 **Assignment 5**: Analyze failure modes of an unconstrained LLM agent in Arena. Propose and implement guardrails.
 
-#### Week 14: Open Problems and Student Presentations
+#### [Week 14: Open Problems and Student Presentations](lectures/strategic-ai/week-14.md)
 - Non-stationarity in multi-agent learning
 - Scalability: from 2 agents to millions
 - Fairness and equity in multi-agent optimization

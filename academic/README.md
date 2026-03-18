@@ -70,5 +70,6 @@ Not everyone takes both courses. The workshop accommodates three profiles:
 
 - [Strategic AI Syllabus](strategic-ai.md) — Full 14-week syllabus with readings, assignments, and exam topics
 - [Behavioral AI Syllabus](behavioral-ai.md) — Full 14-week syllabus with readings, projects, and case studies
+- [Lecture Notes](lectures/) — Complete lecture notes for all 28 weeks across both courses
 - [Workshop Guide](classroom-guide.md) — Experiment setup, token distribution, grading
 - [Workshop Lessons](../workshop/README.md) — The 8-session hands-on curriculum

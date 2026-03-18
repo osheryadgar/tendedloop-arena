@@ -29,9 +29,11 @@ By the end of this course, students will be able to:
 
 ## Weekly Schedule
 
+> **Lecture notes:** Complete lecture notes for each week are available in [lectures/behavioral-ai/](lectures/behavioral-ai/).
+
 ### Module 1: Behavioral Foundations for AI (Weeks 1-4)
 
-#### Week 1: Gamification as an Optimization Problem
+#### [Week 1: Gamification as an Optimization Problem](lectures/behavioral-ai/week-01.md)
 - Gamification: applying game mechanics to non-game contexts
 - The computational framing: users as agents in an incentive environment
 - Parameterized reward systems: XP, streaks, levels, caps as tunable variables
@@ -41,7 +43,7 @@ By the end of this course, students will be able to:
 **Readings**: Deterding et al. (2011) "From Game Design Elements to Gamefulness"; Morschheuser et al. (2018)
 **Workshop link**: [Session 1](../workshop/README.md) — [Lesson 1 — What is Arena](../workshop/01-what-is-arena.md), [Lesson 2 — The Environment](../workshop/02-the-arena-environment.md)
 
-#### Week 2: Motivation Theory for Reward Function Design
+#### [Week 2: Motivation Theory for Reward Function Design](lectures/behavioral-ai/week-02.md)
 - Self-Determination Theory (SDT): autonomy, competence, relatedness
 - Intrinsic vs. extrinsic motivation — modeling the crowding-out effect
 - Cognitive Evaluation Theory: when external rewards decrease internal drive
@@ -51,7 +53,7 @@ By the end of this course, students will be able to:
 **Readings**: Ryan & Deci (2000) "SDT and Intrinsic Motivation"; Gneezy et al. (2011) "When and Why Incentives (Don't) Work"
 **Assignment 1**: Formally model the overjustification effect — at what reward level does extrinsic motivation crowd out intrinsic? Simulate with different utility functions.
 
-#### Week 3: Flow, Engagement, and Dynamic Difficulty
+#### [Week 3: Flow, Engagement, and Dynamic Difficulty](lectures/behavioral-ai/week-03.md)
 - Csikszentmihalyi's Flow model as an optimization target
 - The challenge-skill balance: a control systems perspective
 - Modeling engagement as a function of difficulty and skill mismatch
@@ -61,7 +63,7 @@ By the end of this course, students will be able to:
 **Readings**: Csikszentmihalyi (1990) *Flow*; Hunicke (2005) "The Case for Dynamic Difficulty Adjustment in Games"
 **Workshop link**: [Session 3](../workshop/README.md) — [Lesson 4 — PID Control](../workshop/04-feedback-loops.md) (control theory for engagement targets)
 
-#### Week 4: Behavioral Economics and Computational Nudging
+#### [Week 4: Behavioral Economics and Computational Nudging](lectures/behavioral-ai/week-04.md)
 - Prospect theory: modeling loss aversion mathematically (Kahneman-Tversky value function)
 - Temporal discounting: hyperbolic vs. exponential models
 - Anchoring and framing effects in reward presentation
@@ -73,7 +75,7 @@ By the end of this course, students will be able to:
 
 ### Module 2: Reward System Engineering (Weeks 5-8)
 
-#### Week 5: Parameterized Reward Systems
+#### [Week 5: Parameterized Reward Systems](lectures/behavioral-ai/week-05.md)
 - Points, badges, leaderboards as formal reward signals
 - The PBL critique: necessary but not sufficient
 - Parameterization: which variables are tunable? Which are fixed?
@@ -84,7 +86,7 @@ By the end of this course, students will be able to:
 **Readings**: Werbach & Hunter (2012) *For the Win*; Hamari (2017) "Do badges increase user activity?"
 **Workshop link**: [Session 1](../workshop/README.md) — [Lesson 2 — The Arena Environment](../workshop/02-the-arena-environment.md) (the 10 tunable parameters)
 
-#### Week 6: Reinforcement Schedules and Reward Shaping
+#### [Week 6: Reinforcement Schedules and Reward Shaping](lectures/behavioral-ai/week-06.md)
 - Operant conditioning as a formal reward model
 - Fixed-ratio, variable-ratio, fixed-interval, variable-interval schedules
 - Mathematical analysis: which schedule maximizes response rate? Persistence?
@@ -95,7 +97,7 @@ By the end of this course, students will be able to:
 **Readings**: Skinner (1953); Ng et al. (1999) "Policy Invariance Under Reward Transformations"
 **Assignment 3**: Model 4 reinforcement schedules as reward functions. Simulate a population of 100 agents. Which schedule produces highest long-term engagement? Which has highest variance?
 
-#### Week 7: Progression Systems and XP Economics
+#### [Week 7: Progression Systems and XP Economics](lectures/behavioral-ai/week-07.md)
 - XP curves: linear O(n), polynomial O(n^k), exponential O(c^n)
 - Level thresholds: why most games use O(n^2) or O(n^1.5)
 - XP inflation: formal analysis (total XP awarded / total XP needed to level)
@@ -106,7 +108,7 @@ By the end of this course, students will be able to:
 **Readings**: Schell (2019) *The Art of Game Design*; Adams (2014) *Fundamentals of Game Design*
 **Workshop link**: [Session 3](../workshop/README.md) — [Lesson 5 — Multi-Objective](../workshop/05-multi-objective.md) (managing XP inflation as a constraint)
 
-#### Week 8: Social Dynamics and Network Effects
+#### [Week 8: Social Dynamics and Network Effects](lectures/behavioral-ai/week-08.md)
 - Social comparison: Festinger's theory formalized as utility functions
 - Leaderboard design: full ranking vs. relative position vs. percentile
 - Competition vs. cooperation: game-theoretic analysis (public goods game)
@@ -118,7 +120,7 @@ By the end of this course, students will be able to:
 
 ### Module 3: Measurement, Experimentation, and Safety (Weeks 9-11)
 
-#### Week 9: Engagement Metrics and Causal Inference
+#### [Week 9: Engagement Metrics and Causal Inference](lectures/behavioral-ai/week-09.md)
 - Defining engagement operationally: behavioral proxies
 - Metrics as random variables: DAU/MAU ratio, retention curves, session distributions
 - Cohort analysis: survival functions and hazard rates
@@ -129,7 +131,7 @@ By the end of this course, students will be able to:
 **Readings**: Kohavi et al. (2020) *Trustworthy Online Controlled Experiments*, Ch. 1-3; Imbens & Rubin (2015)
 **Workshop link**: [Session 1](../workshop/README.md) — [Lesson 2 — Signals](../workshop/02-the-arena-environment.md) (the 6 metrics Arena measures)
 
-#### Week 10: A/B Testing and Statistical Methods
+#### [Week 10: A/B Testing and Statistical Methods](lectures/behavioral-ai/week-10.md)
 - Experimental design: hypothesis, randomization, control
 - Welch's t-test and Fisher's exact test (the Arena's statistical methods)
 - Effect size: Cohen's d, odds ratio, confidence intervals
@@ -142,7 +144,7 @@ By the end of this course, students will be able to:
 **Workshop link**: [Session 3](../workshop/README.md) — [Lesson 5 — Multi-Objective](../workshop/05-multi-objective.md)
 **Assignment 4**: Given a dataset of 1000 users across 3 variants, compute all statistical tests (t-test, Fisher's exact, Cohen's d, power) and determine which variant wins. Implement in Python.
 
-#### Week 11: Reward Hacking, Alignment, and Ethics
+#### [Week 11: Reward Hacking, Alignment, and Ethics](lectures/behavioral-ai/week-11.md)
 - Reward hacking in gamification: users gaming the system (Goodhart's Law)
 - Specification gaming: when the metric improves but behavior doesn't
 - The alignment problem: optimizing engagement vs. optimizing wellbeing
@@ -156,7 +158,7 @@ By the end of this course, students will be able to:
 
 ### Module 4: Adaptive Systems and Research Frontiers (Weeks 12-14)
 
-#### Week 12: Personalization and Adaptive Gamification
+#### [Week 12: Personalization and Adaptive Gamification](lectures/behavioral-ai/week-12.md)
 - User modeling: Bartle's taxonomy, Hexad model as feature spaces
 - Collaborative filtering for reward personalization
 - Contextual bandits for adaptive gamification (LinUCB with user features)
@@ -166,7 +168,7 @@ By the end of this course, students will be able to:
 **Readings**: Tondello et al. (2016) "The Gamification User Types Hexad Scale"; Li et al. (2010) "LinUCB"
 **Workshop link**: [Session 5](../workshop/README.md) — [Lesson 9 — Contextual Bandits](../workshop/09-contextual-bandits.md)
 
-#### Week 13: Case Studies — Computational Analysis
+#### [Week 13: Case Studies — Computational Analysis](lectures/behavioral-ai/week-13.md)
 - **Duolingo**: Reverse-engineer the XP economy, model the streak mechanics, estimate the reward schedule
 - **Enterprise gamification**: TendedLoop's facility feedback platform (the Arena domain)
 - **Agent-optimized systems**: What happens when AI controls the reward structure?
@@ -175,7 +177,7 @@ By the end of this course, students will be able to:
 **Readings**: Hamari et al. (2014) "Does Gamification Work?"; student-selected papers
 **Assignment 5**: Reverse-engineer a gamification system. Extract the parameter space, model the reward function, simulate 1000 users, and identify the likely optimization objective.
 
-#### Week 14: Research Frontiers and Open Problems
+#### [Week 14: Research Frontiers and Open Problems](lectures/behavioral-ai/week-14.md)
 - AI-driven gamification: autonomous reward optimization at scale
 - Multi-agent gamification: competing agents in shared user populations
 - Sim-to-real transfer: training agents in simulation, deploying in production
