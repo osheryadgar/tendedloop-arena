@@ -136,7 +136,7 @@ This ensures no subgroup is systematically less engaged due to parameter choices
 
 ### Example 1: Two-Parameter Optimization
 
-Consider a simple system with two parameters: scanXp (XP per QR scan) and dailyCap (max XP per day). Users have heterogeneous scan rates drawn from Poisson(lambda) where lambda varies by user type.
+Consider a simple system with two parameters: scanXp (XP per primary action) and dailyCap (max XP per day). Users have heterogeneous scan rates drawn from Poisson(lambda) where lambda varies by user type.
 
 **Setup:**
 - Casual users: lambda = 2 scans/day

@@ -179,7 +179,7 @@ Arena's multi-variant architecture naturally supports personalization experiment
 - **Variant as arm.** Each Arena variant is a bandit arm with a fixed configuration. The experiment engine's randomized assignment implements an explore-then-commit strategy. A student agent could implement LinUCB on top, using user features to decide which variant to emphasize.
 - **User features.** Arena exposes user-level behavioral data (tenure, activity history, streak patterns) that serve as the context vector $\mathbf{x}$ for contextual bandits. The challenge is featurizing this data into a compact, informative representation.
 - **Segment-level optimization.** Arena experiments can be designed with segments in mind — e.g., one variant optimized for power users (high tenure, long streaks) and another for new users (short tenure, no streaks). The agent's challenge is discovering the right segmentation without prior knowledge.
-- **Privacy in enterprise context.** Arena operates in enterprise environments where employee behavior data is sensitive. The differential privacy framework is directly applicable: aggregate metrics can be published (to building managers) while individual-level data remains protected. The `dailyXpCap` parameter indirectly bounds sensitivity, making privacy guarantees cheaper.
+- **Privacy in enterprise context.** Arena operates in enterprise environments where user behavior data is sensitive. The differential privacy framework is directly applicable: aggregate metrics can be published (to administrators) while individual-level data remains protected. The `dailyXpCap` parameter indirectly bounds sensitivity, making privacy guarantees cheaper.
 
 ## Discussion Questions
 

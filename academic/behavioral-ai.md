@@ -170,7 +170,7 @@ By the end of this course, students will be able to:
 
 #### [Week 13: Case Studies — Computational Analysis](lectures/behavioral-ai/week-13.md)
 - **Duolingo**: Reverse-engineer the XP economy, model the streak mechanics, estimate the reward schedule
-- **Enterprise gamification**: TendedLoop's facility feedback platform (the Arena domain)
+- **Enterprise gamification**: TendedLoop (the platform Arena runs on)
 - **Agent-optimized systems**: What happens when AI controls the reward structure?
 - Computational case study methodology: data-driven analysis, not just description
 

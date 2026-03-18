@@ -367,7 +367,7 @@ The meta-lesson: XP economics is not just about setting reward values; it is abo
 
 1. **Compute:** A system uses L(n) = 200*n^1.5 and users earn 120 XP/day on average. Compute the days required to reach each level from 1 to 10. At what level does the time between levels exceed 7 days? If the designer wants no level to take more than 7 days, what is the maximum number of levels the system can support?
 
-2. **Design:** TendedLoop's Scout program uses a 10-level system. Propose a currency sink mechanism that is appropriate for a facility feedback context (not a game). The sink should feel natural, not punitive, and should scale with user level. How would you formalize the constraint "feels natural"?
+2. **Design:** TendedLoop's Scout program uses a 10-level system. Propose a currency sink mechanism that is appropriate for a enterprise context (not a game). The sink should feel natural, not punitive, and should scale with user level. How would you formalize the constraint "feels natural"?
 
 3. **Ethical:** The streak anxiety analysis shows that strong streak bonuses can cause psychological distress. Some jurisdictions have begun regulating "dark patterns" in digital products. Should streak mechanics with loss-aversion properties be classified as dark patterns? What would a formal test look like (beyond subjective judgment)?
 

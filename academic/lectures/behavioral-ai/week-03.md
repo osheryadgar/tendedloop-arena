@@ -264,7 +264,7 @@ The PID controller in Lesson 4 does exactly this. The coefficients K_p, K_i, K_d
 
 1. **Compute:** A user has skill s = 7 and the engagement function is E(d, s) = 10 * exp(-(d-s)^2 / 8). The system uses a PID controller with K_p = 0.4, K_i = 0, K_d = 0, and phi_target = 1.0. If the current difficulty is d = 5, trace the system for 5 time steps. Does the system converge to the flow channel? How many steps does it take?
 
-2. **Design:** In a facility feedback gamification system, what constitutes "difficulty"? Propose three difficulty dimensions that could be adjusted dynamically, and explain how you would measure each user's "skill" along that dimension using only behavioral data (no self-reports).
+2. **Design:** In a enterprise gamification system, what constitutes "difficulty"? Propose three difficulty dimensions that could be adjusted dynamically, and explain how you would measure each user's "skill" along that dimension using only behavioral data (no self-reports).
 
 3. **Ethical:** DDA in games is generally considered benign (keep users entertained). DDA in gamification systems that drive real-world behavior (workplace feedback, health compliance) is more complex. If a system adjusts task difficulty to maximize engagement, is it manipulating employees? Where is the line between "helpful adaptation" and "dark pattern"?
 

@@ -139,7 +139,7 @@ $$d(A, B) = \sqrt{\sum_k w_k (\hat{\theta}_{A,k} - \hat{\theta}_{B,k})^2}$$
 
 where $w_k$ weights the importance of each parameter dimension. Parameters that exist in one system but not the other are handled by mapping to functional equivalents or treating as zero.
 
-Applied to Duolingo vs. TendedLoop: high similarity on streak mechanics (both have streaks, freezes, bonus XP); low similarity on social mechanics (Duolingo has competitive leagues; TendedLoop has cooperative building-level goals); structural difference in the cap mechanism (Duolingo uses hearts to limit negative outcomes; TendedLoop uses dailyXpCap to limit positive outcomes).
+Applied to Duolingo vs. TendedLoop: high similarity on streak mechanics (both have streaks, freezes, bonus XP); low similarity on social mechanics (Duolingo has competitive leagues; TendedLoop has cooperative group-level goals); structural difference in the cap mechanism (Duolingo uses hearts to limit negative outcomes; TendedLoop uses dailyXpCap to limit positive outcomes).
 
 ## Worked Examples
 

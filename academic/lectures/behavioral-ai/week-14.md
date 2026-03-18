@@ -96,7 +96,7 @@ The action space becomes the space of natural language instructions — effectiv
 - "Team Challenge: Your floor has the most diverse feedback this month. Keep it up for a collective badge." (Social, cooperative, progress-referenced.)
 
 **Risks:**
-- Hallucinated challenges (referencing non-existent amenities).
+- Hallucinated challenges (referencing non-existent items).
 - Manipulation through emotional language (dark pattern generation).
 - Unpredictable user response to novel stimuli (invalidating historical data).
 - Evaluation: how do you A/B test when every user gets a unique treatment?
@@ -180,7 +180,7 @@ An LLM generates 5 challenges for a user with profile (Achiever=0.8, Socializer=
 1. "Reach Level 6 by Friday — you're 80 XP away!" (Achiever-targeted, progress-referenced)
 2. "Scan the newly renovated kitchen on Floor 3" (Contextual, exploration)
 3. "Your 12-day streak is legendary — go for 14!" (Streak-extension, mild loss framing)
-4. "Team Challenge: help your building hit 50 scans today" (Social, cooperative)
+4. "Team Challenge: help your team hit 50 actions today" (Social, cooperative)
 5. "Submit feedback with a photo for 3x XP today" (Quality incentive, temporary boost)
 
 Evaluation criteria: (a) Relevance to user type (1, 3, 5 score high for Achiever; 4 scores low), (b) Novelty vs. history (if user got challenge 3 yesterday, it is not novel), (c) Safety (does it exploit cognitive biases without user benefit? Challenge 3's loss framing is borderline), (d) Feasibility (challenge 2 assumes the kitchen exists and is relevant — hallucination risk).

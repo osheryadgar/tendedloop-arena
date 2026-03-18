@@ -136,7 +136,7 @@ TendedLoop Arena enables direct experimentation with social dynamics:
 
 - **Leaderboard variants.** Arena's experiment engine can assign users to different leaderboard designs (full rank vs. relative vs. percentile) and measure the effect on the 6 engagement metrics. The `leaderboardEnabled` parameter (or custom variant config) controls visibility.
 - **Scout referral system.** The Scout program's referral mechanics are a live instance of the viral coefficient model. Arena experiments can test different referral reward levels and measure $K$ directly from conversion data.
-- **Public goods via collective missions.** Arena could model building-level challenges (threshold feedback targets) as a public goods game. The `dailyXpCap` parameter interacts with social dynamics: low caps compress the leaderboard (reducing rank variance), while high caps allow social differentiation.
+- **Public goods via collective missions.** Arena could model group-level challenges (threshold feedback targets) as a public goods game. The `dailyXpCap` parameter interacts with social dynamics: low caps compress the leaderboard (reducing rank variance), while high caps allow social differentiation.
 - **Agent-based optimization.** Student agents on Arena implicitly compete — each variant's agent adjusts parameters for its population, creating an inter-agent social game on top of the intra-user social game. This is the multi-agent dimension explored further in Week 14.
 
 ## Discussion Questions

@@ -229,7 +229,7 @@ If gems have linear utility (1 gem = 1 utility unit), the user will pay up to c 
 
 ### Example 2: Comparing Gain vs. Loss Frames
 
-A company wants to increase facility feedback submissions. They test two notification messages:
+A company wants to increase engagement actions. They test two notification messages:
 
 - **Gain frame:** "Submit feedback today and earn 25 XP!"
 - **Loss frame:** "Don't miss your 25 XP — submit feedback before midnight!"

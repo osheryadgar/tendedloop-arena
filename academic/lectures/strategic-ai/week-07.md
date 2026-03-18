@@ -211,7 +211,7 @@ The parameters for action a increase, making a more likely in state s. The magni
 
 Single-agent RL is the bridge from bandits to full multi-agent learning on the Arena platform. While standard Arena experiments present a bandit problem (no state transitions between pulls), the Arena also supports **sequential experiments** where:
 
-1. The agent's current arm selection affects the distribution of future contexts (e.g., choosing a cleaning schedule today affects tomorrow's occupancy patterns).
+1. The agent's current arm selection affects the distribution of future contexts (e.g., choosing a reward configuration today affects tomorrow's engagement patterns).
 2. The experiment has a finite horizon with a known number of rounds.
 3. The agent receives cumulative rewards that depend on the *sequence* of choices.
 

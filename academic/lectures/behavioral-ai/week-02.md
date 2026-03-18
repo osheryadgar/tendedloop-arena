@@ -170,7 +170,7 @@ A well-designed gamification system maintains positive dynamics across all three
 
 ### Example 1: Computing the Crowding-Out Threshold
 
-A facility feedback system has users who find the act of reporting issues moderately satisfying (U_i = 3, on a 0-10 scale). The crowding coefficient is estimated at sigma = 0.15 (from a pilot study comparing XP vs. no-XP conditions). Effort cost c = 1.
+A gamification system has users who find the act of reporting issues moderately satisfying (U_i = 3, on a 0-10 scale). The crowding coefficient is estimated at sigma = 0.15 (from a pilot study comparing XP vs. no-XP conditions). Effort cost c = 1.
 
 Using the nonlinear model with eta = 2:
 

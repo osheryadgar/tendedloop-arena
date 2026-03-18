@@ -174,7 +174,7 @@ Before launching any gamification A/B test, verify:
 1. **Pre-registration.** State the primary metric, expected effect direction, sample size, and analysis plan. This prevents HARKing (Hypothesizing After Results are Known).
 2. **Randomization check.** After assignment, verify that treatment and control groups are balanced on key covariates (tenure, baseline activity, site). Run a chi-squared test on categorical variables and t-tests on continuous ones. Any $p < 0.05$ suggests a randomization failure.
 3. **Minimum duration.** Run the experiment for at least 2 full weekly cycles (14 days) to capture weekday/weekend patterns. For retention metrics, run for at least 30 days.
-4. **Interference check.** If users can communicate across variants (same building, shared Slack channels), SUTVA may be violated. Consider cluster randomization (randomize by site, not by user) if interference is likely.
+4. **Interference check.** If users can communicate across variants (same group, shared Slack channels), SUTVA may be violated. Consider cluster randomization (randomize by site, not by user) if interference is likely.
 5. **Pre-commit to analysis.** Decide in advance: will you use one-sided or two-sided tests? What multiple testing correction? When will you analyze (fixed horizon or group sequential)? Changing these after seeing data invalidates the statistical guarantees.
 
 ### Variance Reduction: CUPED
@@ -199,7 +199,7 @@ Arena implements A/B testing as its core experimental paradigm:
 
 ## Discussion Questions
 
-1. **Minimum detectable effect.** Your enterprise client has 150 users across 3 buildings. What is the minimum effect size (Cohen's $d$) you can reliably detect with 3 variants at $\alpha = 0.05$, power $= 0.80$? What does this mean for the types of gamification changes worth testing?
+1. **Minimum detectable effect.** Your enterprise client has 150 users across 3 sites. What is the minimum effect size (Cohen's $d$) you can reliably detect with 3 variants at $\alpha = 0.05$, power $= 0.80$? What does this mean for the types of gamification changes worth testing?
 
 2. **Novelty effects.** Users in the treatment group might engage more simply because the gamification system looks different, not because the new parameters are better. How would you design an experiment to separate the novelty effect from the true treatment effect? How long should you wait before measuring?
 

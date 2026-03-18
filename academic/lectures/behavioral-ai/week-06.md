@@ -286,7 +286,7 @@ Wait — for gamma close to 1, potential-based shaping gives nearly zero extra r
 
 ### Example 3: Hook Model Probability Analysis
 
-A facility feedback app has the following Hook cycle probabilities:
+A gamification platform has the following Hook cycle probabilities:
 - p_t = 0.8 (push notification noticed)
 - p_a = 0.5 (user acts on notification)
 - p_r = 0.7 (reward received — VR schedule, 70% of actions rewarded)
